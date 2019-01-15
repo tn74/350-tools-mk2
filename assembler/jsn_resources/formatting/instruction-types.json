@@ -1,0 +1,10 @@
+{
+  "R":   {"fields":  ["opcode", "rd", "rs", "rt", "shamt", "aluop", "zeroes"],
+          "lengths": [5, 5, 5, 5, 5, 5, 2]},
+  "I":   {"fields":  ["opcode", "rd", "rs", "immed"],
+          "lengths": [5, 5, 5, 17]},
+  "JI":  {"fields":  ["opcode", "target"],
+          "lengths": [5, 27]},
+  "JII": {"fields":  ["opcode", "rd", "zeroes"],
+          "lengths": [5, 5, 22]}
+}

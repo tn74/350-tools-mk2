@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+    alignment: center;
+    text-align: center;
+}
+
+input button{
+    background: red;
+}
+

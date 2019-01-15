@@ -1,0 +1,21 @@
+{
+  "add":  {"type": "R",   "aluop":  "00000", "syntax": ["rd", "rs", "rt"]         },
+  "addi": {"type": "I",   "opcode": "00101", "syntax": ["rd", "rs", "immed"]      },
+  "sub":  {"type": "R",   "aluop":  "00001", "syntax": ["rd", "rs", "rt"]         },
+  "and":  {"type": "R",   "aluop":  "00010", "syntax": ["rd", "rs", "rt"]         },
+  "or":   {"type": "R",   "aluop":  "00011", "syntax": ["rd", "rs", "rt"]         },
+  "sll":  {"type": "R",   "aluop":  "00100", "syntax": ["rd", "rs", "shamt"]      },
+  "sra":  {"type": "R",   "aluop":  "00101", "syntax": ["rd", "rs", "shamt"]      },
+  "mul":  {"type": "R",   "aluop":  "00110", "syntax": ["rd", "rs", "rt"]         },
+  "div":  {"type": "R",   "aluop":  "00111", "syntax": ["rd", "rs", "rt"]         },
+  "sw":   {"type": "I",   "opcode": "00111", "syntax": ["rd", "immed", "rs"]      },
+  "lw":   {"type": "I",   "opcode": "01000", "syntax": ["rd", "immed", "rs"]      },
+  "j":    {"type": "JI",  "opcode": "00001", "syntax": ["immed"]                  },
+  "bne":  {"type": "I",   "opcode": "00010", "syntax": ["rd", "rs", "immed"]      },
+  "jal":  {"type": "JI",  "opcode": "00010", "syntax": ["immmed"]                 },
+  "jr":   {"type": "JII", "opcode": "00100", "syntax": ["rd"]                     },
+  "blt":  {"type": "I",   "opcode": "00110", "syntax": ["rd", "rs", "immed"]      },
+  "bex":  {"type": "JI",  "opcode": "10110", "syntax": ["immed"]                  },
+  "setx": {"type": "JI",  "opcode": "10101", "syntax": ["immed"]                  },
+  "nop":  {"type": "R",   "aluop":  "00000", "syntax": []}
+}
