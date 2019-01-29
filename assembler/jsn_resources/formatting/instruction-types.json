@@ -1,10 +1,11 @@
 {
-  "R":   {"fields":  ["opcode", "rd", "rs", "rt", "shamt", "aluop", "zeroes"],
-          "lengths": [5, 5, 5, 5, 5, 5, 2]},
-  "I":   {"fields":  ["opcode", "rd", "rs", "immed"],
-          "lengths": [5, 5, 5, 17]},
-  "JI":  {"fields":  ["opcode", "target"],
-          "lengths": [5, 27]},
-  "JII": {"fields":  ["opcode", "rd", "zeroes"],
-          "lengths": [5, 5, 22]}
+  "types":
+  {
+    "R":   {"opcode": 5, "rd": 5, "rs": 5, "rt": 5, "shamt": 5, "aluop": 5, "zeroes": 2},
+    "I":   {"opcode": 5, "rd": 5, "rs": 5, "immed": 17},
+    "JI":  {"opcode": 5, "immed": 27},
+    "JII": {"opcode": 5, "rd": 5, "zeroes": 22},
+    "E":   {"err": 32}
+  },
+  "branches": ["blt", "bne"]
 }

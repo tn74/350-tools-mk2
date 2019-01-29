@@ -1,7 +1,6 @@
 from io import StringIO
 
-from flask import Flask, send_file, send_from_directory, request, redirect, Request, url_for
-import json
+from flask import Flask, send_from_directory, request, redirect, url_for
 
 from werkzeug.datastructures import ImmutableMultiDict
 
@@ -17,9 +16,9 @@ def allowed_file(filename: str) -> bool:
 
 def read_extra_files(files: ImmutableMultiDict) -> dict:
     extra_files = {}
-    print(files)
+    #  print(files)
     for field_name, file in files.items():
-        print(field_name, file)
+        #  print(field_name, file)
         if file.filename == '':
             continue
         if file and allowed_file(file.filename):

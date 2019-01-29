@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Dict
 
 from assembler.instruction.InstructionType import InstructionType
 
@@ -7,20 +7,32 @@ class Instruction:
 
     _R_OPCODE = '00000'
 
-    def __init__(self, inst_type: str):
+    def __init__(self, inst_type: str, name: str, syntax: List[str]):
         self._instruction_type: str = inst_type
         self._binary_components = {}
-        instr_structure: dict = InstructionType.get_by_type(inst_type)
-        self._fields = instr_structure['fields']
-        self._lengths = instr_structure['lengths']
-        self._syntax = instr_structure['syntax']
+        self._load_type_variables()
+        self._syntax = syntax
+        self.name = name
+
+    def get_name(self):
+        return self.name
+
+    def _load_type_variables(self):
+        instr_structure: dict = InstructionType.get_by_type(self._instruction_type)
+        self._fields = instr_structure.keys()
+        self._lengths: dict = instr_structure
         self._init_default()
 
     def _init_default(self):
         """Assign all fields to 0, essentially makes a nop.
             """
-        for field, length in zip(self._fields, self._lengths):
-            self._binary_components[field] = '0' * length
+        for field in self._fields:
+            self._binary_components[field] = '0' * self._lengths[field]
+
+    def replace_with_error(self, msg: str) -> "Instruction":
+        ret = Instruction("E", 'err', ['err'])
+        ret.add_component("err", msg)
+        return ret
 
     def get_type(self) -> str:
         """Return the type of instruction.
@@ -29,9 +41,9 @@ class Instruction:
             """
         return self._instruction_type
 
-    def get_field_lengths(self) -> List[int]:
+    def get_field_lengths(self) -> Dict[str, int]:
         """
-            :rtype: List[int]
+            :rtype: Dict[str, int]
             :returns: Length of each field, paired by index to the instance variable _fields
             """
         return self._lengths
