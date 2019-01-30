@@ -11,13 +11,13 @@
   "div":  {"type": "R",   "aluop":  "00111", "syntax": ["rd", "rs", "rt"]   },
   "sw":   {"type": "I",   "opcode": "00111", "syntax": ["rd", "immed", "rs"]},
   "lw":   {"type": "I",   "opcode": "01000", "syntax": ["rd", "immed", "rs"]},
-  "j":    {"type": "JI",  "opcode": "00001", "syntax": ["immed"]            },
+  "j":    {"type": "JI",  "opcode": "00001", "syntax": ["T"]                },
   "bne":  {"type": "I",   "opcode": "00010", "syntax": ["rd", "rs", "immed"]},
-  "jal":  {"type": "JI",  "opcode": "00010", "syntax": ["immed"]            },
+  "jal":  {"type": "JI",  "opcode": "00011", "syntax": ["T"]                },
   "jr":   {"type": "JII", "opcode": "00100", "syntax": ["rd"]               },
   "blt":  {"type": "I",   "opcode": "00110", "syntax": ["rd", "rs", "immed"]},
-  "bex":  {"type": "JI",  "opcode": "10110", "syntax": ["immed"]            },
-  "setx": {"type": "JI",  "opcode": "10101", "syntax": ["immed"]            },
+  "bex":  {"type": "JI",  "opcode": "10110", "syntax": ["T"]                },
+  "setx": {"type": "JI",  "opcode": "10101", "syntax": ["T"]                },
   "nop":  {"type": "R",   "aluop":  "00000", "syntax": []                   },
   "err":  {"type": "E",                      "syntax": []                   }
 }

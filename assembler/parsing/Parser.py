@@ -2,7 +2,7 @@ from functools import reduce
 from io import IOBase
 from typing import *
 
-from assembler.instruction.InstructionType import InstructionType
+from assembler.instruction.InstructionType import InstructionType, BASE_JSON_PATH
 from assembler.instruction.Instruction import Instruction
 from itertools import count
 import json
@@ -16,10 +16,11 @@ class Parser:
     def __init__(self, extra_registers: Iterable[IOBase]=(), extra_instr: Iterable[IOBase]=()):
         self._extra_registers = extra_registers
         self._extra_instr = extra_instr
-        self._instruction_bank: dict = Parser._load_jsons('./jsn_resources/base_instructions/base_instr.json',
+        self._instruction_bank: dict = Parser._load_jsons(BASE_JSON_PATH.format('base_instr.json'),
                                                           self._extra_instr)
         # Overload the jump replace logic to also handle named registers
-        self._jump_targets: dict = Parser._load_jsons('./jsn_resources/value-mappings.json', self._extra_registers)
+        self._jump_targets: dict = Parser._load_jsons(BASE_JSON_PATH.format('value-mappings.json'),
+                                                      self._extra_registers)
 
     @classmethod
     def _load_jsons(cls, master_location: str, extra_files: Iterable[IOBase]=()) -> dict:
@@ -49,7 +50,7 @@ class Parser:
         cls.ret = ret
         return cls.ret
 
-    def parse_line(self, line: str, line_num: int) -> Optional[Instruction]:
+    def parse_line(self, line: str, line_num: int) -> Instruction:
         """
         Convert a line into an Instruction with all arguments properly populated.
         :param line: Line to convert to an instruction
@@ -78,8 +79,6 @@ class Parser:
             assert line_args, "Not enough fields provided for this instruction"
             length = instruction.get_field_lengths()[field]
             value = line_args.pop(0)
-            if instruction.get_name() == 'sw':
-                print(field, length, value)
             if not re.match(Parser._NUMERIC_PATTERN, value):
                 value = self._replace_name(value, line_num, instruction.get_name())
             bin_value = Parser._to_binary(int(value), length, field == Parser._IMMED)
@@ -88,6 +87,8 @@ class Parser:
 
     def _replace_name(self, name: str, line_num: int, inst_name) -> str:
         replacement = self._jump_targets[name]
+        if inst_name == 'jal':
+            print(name, replacement)
         if InstructionType.is_branch(inst_name):
             replacement -= (line_num + 1)  # Since target = PC + N + 1   =>   N = target - N - 1
         return replacement
@@ -124,7 +125,7 @@ class Parser:
         else:
             assert value > -1, "Value must be at least 0 for representation in non-two's complement"
             assert value < 2**bin_length, "{} is out of range for {}-bit representation".format(value, bin_length)
-            #  return '{{:0{0:0d}b}}'.format(bin_length).format(value)
+            # Will always fit into length+1 as 2's comp, remove first digit to go back to unsigned
             return binary_repr(value, bin_length+1)[1:]
 
     def preprocess_assembly(self, text_file: List[str]) -> List[str]:
@@ -135,7 +136,7 @@ class Parser:
         :return: Filtered list of only lines containing instructions.
         """
         whitespace_or_comment_only: Pattern = re.compile('^\s*$|\s*#')
-        filtered_line_number: Counter = count(1)
+        filtered_line_number: Counter = count(0)
         return [self._extract(line, next(filtered_line_number))  # If there's a jump target, parse it out;
                 for line in text_file                            # if not, just add the line
                 if not re.match(whitespace_or_comment_only, line)  # is not empty or just a comment
@@ -168,7 +169,7 @@ class Parser:
         line = line.strip()
         if re.search(Parser._TARGET_PATTERN, line):
             split = [x for x in re.split(Parser._TARGET_PATTERN, line) if x]
-            self._jump_targets[split[0]] = Parser._to_binary(line_number, Parser._PC_LENGTH)
+            self._jump_targets[split[0]] = line_number
             return split[1]
         else:
             return line
@@ -188,7 +189,8 @@ class Parser:
         :return: None
         """
         self._jump_targets.clear()
-        self._jump_targets: dict = Parser._load_jsons('./jsn_resources/value-mappings.json', self._extra_registers)
+        self._jump_targets: dict = Parser._load_jsons(BASE_JSON_PATH.format('value-mappings.json'),
+                                                      self._extra_registers)
 
     _NUMERIC_PATTERN = re.compile('^[\+\-]?\d+$')
     _TARGET_PATTERN = re.compile(':\s*')
