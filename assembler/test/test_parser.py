@@ -163,14 +163,14 @@ class TestParsing(unittest.TestCase):
             text = self.parser.preprocess_assembly(mips.readlines())
             actual = [str(self.parser.parse_line(x, i)) for i, x in enumerate(text)]
             # Read in the expected file, remove blank lines (filter), and remove the newline character (map)
-            expected = list(map(lambda y: y[:-1], filter(lambda x: not re.match('\s*$', x), mif.readlines())))
+            expected = list(map(lambda y: y[:-1], filter(lambda x: not re.match('^\s*$', x), mif.readlines())))
             self.assertEqual(actual, expected, 'Error in branch replacement')
 
     def test_jump_target_replacement(self):
         with open('./assembler/test/dat/jump_test.s', 'r') as mips, open('./assembler/test/dat/jump_test.mif', 'r') as mif:
             text = self.parser.preprocess_assembly(mips.readlines())
             actual = [str(self.parser.parse_line(x, i)) for i, x in enumerate(text)]
-            expected = list(map(lambda y: y[:-1], filter(lambda x: not re.match('\s*$', x), mif.readlines())))
+            expected = list(map(lambda y: y[:-1], filter(lambda x: not re.match('^\s*$', x), mif.readlines())))
             self.assertEqual(actual, expected, 'Error in branch replacement')
 
     def test_register_replacement(self):
@@ -178,7 +178,7 @@ class TestParsing(unittest.TestCase):
                 open('./assembler/test/dat/reg_replace_test.mif', 'r') as mif:
             text = self.parser.preprocess_assembly(mips.readlines())
             actual = [str(self.parser.parse_line(x, i)) for i, x in enumerate(text)]
-            expected = list(map(lambda y: y[:-1], filter(lambda x: not re.match('\s*$', x), mif.readlines())))
+            expected = list(map(lambda y: y[:-1], filter(lambda x: not re.match('^\s*$', x), mif.readlines())))
             self.assertEqual(actual, expected, 'Error in branch replacement')
 
 

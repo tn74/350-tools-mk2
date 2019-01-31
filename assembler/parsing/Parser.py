@@ -87,8 +87,6 @@ class Parser:
 
     def _replace_name(self, name: str, line_num: int, inst_name) -> str:
         replacement = self._jump_targets[name]
-        if inst_name == 'jal':
-            print(name, replacement)
         if InstructionType.is_branch(inst_name):
             replacement -= (line_num + 1)  # Since target = PC + N + 1   =>   N = target - N - 1
         return replacement
@@ -152,7 +150,7 @@ class Parser:
         if re.search(Parser._TARGET_PATTERN, line):
             sections = [x for x in re.split(Parser._TARGET_PATTERN, line) if x]
             if len(sections) > 2:
-                raise SyntaxError("Too many sections to labelled line: expected two or fewer, found {}"
+                raise SyntaxError("Too many sections to labeled line: expected two or fewer, found {}"
                                   .format(len(sections)))
             elif len(sections) < 2 or sections[1].startswith('#'):
                 self._jump_targets[sections[0]] = line_number
