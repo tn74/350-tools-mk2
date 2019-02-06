@@ -1,6 +1,6 @@
 import json
 
-BASE_JSON_PATH = './assembler/jsn_resources/{}'
+BASE_JSON_PATH = './assembler/base_jsn/{}'
 
 
 def _load_json():

@@ -1,8 +1,8 @@
 from io import StringIO, BytesIO
 from typing import List
 from os import path
-from assembler.instruction.Instruction import Instruction
-from assembler.parsing.Parser import Parser
+from tools350.assembler.instruction.Instruction import Instruction
+from tools350.assembler.parsing.Parser import Parser
 from zipfile import ZipFile
 
 
