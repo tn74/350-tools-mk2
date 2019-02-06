@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+        <link rel="stylesheet" href="/assembler/var/www/350tools.com/static/css/assembler.css">
+    </head>
+    <body>
+        <h1>
+            350 Assembler
+        </h1>
+        <hr>
+        <form enctype="multipart/form-data" method="POST">
+            <label for="inst">Instructions:</label>
+            <input type="file" accept="application/json" name="inst"/>
+            <label for="inst-types">Instruction Types:</label>
+            <input type="file" accept="application/json" name="inst-types"/>
+            <label for="named-regs">Named Registers:</label>
+            <input type="file" accept="application/json" name="named-regs"/>
+            <input type="submit"/>
+      </form>
+    </body>
+</html>
