@@ -2,8 +2,8 @@ from functools import reduce
 from io import IOBase
 from typing import *
 
-from assembler.instruction.InstructionType import InstructionType, BASE_JSON_PATH
-from assembler.instruction.Instruction import Instruction
+from tools350.assembler.instruction.InstructionType import InstructionType, BASE_JSON_PATH
+from tools350.assembler.instruction.Instruction import Instruction
 from itertools import count
 import json
 import re

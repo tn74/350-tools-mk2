@@ -167,7 +167,8 @@ class TestParsing(unittest.TestCase):
             self.assertEqual(actual, expected, 'Error in branch replacement')
 
     def test_jump_target_replacement(self):
-        with open('./assembler/test/dat/jump_test.s', 'r') as mips, open('./assembler/test/dat/jump_test.mif', 'r') as mif:
+        with open('./assembler/test/dat/jump_test.s', 'r') as mips, \
+                open('./assembler/test/dat/jump_test.mif', 'r') as mif:
             text = self.parser.preprocess_assembly(mips.readlines())
             actual = [str(self.parser.parse_line(x, i)) for i, x in enumerate(text)]
             expected = list(map(lambda y: y[:-1], filter(lambda x: not re.match('^\s*$', x), mif.readlines())))

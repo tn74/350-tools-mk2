@@ -1,6 +1,6 @@
 from typing import List, Dict
 
-from assembler.instruction.InstructionType import InstructionType
+from tools350.assembler.instruction.InstructionType import InstructionType
 
 
 class Instruction:
