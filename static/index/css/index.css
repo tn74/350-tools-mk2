@@ -15,10 +15,10 @@ h2 {
     text-align: center;
 }
 
-.now-working {
+.now-working div {
     border: 1px solid #5f5f5f;
 }
 
-.coming-soon {
+.coming-soon div {
     border: 1px solid #5f5f5f;
 }
