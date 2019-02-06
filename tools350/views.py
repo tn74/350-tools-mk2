@@ -12,3 +12,8 @@ def index(request):
 def assembler(request):
     with open(os.path.join(HTML_ROOT, 'assembler', 'assembler.html'), 'r') as html:
         return HttpResponse(''.join(html.readlines()))
+
+
+def wip(request):
+    with open(os.path.join(HTML_ROOT, 'wip', 'wip.html')) as html:
+        return HttpResponse(''.join(html.readlines()))
