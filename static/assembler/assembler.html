@@ -2,7 +2,11 @@
   <html>
     <head>
         <link rel="stylesheet" href="/static/assembler/css/assembler.css">
-	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="assets/js/jquery.knob.js"></script>
+        <script src="assets/js/jquery.ui.widget.js"></script>
+        <script src="assets/js/jquery.iframe-transport.js"></script>
+        <script src="assets/js/jquery.fileupload.js"></script>
     </head>
     <body>
         <div id="nav-placeholder">
@@ -18,6 +22,21 @@
             <label for="named-regs">Named Registers:</label>
             <input type="file" accept="application/json" name="named-regs"/>
             <input type="submit"/>
-      </form>
+        </form>
+
+        <form id="upload" method="post" action="upload.php" enctype="multipart/form-data">
+            <div id="drop">
+                Drop Here
+
+                <a>Browse</a>
+                <input type="file" name="upl" multiple />
+            </div>
+
+            <ul>
+                <!-- The file uploads will be shown here -->
+            </ul>
+
+        </form>
+        <script src="/static/assembler/js/upload.js"></script>
     </body>
 </html>
