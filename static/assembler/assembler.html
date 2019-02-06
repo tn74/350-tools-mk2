@@ -3,12 +3,6 @@
     <head>
         <link rel="stylesheet" href="/static/assembler/css/assembler.css">
 	    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="assets/js/jquery.knob.js"></script>
-        <script src="assets/js/jquery.knob.js"></script>
-        <script src="assets/js/jquery.ui.widget.js"></script>
-        <script src="assets/js/jquery.iframe-transport.js"></script>
-        <script src="assets/js/jquery.fileupload.js"></script>
     </head>
     <body>
         <div id="nav-placeholder">
@@ -17,6 +11,8 @@
 	<script src="/static/js/load_menu.js"></script>
         <hr>
         <form enctype="multipart/form-data" method="POST">
+            <label for="'assembly">Assembly:</label>
+            <input type="file" name="assembly"/>
             <label for="inst">Instructions:</label>
             <input type="file" accept="application/json" name="inst"/>
             <label for="inst-types">Instruction Types:</label>
@@ -26,17 +22,5 @@
             <input type="submit"/>
         </form>
 
-        <form id="upload" enctype="multipart/form-data">
-            <div id="drop">
-                Drop Here
-                <a>Browse</a>
-                <input type="file" name="upl" multiple />
-            </div>
-            <ul>
-                <!-- The file uploads will be shown here -->
-            </ul>
-
-        </form>
-        <script src="/static/assembler/js/upload.js"></script>
     </body>
 </html>
