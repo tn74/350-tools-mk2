@@ -19,5 +19,5 @@ import tools350.views as views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('/', views.root)
+    path('', views.root, name='index'),
 ]
