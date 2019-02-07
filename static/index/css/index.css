@@ -7,8 +7,7 @@ h2 {
     text-align: center;
 }
 
-.now-working div,
-.coming-soon div{
+.bod div{
     padding: 1em;
     background: #f9f9f9;
     border: 1px solid #c1c1c1;
