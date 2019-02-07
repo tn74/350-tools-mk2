@@ -5,13 +5,13 @@ p {
 h2 {
     alignment: center;
     text-align: center;
-    color: #5b80b2;
+    color: lightgrey;
 }
 
 .bod div{
     padding: 1em;
-    background: #f9f9f9;
-    border: 1px solid #c1c1c1;
+    background: #fff;
+    border: 1px solid #9c9c9c;
     margin-top: 2rem;
     max-width: 800px;
     margin-left: auto;
@@ -20,5 +20,5 @@ h2 {
 
 .now-working li,
 .coming-soon li {
-    color: #61a2bb;
+    color: lightgrey;
 }
