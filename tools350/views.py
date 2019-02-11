@@ -1,5 +1,4 @@
 from django.http import HttpResponse, FileResponse, Http404
-from django.utils import
 import os
 
 from tools350.assembler.Assembler import Assembler
