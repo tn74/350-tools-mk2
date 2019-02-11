@@ -38,7 +38,13 @@ def assemble(request):
                                                             [request.FILES.get(f, None) for f in Assembler.FIELDS]) if v}
             ret = Assembler.assemble_all([x[1] for x in assembly_files], [x[0] for x in assembly_files],
                                          additional_declarations)
-            return FileResponse(ret)
+
+            response = HttpResponse(mimetype="application/zip")
+            response["Content-Disposition"] = "attachment; filename=mifs.zip"
+            ret.seek(0)
+            response.write(ret.read())
+            
+            return response
         else:
             return Http404("No assembly files")
     else:

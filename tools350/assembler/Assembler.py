@@ -53,6 +53,8 @@ class Assembler:
                 filename = Assembler.fix_filename(filename)
                 zip_.writestr(filename, file.getvalue())
                 file.close()
+            for file in zip_.filelist:
+                file.create_system = 0
         return zipped
 
     @classmethod
