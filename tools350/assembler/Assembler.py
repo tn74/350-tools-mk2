@@ -1,5 +1,6 @@
-from io import StringIO, BytesIO, IOBase
-from typing import List, TextIO
+import json
+from io import StringIO, BytesIO
+from typing import List
 from os import path
 from tools350.assembler.instruction.Instruction import Instruction
 from tools350.assembler.parsing.Parser import Parser
@@ -12,15 +13,16 @@ class Assembler:
 
     @classmethod
     def assemble_all(cls, files: List[str], names: List[str], additional_declarations: dict, is_pipelined=True) -> BytesIO:
-        parser_ = Parser(Assembler.unpack(additional_declarations, 'registers'),
-                         Assembler.unpack(additional_declarations, 'instructions'))
+        parser_ = Parser(Assembler.unpack(additional_declarations, 'named-regs'),
+                         Assembler.unpack(additional_declarations, 'inst'),)
         tmp = [cls.assemble(f, parser_, is_pipelined) for f in files]
         return Assembler._zip(names, tmp)
 
     @classmethod
     def unpack(cls, dict_: dict, key: str) -> List:
         try:
-            return [dict_[key]]
+            with open(dict_[key], 'r') as f:
+                return [json.load(f)]
         except KeyError as e:
             return []
 

@@ -2,7 +2,7 @@ from functools import reduce
 from io import IOBase
 from typing import *
 
-from tools350.assembler.instruction.InstructionType import InstructionType, BASE_JSON_PATH
+from tools350.assembler.instruction.InstructionType import InstructionType, BASE_JSON_PATH, BASE_JSON_LOCAL
 from tools350.assembler.instruction.Instruction import Instruction
 from itertools import count
 import json
@@ -16,11 +16,18 @@ class Parser:
     def __init__(self, extra_registers: Iterable[IOBase]=(), extra_instr: Iterable[IOBase]=()):
         self._extra_registers = extra_registers
         self._extra_instr = extra_instr
-        self._instruction_bank: dict = Parser._load_jsons(join(BASE_JSON_PATH, 'base_instr.json'),
-                                                          self._extra_instr)
-        # Overload the jump replace logic to also handle named registers
-        self._jump_targets: dict = Parser._load_jsons(join(BASE_JSON_PATH, 'value-mappings.json'),
-                                                      self._extra_registers)
+        try:
+            self._instruction_bank: dict = Parser._load_jsons(join(BASE_JSON_PATH, 'base_instr.json'),
+                                                              self._extra_instr)
+            # Overload the jump replace logic to also handle named registers
+            self._jump_targets: dict = Parser._load_jsons(join(BASE_JSON_PATH, 'value-mappings.json'),
+                                                          self._extra_registers)
+        except FileNotFoundError:
+            self._instruction_bank: dict = Parser._load_jsons(join(BASE_JSON_LOCAL, 'base_instr.json'),
+                                                              self._extra_instr)
+            # Overload the jump replace logic to also handle named registers
+            self._jump_targets: dict = Parser._load_jsons(join(BASE_JSON_LOCAL, 'value-mappings.json'),
+                                                          self._extra_registers)
 
     @classmethod
     def _load_jsons(cls, master_location: str, extra_files: Iterable[IOBase]=()) -> dict:
@@ -38,15 +45,10 @@ class Parser:
             :raises AssertionError: master_location must be a valid file to read.
             :raises JSONDecodeError: master_location must be a valid JSON file.
             """
-        assert exists(master_location) # and isfile(master_location), "Cannot find base instructions"
         with open(master_location, 'r') as file:
             ret = json.load(file)
         for possible_jsn in extra_files:
-            try:
-                extra_values = json.load(possible_jsn)
-                ret = {**extra_values, **ret}  # ret goes second so that its values are preserved
-            except json.JSONDecodeError as json_error:
-                print(json_error)
+            ret = {**possible_jsn, **ret}  # ret goes second so that its values are preserved
         cls.ret = ret
         return cls.ret
 
@@ -187,8 +189,12 @@ class Parser:
         :return: None
         """
         self._jump_targets.clear()
-        self._jump_targets: dict = Parser._load_jsons(join(BASE_JSON_PATH, 'value-mappings.json'),
-                                                      self._extra_registers)
+        try:
+            self._jump_targets: dict = Parser._load_jsons(join(BASE_JSON_PATH, 'value-mappings.json'),
+                                                        self._extra_registers)
+        except FileNotFoundError:
+            self._jump_targets: dict = Parser._load_jsons(join(BASE_JSON_LOCAL, 'value-mappings.json'),
+                                                          self._extra_registers)
 
     _NUMERIC_PATTERN = re.compile('^[\+\-]?\d+$')
     _TARGET_PATTERN = re.compile(':\s*')
