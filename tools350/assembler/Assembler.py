@@ -1,4 +1,4 @@
-from io import StringIO, BytesIO
+from io import StringIO, BytesIO, IOBase
 from typing import List
 from os import path
 from tools350.assembler.instruction.Instruction import Instruction
@@ -12,9 +12,17 @@ class Assembler:
 
     @classmethod
     def assemble_all(cls, files: List[str], additional_declarations: dict, is_pipelined=True) -> BytesIO:
-        parser_ = Parser(additional_declarations['registers'], additional_declarations['instructions'])
+        parser_ = Parser([Assembler.unpack(additional_declarations, 'registers')],
+                         [Assembler.unpack(additional_declarations, 'instructions')])
         tmp = [cls.assemble(file, parser_, is_pipelined) for file in files]
         return Assembler._zip(files, tmp)
+
+    @classmethod
+    def unpack(cls, dict_: dict, key: str) -> IOBase:
+        try:
+            return dict_[key]
+        except KeyError as e:
+            return IOBase()
 
     @classmethod
     def assemble(cls, file: str, parser_: Parser, is_pipelined: bool) -> StringIO:
