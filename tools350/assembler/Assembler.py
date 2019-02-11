@@ -1,5 +1,5 @@
 from io import StringIO, BytesIO, IOBase
-from typing import List
+from typing import List, TextIO
 from os import path
 from tools350.assembler.instruction.Instruction import Instruction
 from tools350.assembler.parsing.Parser import Parser
@@ -11,14 +11,17 @@ class Assembler:
     FIELDS = ['inst', 'inst-types', 'named-regs']
 
     @classmethod
-    def assemble_all(cls, files: List[str], additional_declarations: dict, is_pipelined=True) -> BytesIO:
+    def assemble_all(cls, files: List[str], names: List[str], additional_declarations: dict, is_pipelined=True) -> BytesIO:
         parser_ = Parser(Assembler.unpack(additional_declarations, 'registers'),
                          Assembler.unpack(additional_declarations, 'instructions'))
-        tmp = [cls.assemble(file, parser_, is_pipelined) for file in files]
-        return Assembler._zip(files, tmp)
+        tmp = []
+        for file in files:
+            with open(file, 'r') as f:
+                tmp.append(cls.assemble(''.join(f.readlines()), parser_, is_pipelined))
+        return Assembler._zip(names, tmp)
 
     @classmethod
-    def unpack(cls, dict_: dict, key: str) -> IOBase:
+    def unpack(cls, dict_: dict, key: str) -> List:
         try:
             return [dict_[key]]
         except KeyError as e:

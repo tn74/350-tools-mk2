@@ -34,11 +34,12 @@ def wip(request):
 @csrf_exempt
 def assemble(request):
     if request.method == 'POST':
-        assembly_files = [request.FILES.getlist('assembly', None)]
+        assembly_files = [_store_local(f) for f in request.FILES.getlist('assembly', None) if f]
         if assembly_files:
             additional_declarations = {k: v for k, v in zip(Assembler.FIELDS,
                                                             [request.FILES.get(f, None) for f in Assembler.FIELDS]) if v}
-            ret = Assembler.assemble_all(assembly_files, additional_declarations)
+            ret = Assembler.assemble_all([x[1] for x in assembly_files], [x[0] for x in assembly_files],
+                                         additional_declarations)
             return FileResponse(ret)
         else:
             return Http404("No assembly files")
@@ -46,7 +47,7 @@ def assemble(request):
         raise Http404("Endpoint not allowed for GET")
 
 
-def _store_local(filelike: InMemoryUploadedFile) -> Tuple[str, TextIO]:
+def _store_local(filelike: InMemoryUploadedFile) -> Tuple[str, str]:
     name = filelike.name + time()
     m = md5()
     m.update(name)
@@ -56,4 +57,4 @@ def _store_local(filelike: InMemoryUploadedFile) -> Tuple[str, TextIO]:
     with default_storage.open(path, 'wb+') as destination:
         for chunk in filelike.chunks():
             destination.write(chunk)
-    return ret_name, open(os.path.join(settings.MEDIA_ROOT, path), 'r')
+    return filelike.name, os.path.join(settings.MEDIA_ROOT, path)
