@@ -1,4 +1,4 @@
-from typing import Tuple, TextIO
+from typing import Tuple
 
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.http import HttpResponse, FileResponse, Http404

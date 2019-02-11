@@ -14,10 +14,7 @@ class Assembler:
     def assemble_all(cls, files: List[str], names: List[str], additional_declarations: dict, is_pipelined=True) -> BytesIO:
         parser_ = Parser(Assembler.unpack(additional_declarations, 'registers'),
                          Assembler.unpack(additional_declarations, 'instructions'))
-        tmp = []
-        for file in files:
-            with open(file, 'r') as f:
-                tmp.append(cls.assemble(''.join(f.readlines()), parser_, is_pipelined))
+        tmp = [cls.assemble(f, parser_, is_pipelined) for f in files]
         return Assembler._zip(names, tmp)
 
     @classmethod
