@@ -1,6 +1,9 @@
+import json
 from io import StringIO, BytesIO
 from typing import List
 from os import path
+
+from tools350.assembler.instruction.InstructionType import InstructionType
 from tools350.assembler.instruction.Instruction import Instruction
 from tools350.assembler.parsing.Parser import Parser
 from zipfile import ZipFile
@@ -8,11 +11,23 @@ from zipfile import ZipFile
 
 class Assembler:
 
+    FIELDS = ['inst', 'inst-types', 'named-regs']
+
     @classmethod
-    def assemble_all(cls, files: List[str], additional_declarations: dict, is_pipelined=True) -> BytesIO:
-        parser_ = Parser(additional_declarations['registers'], additional_declarations['instructions'])
-        tmp = [cls.assemble(file, parser_, is_pipelined) for file in files]
-        return Assembler._zip(files, tmp)
+    def assemble_all(cls, files: List[str], names: List[str], additional_declarations: dict, is_pipelined=True) -> BytesIO:
+        parser_ = Parser(Assembler.unpack(additional_declarations, 'named-regs'),
+                         Assembler.unpack(additional_declarations, 'inst'),
+                         Assembler.unpack(additional_declarations, 'inst-types'))
+        tmp = [cls.assemble(f, parser_, is_pipelined) for f in files]
+        return Assembler._zip(names, tmp)
+
+    @classmethod
+    def unpack(cls, dict_: dict, key: str) -> List[dict]:
+        try:
+            with open(dict_[key], 'r') as f:
+                return [json.load(f)]
+        except KeyError as e:
+            return []
 
     @classmethod
     def assemble(cls, file: str, parser_: Parser, is_pipelined: bool) -> StringIO:
@@ -43,6 +58,8 @@ class Assembler:
                 filename = Assembler.fix_filename(filename)
                 zip_.writestr(filename, file.getvalue())
                 file.close()
+            for file in zip_.filelist:
+                file.create_system = 0
         return zipped
 
     @classmethod
@@ -52,4 +69,4 @@ class Assembler:
     _HEADER = """DEPTH = 4096;\nWIDTH = 32;\nADDRESS_RADIX = DEC;\nDATA_RADIX = BIN;\nCONTENT\nBEGIN\n"""
     _MIF_LINE = """{:04d} : {:32s}; -- {}\n"""
     _FOOTER = """[{:04d}..4095] : {:32s};\nEND;\n"""
-    _NOP = Instruction("R", "nop", [])
+    _NOP = Instruction("R", "nop", [], fmt=InstructionType.NOP)

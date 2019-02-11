@@ -7,21 +7,22 @@ class Instruction:
 
     _R_OPCODE = '00000'
 
-    def __init__(self, inst_type: str, name: str, syntax: List[str]):
+    def __init__(self, inst_type: str, name: str, syntax: List[str], *, types: InstructionType=None, fmt: dict=None):
         self._instruction_type: str = inst_type
         self._binary_components = {}
-        self._load_type_variables()
+        self._load_type_variables(types, fmt)
         self._syntax = syntax
         self.name = name
 
     def get_name(self):
         return self.name
 
-    def _load_type_variables(self):
-        instr_structure: dict = InstructionType.get_by_type(self._instruction_type)
+    def _load_type_variables(self, types: InstructionType, fmt: dict):
+        instr_structure: dict = types.get_by_type(self.get_type()) if types else fmt
         self._fields = instr_structure.keys()
         self._lengths: dict = instr_structure
         self._init_default()
+
 
     def _init_default(self):
         """Assign all fields to 0, essentially makes a nop.

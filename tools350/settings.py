@@ -22,8 +22,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'a#--peclk)y(tmeqrm61ov!^#v2*axdheq*4s6mf4r)3*6=a5e'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost',
                 '350tools.colab.duke.edu',

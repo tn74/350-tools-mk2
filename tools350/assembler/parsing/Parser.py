@@ -1,29 +1,41 @@
 from functools import reduce
-from io import IOBase
+from copy import deepcopy
 from typing import *
 
-from tools350.assembler.instruction.InstructionType import InstructionType, BASE_JSON_PATH
+from tools350.assembler.instruction.InstructionType import InstructionType, BASE_JSON_PATH, BASE_JSON_LOCAL
 from tools350.assembler.instruction.Instruction import Instruction
 from itertools import count
 import json
 import re
-from os.path import exists, isfile
+from os.path import join
 from numpy import binary_repr
 
 
 class Parser:
 
-    def __init__(self, extra_registers: Iterable[IOBase]=(), extra_instr: Iterable[IOBase]=()):
+    def __init__(self, extra_registers: Iterable[dict] = (), extra_instr: Iterable[dict] = (),
+                 extra_types: Iterable[dict] = ()):
         self._extra_registers = extra_registers
         self._extra_instr = extra_instr
-        self._instruction_bank: dict = Parser._load_jsons(BASE_JSON_PATH.format('base_instr.json'),
-                                                          self._extra_instr)
-        # Overload the jump replace logic to also handle named registers
-        self._jump_targets: dict = Parser._load_jsons(BASE_JSON_PATH.format('value-mappings.json'),
-                                                      self._extra_registers)
+        try:
+            self._instruction_bank: dict = Parser._load_jsons(join(BASE_JSON_PATH, 'base_instr.json'),
+                                                              self._extra_instr)
+            # Overload the jump replace logic to also handle named registers
+            self._jump_targets: dict = Parser._load_jsons(join(BASE_JSON_PATH, 'value-mappings.json'),
+                                                          self._extra_registers)
+            self._instruction_types: InstructionType = InstructionType(
+                Parser._load_jsons(join(BASE_JSON_PATH, 'instruction-types.json'), extra_types))
+        except FileNotFoundError:
+            self._instruction_bank: dict = Parser._load_jsons(join(BASE_JSON_LOCAL, 'base_instr.json'),
+                                                              self._extra_instr)
+            # Overload the jump replace logic to also handle named registers
+            self._jump_targets: dict = Parser._load_jsons(join(BASE_JSON_LOCAL, 'value-mappings.json'),
+                                                          self._extra_registers)
+            self._instruction_types: InstructionType = InstructionType(
+                Parser._load_jsons(join(BASE_JSON_LOCAL, 'instruction-types.json'), extra_types))
 
     @classmethod
-    def _load_jsons(cls, master_location: str, extra_files: Iterable[IOBase]=()) -> dict:
+    def _load_jsons(cls, master_location: str, extra_files: Iterable[dict] = ()) -> dict:
         """Load json resource files into the program. The master JSON file takes priority over all others for replacement
             of elements, but after that the elements are prioritized their order in the tuple, ie element 1 will
             overwrite all common entries of element 2.
@@ -38,17 +50,29 @@ class Parser:
             :raises AssertionError: master_location must be a valid file to read.
             :raises JSONDecodeError: master_location must be a valid JSON file.
             """
-        assert exists(master_location) and isfile(master_location), "Cannot find base instructions"
         with open(master_location, 'r') as file:
-            ret = json.load(file)
+            ret: dict = json.load(file)
         for possible_jsn in extra_files:
-            try:
-                extra_values = json.load(possible_jsn)
-                ret = {**extra_values, **ret}  # ret goes second so that its values are preserved
-            except json.JSONDecodeError as json_error:
-                print(json_error)
-        cls.ret = ret
-        return cls.ret
+            ret = Parser._merge_dicts(ret, possible_jsn)
+        return ret
+
+    @classmethod
+    def _merge_dicts(cls, dict1: dict, dict2: dict) -> dict:
+        ret = {}
+        overlap = dict1.keys() & dict2.keys()
+        for k in overlap:
+            if type(dict1[k]) is not type(dict2[k]): raise KeyError("Unable to merge divergent types")
+            if type(dict1[k]) is dict:  # Recursively merge
+                ret[k] = Parser._merge_dicts(dict1[k], dict2[k])
+            elif type(dict1[k]) is list:  # Concat the list
+                ret[k] = dict1[k] + dict2[k]
+            else:  # Take the master arg
+                ret[k] = dict1[k]
+        for k in dict1.keys() - overlap:
+            ret[k] = deepcopy(dict1[k])
+        for k in dict2.keys() - overlap:
+            ret[k] = deepcopy(dict2[k])
+        return ret
 
     def parse_line(self, line: str, line_num: int) -> Instruction:
         """
@@ -62,7 +86,8 @@ class Parser:
         :raises AssertionError:
         """
         line = line.split('#')[0].strip()  # Remove comments
-        line = reduce(lambda a, kv: re.sub(*kv, a), Parser._REPLACEMENTS, line) # Make all replacements in _replacements
+        line = reduce(lambda a, kv: re.sub(*kv, a), Parser._REPLACEMENTS,
+                      line)  # Make all replacements in _replacements
         args = line.split()
         instruction = self._build_base(args.pop(0))
         self._add_line_args(instruction, args, line_num)
@@ -87,7 +112,7 @@ class Parser:
 
     def _replace_name(self, name: str, line_num: int, inst_name) -> str:
         replacement = self._jump_targets[name]
-        if InstructionType.is_branch(inst_name):
+        if self._instruction_types.is_branch(inst_name):
             replacement -= (line_num + 1)  # Since target = PC + N + 1   =>   N = target - N - 1
         return replacement
 
@@ -100,7 +125,8 @@ class Parser:
         """
         type_opcode = self._instruction_bank[mips_instr]
         type_ = type_opcode['type']
-        ret = Instruction(type_, mips_instr, self._instruction_bank[mips_instr]['syntax'])
+        ret = Instruction(type_, mips_instr, self._instruction_bank[mips_instr]['syntax'],
+                          types=self._instruction_types)
         if type_ == "R":
             ret.add_component("aluop", type_opcode["aluop"])  # Opcode is always '00000' for R, no need to specify here
         else:
@@ -108,7 +134,7 @@ class Parser:
         return ret
 
     @classmethod
-    def _to_binary(cls, value: int, bin_length: int, twos_complement: bool=False) -> str:
+    def _to_binary(cls, value: int, bin_length: int, twos_complement: bool = False) -> str:
         """
         Util func to create a binary string of set length from a decimal value.
         :param value: decimal value to encode to decimal.
@@ -117,14 +143,14 @@ class Parser:
         :return: Binary string.
         """
         if twos_complement:
-            assert -(2**(bin_length-1)) < value < (2**(bin_length-1))-1, \
+            assert -(2 ** (bin_length - 1)) < value < (2 ** (bin_length - 1)) - 1, \
                 "{} is out of range for {}-bit two's complement".format(value, bin_length)
             return binary_repr(value, bin_length)
         else:
             assert value > -1, "Value must be at least 0 for representation in non-two's complement"
-            assert value < 2**bin_length, "{} is out of range for {}-bit representation".format(value, bin_length)
+            assert value < 2 ** bin_length, "{} is out of range for {}-bit representation".format(value, bin_length)
             # Will always fit into length+1 as 2's comp, remove first digit to go back to unsigned
-            return binary_repr(value, bin_length+1)[1:]
+            return binary_repr(value, bin_length + 1)[1:]
 
     def preprocess_assembly(self, text_file: List[str]) -> List[str]:
         """
@@ -136,9 +162,10 @@ class Parser:
         whitespace_or_comment_only: Pattern = re.compile('^\s*$|\s*#')
         filtered_line_number: Counter = count(0)
         return [self._extract(line, next(filtered_line_number))  # If there's a jump target, parse it out;
-                for line in text_file                            # if not, just add the line
+                for line in text_file  # if not, just add the line
                 if not re.match(whitespace_or_comment_only, line)  # is not empty or just a comment
-                and not self._is_only_target(line, Parser._counter_to_int(filtered_line_number))]  # Has something other than a jump target
+                and not self._is_only_target(line, Parser._counter_to_int(
+                filtered_line_number))]  # Has something other than a jump target
 
     def _is_only_target(self, line: str, line_number: int) -> bool:
         """
@@ -187,8 +214,12 @@ class Parser:
         :return: None
         """
         self._jump_targets.clear()
-        self._jump_targets: dict = Parser._load_jsons(BASE_JSON_PATH.format('value-mappings.json'),
-                                                      self._extra_registers)
+        try:
+            self._jump_targets: dict = Parser._load_jsons(join(BASE_JSON_PATH, 'value-mappings.json'),
+                                                          self._extra_registers)
+        except FileNotFoundError:
+            self._jump_targets: dict = Parser._load_jsons(join(BASE_JSON_LOCAL, 'value-mappings.json'),
+                                                          self._extra_registers)
 
     _NUMERIC_PATTERN = re.compile('^[\+\-]?\d+$')
     _TARGET_PATTERN = re.compile(':\s*')
@@ -196,4 +227,3 @@ class Parser:
     _REPLACEMENTS = [(re.compile(','), ''), (re.compile(';'), ''), (re.compile('\$r(\d+)'), r'\1'),
                      (re.compile('\$(\d+)'), r'\1'), (re.compile('\('), ' '), (re.compile('\)'), ' ')]
     _IMMED = "immed"
-

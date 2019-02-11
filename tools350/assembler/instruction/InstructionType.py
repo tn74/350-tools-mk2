@@ -1,22 +1,18 @@
-import json
-
-BASE_JSON_PATH = './assembler/base_jsn/{}'
-
-
-def _load_json():
-    with open(BASE_JSON_PATH.format('instruction-types.json'), 'r') as file:
-        return json.load(file)
+BASE_JSON_PATH = '/home/mdd36/tools350/tools350/assembler/base_jsn'
+BASE_JSON_LOCAL = '/Users/matthew/Documents/SchoolWork/TA/ECE350/2019s/350_tools_mk2/tools350/assembler/base_jsn'
 
 
 class InstructionType:
 
-    @classmethod
-    def get_by_type(cls, type_: str) -> dict:
-        return InstructionType._instruction_types["types"][type_]
+    def __init__(self, types: dict):
+        self._instruction_types: dict = types
 
-    @classmethod
-    def is_branch(cls, instr: str) -> bool:
-        return instr in InstructionType._instruction_types["branches"]
+    def get_by_type(self, type_: str) -> dict:
+        return self._instruction_types["types"][type_]
 
-    _instruction_types = _load_json()
+    def is_branch(self, instr: str) -> bool:
+        return instr in self._instruction_types["branches"]
+
+    NOP = {"opcode": 5, "rd": 5, "rs": 5, "rt": 5, "shamt": 5, "aluop": 5, "zeroes": 2}
+
 
