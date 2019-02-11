@@ -23,5 +23,6 @@ urlpatterns = [
     path('assembler/', views.assembler, name='assembler'),
     path('im2mif/', views.wip, name='im2mif'),
     path('feedback/', views.wip, name='feedback'),
-    path('about/', views.wip, name='about')
+    path('about/', views.wip, name='about'),
+    path('assemble/', views.assemble, name='assemble')
 ]

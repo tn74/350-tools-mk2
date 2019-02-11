@@ -8,6 +8,8 @@ from zipfile import ZipFile
 
 class Assembler:
 
+    FIELDS = ['inst', 'inst-types', 'named-regs']
+
     @classmethod
     def assemble_all(cls, files: List[str], additional_declarations: dict, is_pipelined=True) -> BytesIO:
         parser_ = Parser(additional_declarations['registers'], additional_declarations['instructions'])
