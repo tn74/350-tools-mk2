@@ -22,6 +22,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'a#--peclk)y(tmeqrm61ov!^#v2*axdheq*4s6mf4r)3*6=a5e'
 
+MEDIA_ROOT = '/home/mdd36/tools350/media'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 

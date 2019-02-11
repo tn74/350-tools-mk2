@@ -1,6 +1,16 @@
+from typing import Tuple, TextIO
+
+import StringIO
+
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.http import HttpResponse, FileResponse, Http404
 from django.views.decorators.csrf import csrf_exempt
+from django.core.files.storage import default_storage
 import os
+from time import time
+from hashlib import md5
+
+from tools350 import settings
 from tools350.assembler.Assembler import Assembler
 
 HTML_ROOT = '/home/mdd36/tools350/static'
@@ -20,10 +30,11 @@ def wip(request):
     with open(os.path.join(HTML_ROOT, 'wip', 'wip.html')) as html:
         return HttpResponse(''.join(html.readlines()))
 
+
 @csrf_exempt
 def assemble(request):
     if request.method == 'POST':
-        assembly_files = request.FILES.getlist('assembly', None)
+        assembly_files = [request.FILES.getlist('assembly', None)]
         if assembly_files:
             additional_declarations = {k: v for k, v in zip(Assembler.FIELDS,
                                                             [request.FILES.get(f, None) for f in Assembler.FIELDS]) if v}
@@ -33,3 +44,16 @@ def assemble(request):
             return Http404("No assembly files")
     else:
         raise Http404("Endpoint not allowed for GET")
+
+
+def _store_local(filelike: InMemoryUploadedFile) -> Tuple[str, TextIO]:
+    name = filelike.name + time()
+    m = md5()
+    m.update(name)
+    ret_name: str = m.hexdigest()
+    path = 'tmp/' + ret_name
+
+    with default_storage.open(path, 'wb+') as destination:
+        for chunk in filelike.chunks():
+            destination.write(chunk)
+    return ret_name, open(os.path.join(settings.MEDIA_ROOT, path), 'r')
