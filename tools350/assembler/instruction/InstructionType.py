@@ -1,10 +1,11 @@
 import json
+from os import path
 
-BASE_JSON_PATH = './assembler/base_jsn/{}'
+BASE_JSON_PATH = '/home/mdd36/tools350/tools350/assembler/base_jsn'
 
 
 def _load_json():
-    with open(BASE_JSON_PATH.format('instruction-types.json'), 'r') as file:
+    with open(path.join(BASE_JSON_PATH, 'instruction-types.json'), 'r') as file:
         return json.load(file)
 
 

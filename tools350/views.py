@@ -1,6 +1,6 @@
 from django.http import HttpResponse, FileResponse, Http404
+from django.views.decorators.csrf import csrf_exempt
 import os
-
 from tools350.assembler.Assembler import Assembler
 
 HTML_ROOT = '/home/mdd36/tools350/static'
@@ -20,7 +20,7 @@ def wip(request):
     with open(os.path.join(HTML_ROOT, 'wip', 'wip.html')) as html:
         return HttpResponse(''.join(html.readlines()))
 
-
+@csrf_exempt
 def assemble(request):
     if request.method == 'POST':
         assembly_files = request.FILES.getlist('assembly', None)

@@ -10,7 +10,7 @@
 	</div>
 	<script src="/static/js/load_menu.js"></script>
         <hr>
-        <form enctype="multipart/form-data" action='/assemble/' method="POST">
+        <form enctype="multipart/form-data" action='/assemble/' method="POST">{% csrf_token %}
             <label for="'assembly">Assembly:</label>
             <input type="file" name="assembly" multiple/>
             <label for="inst">Instructions:</label>
