@@ -1,7 +1,5 @@
 from typing import Tuple, TextIO
 
-import StringIO
-
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.http import HttpResponse, FileResponse, Http404
 from django.views.decorators.csrf import csrf_exempt
@@ -48,9 +46,9 @@ def assemble(request):
 
 
 def _store_local(filelike: InMemoryUploadedFile) -> Tuple[str, str]:
-    name = filelike.name + time()
+    name = filelike.name + str(time())
     m = md5()
-    m.update(name)
+    m.update(name.encode('utf-8'))
     ret_name: str = m.hexdigest()
     path = 'tmp/' + ret_name
 
