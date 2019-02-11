@@ -7,7 +7,7 @@ from tools350.assembler.instruction.Instruction import Instruction
 from itertools import count
 import json
 import re
-from os.path import exists, isfile, join
+from os.path import exists, join
 from numpy import binary_repr
 
 
@@ -187,7 +187,7 @@ class Parser:
         :return: None
         """
         self._jump_targets.clear()
-        self._jump_targets: dict = Parser._load_jsons(BASE_JSON_PATH.format('value-mappings.json'),
+        self._jump_targets: dict = Parser._load_jsons(join(BASE_JSON_PATH, 'value-mappings.json'),
                                                       self._extra_registers)
 
     _NUMERIC_PATTERN = re.compile('^[\+\-]?\d+$')
