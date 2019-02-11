@@ -30,6 +30,6 @@ def assemble(request):
             ret = Assembler.assemble_all(assembly_files, additional_declarations)
             return FileResponse(ret)
         else:
-            return HttpResponse()
+            return Http404("No assembly files")
     else:
         raise Http404("Endpoint not allowed for GET")

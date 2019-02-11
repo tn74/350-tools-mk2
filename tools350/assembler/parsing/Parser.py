@@ -7,7 +7,7 @@ from tools350.assembler.instruction.Instruction import Instruction
 from itertools import count
 import json
 import re
-from os.path import exists, isfile
+from os.path import exists, isfile, join
 from numpy import binary_repr
 
 
@@ -16,10 +16,10 @@ class Parser:
     def __init__(self, extra_registers: Iterable[IOBase]=(), extra_instr: Iterable[IOBase]=()):
         self._extra_registers = extra_registers
         self._extra_instr = extra_instr
-        self._instruction_bank: dict = Parser._load_jsons(BASE_JSON_PATH.format('base_instr.json'),
+        self._instruction_bank: dict = Parser._load_jsons(join(BASE_JSON_PATH, 'base_instr.json'),
                                                           self._extra_instr)
         # Overload the jump replace logic to also handle named registers
-        self._jump_targets: dict = Parser._load_jsons(BASE_JSON_PATH.format('value-mappings.json'),
+        self._jump_targets: dict = Parser._load_jsons(join(BASE_JSON_PATH, 'value-mappings.json'),
                                                       self._extra_registers)
 
     @classmethod
@@ -38,7 +38,7 @@ class Parser:
             :raises AssertionError: master_location must be a valid file to read.
             :raises JSONDecodeError: master_location must be a valid JSON file.
             """
-        assert exists(master_location) and isfile(master_location), "Cannot find base instructions"
+        assert exists(master_location) # and isfile(master_location), "Cannot find base instructions"
         with open(master_location, 'r') as file:
             ret = json.load(file)
         for possible_jsn in extra_files:

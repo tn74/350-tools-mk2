@@ -12,17 +12,17 @@ class Assembler:
 
     @classmethod
     def assemble_all(cls, files: List[str], additional_declarations: dict, is_pipelined=True) -> BytesIO:
-        parser_ = Parser([Assembler.unpack(additional_declarations, 'registers')],
-                         [Assembler.unpack(additional_declarations, 'instructions')])
+        parser_ = Parser(Assembler.unpack(additional_declarations, 'registers'),
+                         Assembler.unpack(additional_declarations, 'instructions'))
         tmp = [cls.assemble(file, parser_, is_pipelined) for file in files]
         return Assembler._zip(files, tmp)
 
     @classmethod
     def unpack(cls, dict_: dict, key: str) -> IOBase:
         try:
-            return dict_[key]
+            return [dict_[key]]
         except KeyError as e:
-            return IOBase()
+            return []
 
     @classmethod
     def assemble(cls, file: str, parser_: Parser, is_pipelined: bool) -> StringIO:
