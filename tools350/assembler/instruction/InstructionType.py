@@ -14,5 +14,5 @@ class InstructionType:
         return instr in self._instruction_types["branches"]
 
     NOP = {"opcode": 5, "rd": 5, "rs": 5, "rt": 5, "shamt": 5, "aluop": 5, "zeroes": 2}
-
+    ERROR = {"err": 32}
 

@@ -149,7 +149,7 @@ class Parser:
         :return: Binary string.
         """
         if twos_complement:
-            assert -(2 ** (bin_length - 1)) < value < (2 ** (bin_length - 1)) - 1, \
+            assert -(2 ** (bin_length - 1)) <= value <= (2 ** (bin_length - 1)) - 1, \
                 "{} is out of range for {}-bit two's complement".format(value, bin_length)
             return binary_repr(value, bin_length)
         else:
@@ -179,8 +179,9 @@ class Parser:
         :param line_number: Line number of the target. Used if the the target needs to be replaced
         :return: bool for if the line is just an instruction
         """
-        if re.search(Parser._TARGET_PATTERN, line):
-            sections = [x for x in re.split(Parser._TARGET_PATTERN, line) if x]
+        without_comments = line.split('#')[0]
+        if re.search(Parser._TARGET_PATTERN, without_comments):
+            sections = [x.strip() for x in re.split(Parser._TARGET_PATTERN, without_comments) if x]
             if len(sections) > 2:
                 raise SyntaxError("Too many sections to labeled line: expected two or fewer, found {}"
                                   .format(len(sections)))

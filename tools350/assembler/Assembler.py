@@ -15,6 +15,15 @@ class Assembler:
 
     @classmethod
     def assemble_all(cls, files: List[str], names: List[str], additional_declarations: dict, is_pipelined=True) -> BytesIO:
+        """
+        Interface of Assembler with other types. Converts MIPS -> Zip[MIF]
+        :param files: MIPS assembly files
+        :param names: Names of the MIPS file before hashing so the files in the zip have the same name as their
+         matching MIPS
+        :param additional_declarations:
+        :param is_pipelined:
+        :return:
+        """
         parser_ = Parser(Assembler.unpack(additional_declarations, 'named-regs'),
                          Assembler.unpack(additional_declarations, 'inst'),
                          Assembler.unpack(additional_declarations, 'inst-types'))
@@ -45,7 +54,7 @@ class Assembler:
         try:
             instr = parser_.parse_line(mips, number)
         except (AssertionError, SyntaxError) as e:
-            instr = Instruction("R", "err", []).replace_with_error(str(e))
+            instr = Assembler._NOP.replace_with_error(str(e))
         # print(mips, '\n', str(instr))
         # print(Assembler.MIF_LINE.format(number, str(instr), mips))
         return Assembler._MIF_LINE.format(number, str(instr), mips)
