@@ -18,6 +18,8 @@ class Instruction:
         return self.name
 
     def _load_type_variables(self, types: InstructionType, fmt: dict):
+        if types is None and fmt is None:
+            print("General kenobi!")
         instr_structure: dict = types.get_by_type(self.get_type()) if types else fmt
         self._fields = instr_structure.keys()
         self._lengths: dict = instr_structure
@@ -31,7 +33,7 @@ class Instruction:
             self._binary_components[field] = '0' * self._lengths[field]
 
     def replace_with_error(self, msg: str) -> "Instruction":
-        ret = Instruction("E", 'err', ['err'])
+        ret = Instruction("E", 'err', ['err'], fmt=InstructionType.ERROR)
         ret.add_component("err", msg)
         return ret
 

@@ -25,7 +25,7 @@ SECRET_KEY = 'a#--peclk)y(tmeqrm61ov!^#v2*axdheq*4s6mf4r)3*6=a5e'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost',
                 '350tools.colab.duke.edu',
