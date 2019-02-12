@@ -36,6 +36,10 @@ def wip(request):
     return find(('wip', 'wip.html'))
 
 
+def bugs_features(request):
+    return find(('bugs', 'bugs.html'))
+
+
 @csrf_exempt
 def assemble(request):
     if request.method == 'POST':
