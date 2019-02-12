@@ -24,5 +24,6 @@ urlpatterns = [
     path('im2mif/', views.wip, name='im2mif'),
     path('feedback/', views.bugs_features, name='feedback'),
     path('about/', views.wip, name='about'),
-    path('assemble/', views.assemble, name='assemble')
+    path('assemble/', views.assemble, name='assemble'),
+    path('help/', views.help, name='help')
 ]

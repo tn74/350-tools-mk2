@@ -40,6 +40,10 @@ def bugs_features(request):
     return find(('bugs', 'bugs.html'))
 
 
+def help(request):
+    return find(('help', 'help.html'))
+
+
 @csrf_exempt
 def assemble(request):
     if request.method == 'POST':
