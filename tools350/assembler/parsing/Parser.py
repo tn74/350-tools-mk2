@@ -58,10 +58,16 @@ class Parser:
 
     @classmethod
     def _merge_dicts(cls, dict1: dict, dict2: dict) -> dict:
+        """
+        Do a deep merge across the two dictionary arguments. If the two share a key, and that key is not a merge-able
+        type like list or dict, then the first dictionary (dict1) is taken.
+        :param dict1: First dict to merge. Will override all non-merge-able values
+        :param dict2: Second dict to merge
+        :return: Merged dict. Values are deep copies of the values in the original dicts
+        """
         ret = {}
         overlap = dict1.keys() & dict2.keys()
         for k in overlap:
-            if type(dict1[k]) is not type(dict2[k]): raise KeyError("Unable to merge divergent types")
             if type(dict1[k]) is dict:  # Recursively merge
                 ret[k] = Parser._merge_dicts(dict1[k], dict2[k])
             elif type(dict1[k]) is list:  # Concat the list
@@ -164,8 +170,7 @@ class Parser:
         return [self._extract(line, next(filtered_line_number))  # If there's a jump target, parse it out;
                 for line in text_file  # if not, just add the line
                 if not re.match(whitespace_or_comment_only, line)  # is not empty or just a comment
-                and not self._is_only_target(line, Parser._counter_to_int(
-                filtered_line_number))]  # Has something other than a jump target
+                and not self._is_only_target(line, Parser._counter_to_int(filtered_line_number))]  # Has something other than a jump target
 
     def _is_only_target(self, line: str, line_number: int) -> bool:
         """
@@ -191,8 +196,8 @@ class Parser:
         :param line_number: Line number of the target.
         :return: String to insert into the list
         """
-        line = line.strip()
-        if re.search(Parser._TARGET_PATTERN, line):
+        without_comments = line.split('#')[0]
+        if re.search(Parser._TARGET_PATTERN, without_comments):
             split = [x for x in re.split(Parser._TARGET_PATTERN, line) if x]
             self._jump_targets[split[0]] = line_number
             return split[1]
