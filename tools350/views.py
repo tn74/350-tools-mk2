@@ -1,8 +1,6 @@
 from typing import Tuple, Iterable
-import json
 from django.core.files.uploadedfile import InMemoryUploadedFile
-from django.http import HttpResponse, FileResponse, Http404
-from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse, Http404
 from django.core.files.storage import default_storage
 import os
 from time import time
@@ -44,7 +42,6 @@ def help(request):
     return find(('help', 'help.html'))
 
 
-@csrf_exempt
 def assemble(request):
     if request.method == 'POST':
         assembly_files = [_store_local(f) for f in request.FILES.getlist('assembly', None) if f]
