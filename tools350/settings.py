@@ -16,11 +16,16 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+def readkey():
+    with open(os.path.join(BASE_DIR, 'secret-key', 'secret-key'), 'r') as file:
+        return file.read()
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'a#--peclk)y(tmeqrm61ov!^#v2*axdheq*4s6mf4r)3*6=a5e'
+SECRET_KEY = readkey()
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -28,9 +33,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEBUG = False
 
 ALLOWED_HOSTS = ['localhost',
-                '350tools.colab.duke.edu',
-                '127.0.0.1']
-
+                 '350tools.colab.duke.edu',
+                 '127.0.0.1']
 
 # Application definition
 
@@ -73,7 +77,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'tools350.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
@@ -83,7 +86,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -103,7 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -116,7 +117,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
