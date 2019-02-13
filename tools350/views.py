@@ -30,7 +30,7 @@ def index(request):
 
 
 def assembler(request):
-    return render(request, 'assembler.html', {})
+    return render(request, 'assembler/assembler.html', {})
 
 
 def wip(request):
