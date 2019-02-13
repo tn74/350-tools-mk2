@@ -58,7 +58,7 @@ ROOT_URLCONF = 'tools350.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,11 +70,6 @@ TEMPLATES = [
         },
     },
 ]
-
-DIRS = [
-    os.path.join(BASE_DIR, 'templates'),
-]
-
 
 WSGI_APPLICATION = 'tools350.wsgi.application'
 

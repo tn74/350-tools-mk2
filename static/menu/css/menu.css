@@ -11,10 +11,6 @@
 	border-right: 1px solid #bbb;
 }
 
-.menu li:last-child{
-	border-right: none;
-}
-
 .menu li a {
 	display: block;
 	color: white;
