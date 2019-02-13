@@ -13,7 +13,6 @@
 
 .menu li:last-child{
 	border-right: none;
-	float: right;
 }
 
 .menu li a {
