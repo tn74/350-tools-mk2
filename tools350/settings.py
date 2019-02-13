@@ -71,6 +71,10 @@ TEMPLATES = [
     },
 ]
 
+TEMPLATE_DIRS = [
+    os.path.join(BASE_DIR, 'static', 'assembler')
+]
+
 WSGI_APPLICATION = 'tools350.wsgi.application'
 
 
