@@ -61,7 +61,7 @@ def assemble(request):
                 ret.seek(0)
                 response.write(ret.read())
             except Exception as e:
-                return render(request, 'error/error.html', {'error': str(e)})
+                response = render(request, 'error/error.html', {'error': str(e)})
 
             [os.remove(x[1]) for x in assembly_files]
             [os.remove(x) for x in [y for _, y in additional_declarations.items()]]
