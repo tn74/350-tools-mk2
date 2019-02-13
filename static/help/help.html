@@ -12,9 +12,26 @@
 
     <div class="bod">
         <div>
-            <h2>Help</h2>
-            The best place to get help is the documentation, which you can download via
+            <h2>Documentation</h2>
+            The best place to get help is the documentation, which you can find at
             <a href="/static/downloads/docs.pdf">this link</a>.
+        </div>
+        <div>
+            <h2>Help Quickstart</h2>
+            Some basic pointers that might help with common errors
+            <ul>
+                <li>You may only have one jump/branch target per line. Because of how the assembler works, though,
+                    you can place a target-only line right after your first target and they'll both map to the same
+                    line.</li>
+                <li>There is no need for the normal MIPS structure with data and text fields. Simple write the
+                    instructions you want into a file directly. See the examples in the documentation .</li>
+                <li>Labels cannot be purely numeric, and they cannot they use any of these:<br>( ) : ; $ ,</li>
+                <li>The assembler does no error checking on your supplemental files. Make sure they adhere to the
+                    spec laid out in the documentation</li>
+                <li>If the assembler gives you a "KeyError", it likely means you attempted to use an instruction that
+                it didn't recognize. Make sure that your code is correct and try again.</li>
+            </ul>
+
         </div>
     </div>
 </body>
