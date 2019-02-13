@@ -52,14 +52,16 @@ def assemble(request):
             additional_declarations = {k: _store_local(v)[1] for k, v in zip(Assembler.FIELDS,
                                                                              [request.FILES.get(f, None) for f in
                                                                               Assembler.FIELDS]) if v}
+            try:
+                ret = Assembler.assemble_all([x[1] for x in assembly_files], [x[0] for x in assembly_files],
+                                             additional_declarations)
 
-            ret = Assembler.assemble_all([x[1] for x in assembly_files], [x[0] for x in assembly_files],
-                                         additional_declarations)
-
-            response = HttpResponse(content_type="application/zip")
-            response["Content-Disposition"] = "attachment; filename=mifs.zip"
-            ret.seek(0)
-            response.write(ret.read())
+                response = HttpResponse(content_type="application/zip")
+                response["Content-Disposition"] = "attachment; filename=mifs.zip"
+                ret.seek(0)
+                response.write(ret.read())
+            except Exception as e:
+                return render(request, 'error/error.html', {'error': str(e)})
 
             [os.remove(x[1]) for x in assembly_files]
             [os.remove(x) for x in [y for _, y in additional_declarations.items()]]
