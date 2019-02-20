@@ -11,17 +11,18 @@
 	</div>
 	<script src="/static/js/load_menu.js"></script>
         <hr>
-        <form enctype="multipart/form-data" action='/assemble/' method="POST">{% csrf_token %}
-            <label for="'assembly">Assembly:</label>
-            <input type="file" name="assembly" multiple/>
-            <label for="inst">Instructions:</label>
-            <input type="file" accept="application/json" name="inst"/>
-            <label for="inst-types">Instruction Types:</label>
-            <input type="file" accept="application/json" name="inst-types"/>
-            <label for="named-regs">Named Registers:</label>
-            <input type="file" accept="application/json" name="named-regs"/>
-            <input type="submit"/>
-        </form>
-
+	<div class="form">
+		<form enctype="multipart/form-data" action='/assemble/' method="POST">{% csrf_token %}
+			<label for="'assembly">Assembly (One or more):</label>
+		    <input type="file" name="assembly" accept=".s, .asm" multiple/>
+		    <label for="inst">Instructions (Optional):</label>
+		    <input type="file" accept="application/json" name="inst"/>
+		    <label for="inst-types">Instr-Types (Optional):</label>
+		    <input type="file" accept="application/json" name="inst-types"/>
+		    <label for="named-regs">Named Registers (Optional):</label>
+		    <input type="file" accept="application/json" name="named-regs"/>
+		    <input type="submit"/>
+		</form>
+	</div>
     </body>
 </html>

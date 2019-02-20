@@ -11,6 +11,11 @@
 	border-right: 1px solid #bbb;
 }
 
+.menu li:last-child{
+	float:	right;
+	border-left: 1px solid #bbb;
+}
+
 .menu li a {
 	display: block;
 	color: white;
