@@ -22,7 +22,8 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('assembler/', views.assembler, name='assembler'),
     path('im2mif/', views.wip, name='im2mif'),
-    path('feedback/', views.wip, name='feedback'),
+    path('feedback/', views.bugs_features, name='feedback'),
     path('about/', views.wip, name='about'),
-    path('assemble/', views.assemble, name='assemble')
+    path('assemble/', views.assemble, name='assemble'),
+    path('help/', views.help, name='help')
 ]

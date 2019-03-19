@@ -12,8 +12,8 @@
 }
 
 .menu li:last-child{
-	border-right: none;
-	float: right;
+	float:	right;
+	border-left: 1px solid #bbb;
 }
 
 .menu li a {

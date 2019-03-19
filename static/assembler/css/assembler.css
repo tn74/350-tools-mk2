@@ -1,56 +1,60 @@
-* {
+.form * {
   box-sizing: border-box;
 }
 
-h1 {
+.form h1 {
     alignment: center;
     text-align: center;
 }
 
-form {
+.form form {
     padding: 1em;
     background: #f9f9f9;
     border: 1px solid #c1c1c1;
     margin-top: 2rem;
-    max-width: 800px;
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
 }
-form input {
+.form form input {
     margin-bottom: 1rem;
     background: #fff;
     border: 1px solid #9c9c9c;
 }
-input[type=submit] {
+
+.form input[type=submit] {
     background: lightgrey;
     padding: 0.7em;
     border: 0;
+    margin-left:200px;
 }
-input[type=submit]:hover {
+.form input[type=submit]:hover {
     background: gold;
 }
 
-label {
+.form label {
+    float: left;
     text-align: right;
     display: block;
     padding: 0.5em 1.5em 0.5em 0;
+    width: 200px;
 }
 
-input {
-    width: 100%;
+.form input {
+    width: calc(100% - 200px);
     padding: 0.7em;
     margin-bottom: 0.5rem;
 }
 
-input[type=file]:hover{
+.form input[type=file]:hover{
     background: gold;
 }
 
-input:focus {
+.form input:focus {
     outline: 3px solid gold;
 }
 
-@media (min-width: 400px) {
+.form @media (min-width: 400px) {
   form {
     overflow: hidden;
   }
@@ -61,7 +65,7 @@ input:focus {
   }
 
   input {
-    float: left;
+    padding-left: 200px;
     width: calc(100% - 200px);
   }
 

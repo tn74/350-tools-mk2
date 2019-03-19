@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link rel="stylesheet" href="/static/error/css/error.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+    <div id="nav-placeholder">
+
+    </div>
+    <script src="/static/js/load_menu.js"></script>
+    <div class="bod">
+        <div>
+            <h2>An error occurred</h2>
+            Below is a description of what went wrong:<br>
+            {{ error }}<br>
+            If you believe this to be a server error, please report it via <a href="/feedback">the bugs page</a>.
+        </div>
+    </div>
+
+</body>
+</html>
