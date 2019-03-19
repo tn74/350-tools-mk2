@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/im2mif/css/im2mif.css">
+    <title>Im2MIF: 350 Tools</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <script src="/static/js/load_menu.js"></script>
+
+    <hr>
+    <div class="form">
+        <form enctype="multipart/form-data" action="/mifify/" method="POST">{% csrf_token %}
+            <label for="color_limit">Color Limit (-1 for inf):</label>
+		    <input type="text" name="color_limit" value="-1"/>
+            <label for="comp_ratio">Compression Ration (0-99):</label>
+            <input type="text" name="comp_ratio" value="0"/>
+            <label for="images">Images (One or more):</label>
+            <input type="file" name="images" accept="image/*"/>
+            <label for="bulk">Color compress across images?</label>
+            <input type="checkbox" name="bulk" checked/>
+            <input type="submit" value="Go">
+        </form>
+    </div>
+</body>
+</html>

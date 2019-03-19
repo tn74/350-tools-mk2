@@ -1,12 +1,11 @@
 import json
-from io import StringIO, BytesIO
+from io import BytesIO, StringIO
 from typing import List
-from os import path
 
 from tools350.assembler.instruction.InstructionType import InstructionType
 from tools350.assembler.instruction.Instruction import Instruction
 from tools350.assembler.parsing.Parser import Parser
-from zipfile import ZipFile
+from ..util import util
 
 
 class Assembler:
@@ -28,7 +27,7 @@ class Assembler:
                          Assembler.unpack(additional_declarations, 'inst'),
                          Assembler.unpack(additional_declarations, 'inst-types'))
         tmp = [cls.assemble(f, parser_, is_pipelined) for f in files]
-        return Assembler._zip(names, tmp)
+        return util.zip_(names, tmp)
 
     @classmethod
     def unpack(cls, dict_: dict, key: str) -> List[dict]:
@@ -55,25 +54,7 @@ class Assembler:
             instr = parser_.parse_line(mips, number)
         except (AssertionError, SyntaxError) as e:
             instr = Assembler._NOP.replace_with_error(str(e))
-        # print(mips, '\n', str(instr))
-        # print(Assembler.MIF_LINE.format(number, str(instr), mips))
         return Assembler._MIF_LINE.format(number, str(instr), mips)
-
-    @classmethod
-    def _zip(cls, file_names: List[str], assembled_files: List[StringIO]) -> BytesIO:
-        zipped = BytesIO()
-        with ZipFile(zipped, 'w') as zip_:
-            for filename, file in zip(file_names, assembled_files):
-                filename = Assembler.fix_filename(filename)
-                zip_.writestr(filename, file.getvalue())
-                file.close()
-            for file in zip_.filelist:
-                file.create_system = 0
-        return zipped
-
-    @classmethod
-    def fix_filename(cls, name: str) -> str:
-        return '{}.mif'.format(path.basename(name).split('.')[0])
 
     _HEADER = """DEPTH = 4096;\nWIDTH = 32;\nADDRESS_RADIX = DEC;\nDATA_RADIX = BIN;\nCONTENT\nBEGIN\n"""
     _MIF_LINE = """{:04d} : {:32s}; -- {}\n"""
