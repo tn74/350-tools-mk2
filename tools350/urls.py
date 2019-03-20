@@ -21,10 +21,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('assembler/', views.assembler, name='assembler'),
-    path('im2mif/', views.im2mif, name='im2mif'),
+    path('im2mif/', views.wip, name='im2mif'),
     path('feedback/', views.bugs_features, name='feedback'),
     path('about/', views.wip, name='about'),
     path('assemble/', views.assemble, name='assemble'),
     path('help/', views.help, name='help'),
-    path('mifify/', views.mifify, name='mifify')
+    path('mifify/', views.mifify, name='mifify'),
+    path('testim2mif/', views.im2mif, name='im2mif-test')
 ]
