@@ -20,12 +20,15 @@ class Compressor:
         :param images: Images to compress
         :return: The resultant color MIF file for the images and the new, color compressed images
         """
-        colors = reduce(lambda res, head: res.append(map(lambda x: x[1], head.getcolors(LARGE))), images, [])
+        x = images[0].getcolors(images[0].size[0] * images[0].size[1])
+        colors = []
+        reduce(lambda res, head: res.append(list(map(lambda x: x[1], head.getcolors(head.size[0]*head.size[1])))), images, colors)
+        colors = colors[0]
         model = Compressor.get_model(colors, limit)
         colorMif = Mif(width=24)
-        for color in model.labels_:
+        for color in model.cluster_centers_:
             r, g, b = color
-            colorMif.add(RGB(r=r, g=g, b=b))
+            colorMif.add(RGB(r=int(r), g=int(g), b=int(b)))
         recolored_images = [Compressor.recolor_image(image, model) for image in images]
         return colorMif, recolored_images
 
@@ -58,7 +61,16 @@ class Compressor:
         :return: New image representation of the image in the reduced color space
         """
         ret = Image.new(im.mode, im.size)
-        ret.putdata([model.labels_[model.predict(x)] for x in im])
+        data = model.labels_[model.predict(im.getdata())]
+        # for pixel in im.getdata():
+        #     p = np.array(pixel)
+        #     model.
+        #     x = list(map(lambda y: int(y), model.labels_[model.predict(p)]))
+        #     data.append(x)
+        f = lambda x: int(x)
+        g = lambda x: tuple(map(f, x))
+        d = list(map(g, model.cluster_centers_[data]))
+        ret.putdata(d)
         return ret
 
     @classmethod
@@ -69,7 +81,8 @@ class Compressor:
         :param limit: Maximum selected colors
         :return: A K-means predictor to will map all the colors to the desired limit
         """
-        return MiniBatchKMeans(n_clusters=limit).fit(np.array(colors))
+        limit = len(colors) if limit > len(colors) else limit  # If the limit is too high, lower it to the right number
+        return MiniBatchKMeans(n_clusters=limit, batch_size=int(limit/32), init_size=3*limit).fit(np.array(colors))
 
     @classmethod
     def compress_pixels(cls, im: Image.Image, compression_ratio: float) -> Image.Image:

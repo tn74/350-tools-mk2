@@ -31,5 +31,5 @@ class Mif:
         return len(self.__contents)
 
     def __str__(self):
-        return self.make_header() + '\n'.join([self.build_line(i, str(x)) for i, x in enumerate(self.__contents)]) \
+        return self.make_header() + ''.join([self.build_line(i, str(x)) for i, x in enumerate(self.__contents)]) \
                + self.make_footer()

@@ -19,7 +19,10 @@ class MifEntry:
         self.width = self.hex_bits_needed(width)
 
     def hexify(self) -> str:
-        return "{0:#0{1}x}".format(self.value, self.width)[2:].upper()  # [2:] to remove 0x from start of string
+        s = hex(self.value)[2:]
+        pad_len = self.width - len(s)
+        print(self.width, pad_len, ('0' * pad_len) + s)
+        return ('0' * pad_len) + s
 
     def __eq__(self, other):
         return isinstance(other, MifEntry) and self.value == other.value and self.width == other.width
