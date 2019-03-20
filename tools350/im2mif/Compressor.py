@@ -20,7 +20,6 @@ class Compressor:
         :param images: Images to compress
         :return: The resultant color MIF file for the images and the new, color compressed images
         """
-        x = images[0].getcolors(images[0].size[0] * images[0].size[1])
         colors = []
         reduce(lambda res, head: res.append(list(map(lambda x: x[1], head.getcolors(head.size[0]*head.size[1])))), images, colors)
         colors = colors[0]
@@ -43,12 +42,12 @@ class Compressor:
         color_mif = Mif(width=24)
         ret_images = []
         for image in images:
-            colors = list(map(lambda x: x[1], image.getcolors(LARGE)))
+            colors = list(map(lambda x: x[1], image.getcolors(image.size[0] * image.size[1])))
             model = Compressor.get_model(colors, limit)
-            for color in model.labels_:
+            for color in model.cluster_centers_:
                 if color_mif.index_of(color) < 0:
                     r, g, b = color
-                    color_mif.add(RGB(r=r, g=g, b=b))
+                    color_mif.add(RGB(r=int(r), g=int(g), b=int(b)))
             ret_images.append(Compressor.recolor_image(image, model))
         return color_mif, ret_images
 
@@ -62,11 +61,6 @@ class Compressor:
         """
         ret = Image.new(im.mode, im.size)
         data = model.labels_[model.predict(im.getdata())]
-        # for pixel in im.getdata():
-        #     p = np.array(pixel)
-        #     model.
-        #     x = list(map(lambda y: int(y), model.labels_[model.predict(p)]))
-        #     data.append(x)
         f = lambda x: int(x)
         g = lambda x: tuple(map(f, x))
         d = list(map(g, model.cluster_centers_[data]))

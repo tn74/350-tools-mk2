@@ -21,7 +21,6 @@ class MifEntry:
     def hexify(self) -> str:
         s = hex(self.value)[2:]
         pad_len = self.width - len(s)
-        print(self.width, pad_len, ('0' * pad_len) + s)
         return ('0' * pad_len) + s
 
     def __eq__(self, other):

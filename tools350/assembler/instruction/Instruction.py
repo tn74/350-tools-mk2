@@ -18,8 +18,6 @@ class Instruction:
         return self.name
 
     def _load_type_variables(self, types: InstructionType, fmt: dict):
-        if types is None and fmt is None:
-            print("General kenobi!")
         instr_structure: dict = types.get_by_type(self.get_type()) if types else fmt
         self._fields = instr_structure.keys()
         self._lengths: dict = instr_structure
