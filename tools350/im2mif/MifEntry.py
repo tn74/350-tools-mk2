@@ -1,5 +1,5 @@
 from math import log2, ceil
-
+import difflib
 
 class MifEntry:
 

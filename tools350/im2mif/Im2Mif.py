@@ -34,8 +34,7 @@ class Im2Mif:
         for pixel in im.getdata():
             r, g, b = pixel
             color_dex = color_mif.index_of(RGB(r=r, b=b, g=g))
-            if color_dex > 0:
-                ret.add(MifEntry(value=color_dex, width=width))
-            else:
-                raise ValueError("Cannot find pixel color in color MIF: {}".format(str(pixel)))
+            if color_dex < 0:
+                color_dex = color_mif.index_of(color_mif.get_closest(RGB(r=r, b=b, g=g)))
+            ret.add(MifEntry(value=color_dex, width=width))
         return ret
