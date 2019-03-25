@@ -11,6 +11,10 @@ def num_bits_needed(x: int) -> int:
     return int(ceil(log2(x)))
 
 
+def num_hex_bits_needed(x: int) -> int:
+    return int(ceil(log2(x) / 4))
+
+
 def fix_filename(name: str, extension: str) -> str:
     return '{}.{}'.format(path.basename(name).split('.')[0], extension)
 

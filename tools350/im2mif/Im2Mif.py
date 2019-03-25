@@ -28,8 +28,8 @@ class Im2Mif:
 
     @classmethod
     def mifify(cls, im: Image.Image, color_mif: Mif) -> Mif:
-        width = num_bits_needed(color_mif.get_num_entries())  # Over 4 since using hex radix
-        ret = Mif(width=int(width / 4))
+        width = num_bits_needed(color_mif.get_num_entries())
+        ret = Mif(width=width)
         for pixel in im.getdata():
             r, g, b = pixel
             color_dex = color_mif.index_of(RGB(r=r, b=b, g=g))

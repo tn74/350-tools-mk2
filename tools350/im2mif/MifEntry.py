@@ -13,7 +13,7 @@ class MifEntry:
 
     @staticmethod
     def hex_bits_needed(width: int) -> int:
-        return int(width / 4)
+        return int(ceil(width / 4))
 
     def set_width(self, width: int):
         self.width = self.hex_bits_needed(width)
