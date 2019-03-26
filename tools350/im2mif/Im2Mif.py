@@ -21,7 +21,8 @@ class Im2Mif:
         else:
             pass  # TODO
 
-        color_compressed[0].show()
+        for im in color_compressed:
+            im.show()
         mifs = [color_mif] + [Im2Mif.mifify(im, color_mif) for im in color_compressed]
         names = ["colors.foo"] + names
         ret = zip_(names, [StringIO(str(x)) for x in mifs])

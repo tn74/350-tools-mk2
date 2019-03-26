@@ -44,19 +44,19 @@ def mifify(request):
         if form.is_valid():
             f = form.cleaned_data
             files = [_store_local(f) for f in request.FILES.getlist('images', None) if f]
-            try:
-                comp_ratio = (100 - f['comp_ratio']) / 100
-                ret = Im2Mif.convert(names=[x[0] for x in files], files=[x[1] for x in files],
-                                     compression_ratio=comp_ratio, max_colors=f['color_limit'],
-                                     bulk_color_compression=f['bulk'])
+            # try:
+            comp_ratio = (100 - f['comp_ratio']) / 100
+            ret = Im2Mif.convert(names=[x[0] for x in files], files=[x[1] for x in files],
+                                 compression_ratio=comp_ratio, max_colors=f['color_limit'],
+                                 bulk_color_compression=f['bulk'])
 
-                response = HttpResponse(content_type="application/zip")
-                response["Content-Disposition"] = "attachment; filename=im-mifs.zip"
-                ret.seek(0)
-                response.write(ret.read())
-            except Exception as e:
-                s = '{}: {}'.format(str(type(e)), str(e))
-                response = render(request, 'error/error.html', {'error': s})
+            response = HttpResponse(content_type="application/zip")
+            response["Content-Disposition"] = "attachment; filename=im-mifs.zip"
+            ret.seek(0)
+            response.write(ret.read())
+            # except Exception as e:
+            #     s = '{}: {}'.format(str(type(e)), str(e))
+            #     response = render(request, 'error/error.html', {'error': s})
 
             [os.remove(x[1]) for x in files]
         else:

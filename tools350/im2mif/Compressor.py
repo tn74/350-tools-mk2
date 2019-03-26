@@ -20,9 +20,10 @@ class Compressor:
         :param images: Images to compress
         :return: The resultant color MIF file for the images and the new, color compressed images
         """
-        colors = []
-        reduce(lambda res, head: res.append(tuple(map(lambda x: x[1], head.getcolors(head.size[0]*head.size[1])))),
-               images, colors)
+        colors = [pix for im in images for pix in im.getdata()]
+
+        # reduce(lambda res, head: res.append(tuple(map(lambda x: x[1], head.getcolors(head.size[0]*head.size[1])))),
+        #        images, colors)
         model = Compressor.get_model(colors, limit)
         colorMif = Mif(width=24)
         for color in model.cluster_centers_:
