@@ -60,7 +60,7 @@ class Compressor:
         limit = len(colors) if limit > len(colors) else limit  # If the limit is too high for sklearn's k-means,
                                                                # lower it to the right number
         batch_size = int(limit / 32) if limit > Compressor.__MIN_BATCH_SIZE else limit
-        return MiniBatchKMeans(n_clusters=limit, batch_size=batch_size, tol=0.01, max_iter=150).fit(colors)
+        return MiniBatchKMeans(n_clusters=limit, batch_size=batch_size, tol=0.2, max_iter=75).fit(colors)
 
     @classmethod
     def compress_pixels(cls, im: Image.Image, cluster_size: int) -> Image.Image:
