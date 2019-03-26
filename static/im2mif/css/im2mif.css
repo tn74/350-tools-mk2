@@ -26,7 +26,7 @@
     background: lightgrey;
     padding: 0.7em;
     border: 0;
-    margin-left:200px;
+    margin-left:250px;
 }
 .form input[type=submit]:hover {
     background: gold;
@@ -37,13 +37,17 @@
     text-align: right;
     display: block;
     padding: 0.5em 1.5em 0.5em 0;
-    width: 200px;
+    width: 250px;
 }
 
 .form input {
     width: calc(100% - 200px);
     padding: 0.7em;
     margin-bottom: 0.5rem;
+}
+
+.form select:hover{
+    background: gold;
 }
 
 .form input[type=file]:hover{
@@ -61,11 +65,11 @@
 
   label {
     float: left;
-    width: 200px;
+    width: 250px;
   }
 
   input {
-    padding-left: 200px;
+    padding-left: 250px;
     width: calc(100% - 200px);
   }
 

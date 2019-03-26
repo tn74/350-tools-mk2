@@ -15,10 +15,16 @@
         <form enctype="multipart/form-data" action="/mifify/" method="POST">{% csrf_token %}
             <label for="color_limit">Color Limit (-1 for inf):</label>
 		    <input type="text" name="color_limit" value="-1"/>
-            <label for="comp_ratio">Compression Ration (0-99):</label>
-            <input type="text" name="comp_ratio" value="0"/>
+            <label for="pix_cluster">Pixel Cluster Size:</label>
+            <select name="pix_cluster">
+                <option value="1" selected>1</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+                <option value="7">7</option>
+                <option value="15">15</option>
+            </select>
             <label for="images">Images (One or more):</label>
-            <input type="file" name="images" accept="image/*"/>
+            <input type="file" name="images" accept="image/*" multiple/>
             <label for="bulk">Color compress across images?</label>
             <input type="checkbox" name="bulk" checked/>
             <input type="submit" value="Go">

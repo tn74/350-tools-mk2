@@ -9,20 +9,22 @@ from .MifEntry import MifEntry
 class Im2Mif:
 
     @classmethod
-    def convert(cls, files: List[str], names: List[str], compression_ratio: float, max_colors: int,
+    def convert(cls, files: List[str], names: List[str], cluster_size: int, max_colors: int,
                 bulk_color_compression: bool) -> BytesIO:
         images: List[Image.Image] = [Image.open(f) for f in files]
-        compressed = [Compressor.compress_pixels(im, compression_ratio) for im in images]
-        if max_colors > 0:
-            if bulk_color_compression:
-                color_mif, color_compressed = Compressor.compress_colors_collective(compressed, max_colors)
-            else:
-                color_mif, color_compressed = Compressor.compress_colors_individual(compressed, max_colors)
+        compressed = [Compressor.compress_pixels(im, cluster_size) for im in images] if cluster_size > 1 else images
+
+        for im in compressed:
+            im.show()
+
+        if bulk_color_compression:
+            color_mif, color_compressed = Compressor.compress_colors_collective(compressed, max_colors)
         else:
-            pass  # TODO
+            color_mif, color_compressed = Compressor.compress_colors_individual(compressed, max_colors)
 
         for im in color_compressed:
             im.show()
+
         mifs = [color_mif] + [Im2Mif.mifify(im, color_mif) for im in color_compressed]
         names = ["colors.foo"] + names
         ret = zip_(names, [StringIO(str(x)) for x in mifs])

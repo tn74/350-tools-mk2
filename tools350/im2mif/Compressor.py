@@ -1,3 +1,5 @@
+import itertools
+
 from PIL import Image
 from typing import List, Tuple, Collection, Set
 from .mif import Mif
@@ -83,8 +85,21 @@ class Compressor:
         return MiniBatchKMeans(n_clusters=limit, batch_size=batch_size, init_size=3 * limit).fit(colors)
 
     @classmethod
-    def compress_pixels(cls, im: Image.Image, compression_ratio: float) -> Image.Image:
-        new_dims = tuple(map(lambda x: int(compression_ratio*x), im.size))
-        return im.resize(new_dims, Image.LANCZOS)
+    def compress_pixels(cls, im: Image.Image, cluster_size: int) -> Image.Image:
+        ret = Image.new("RGB", im.size)
+        relevant_pixels = list(im.getdata())[0::(cluster_size * cluster_size)]
+        new_data = []
+        for p in relevant_pixels:
+            new_data.extend([p] * (cluster_size * cluster_size))
+        ret.putdata(new_data)
+        return ret
+
+    @classmethod
+    def recolor(cls, im: Image.Image, col: int, row: int, cluster_size: int) -> List[Tuple[int, int, int]]:
+        row_delta = cluster_size if row + cluster_size < im.size[0] else im.size[0] - row
+        col_delta = cluster_size if col + cluster_size < im.size[1] else im.size[1] - col
+        sample = (int((row + row_delta) / 2), int((col + col_delta) / 2))
+        x = [im.getpixel(sample)] * (row_delta * col_delta)
+        return x
 
     __MIN_BATCH_SIZE = 200  # If there's less than colors, just do the whole thing at once

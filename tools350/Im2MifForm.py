@@ -2,7 +2,7 @@ from django import forms
 
 
 class Im2MifForm(forms.Form):
-
-    color_limit = forms.IntegerField(label='color_limit', initial=-1, max_value=2048)
-    comp_ratio = forms.IntegerField(label='comp_ratio', initial=0, max_value=99, min_value=0)
+    options = ((1, '1'), (3, '3'), (5, '5'), (7, '7'), (15, '15'))
+    color_limit = forms.IntegerField(label='color_limit', initial=256, min_value=1, max_value=1024)
+    pix_cluster = forms.ChoiceField(widget=forms.Select, label='pix_cluster', choices=options)
     bulk = forms.BooleanField(label='bulk', initial=True, required=False)
