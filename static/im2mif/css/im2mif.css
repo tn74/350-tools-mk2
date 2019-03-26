@@ -46,6 +46,12 @@
     margin-bottom: 0.5rem;
 }
 
+.form select {
+    width: calc(100% - 200px);
+    padding: 0.7em;
+    margin-bottom: 0.5rem;
+}
+
 .form select:hover{
     background: gold;
 }

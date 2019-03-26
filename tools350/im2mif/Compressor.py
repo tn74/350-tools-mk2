@@ -31,25 +31,6 @@ class Compressor:
         recolored_images = [Compressor.recolor_image(image, model) for image in images]
         return colorMif, recolored_images
 
-    @classmethod
-    def compress_colors_individual(cls, images: List[Image.Image], limit: int) -> Tuple[Mif, List[Image.Image]]:
-        """
-        Compress the colors in the images, keeping the desire count in each image
-        :param limit: Maximum allowed colors
-        :param images: Images to compress
-        :return: The resultant color MIF file for the images and the new, color compressed images
-        """
-        color_mif = Mif(width=24)
-        ret_images = []
-        for image in images:
-            colors = list(map(lambda x: x[1], image.getcolors(image.size[0] * image.size[1])))
-            model = Compressor.get_model(colors, limit)
-            for color in model.cluster_centers_:
-                if color_mif.index_of(color) < 0:
-                    r, g, b = color
-                    color_mif.add(RGB(r=int(r), g=int(g), b=int(b)))
-            ret_images.append(Compressor.recolor_image(image, model))
-        return color_mif, ret_images
 
     @classmethod
     def recolor_image(cls, im: Image.Image, model: MiniBatchKMeans) -> Image.Image:
@@ -79,7 +60,7 @@ class Compressor:
         limit = len(colors) if limit > len(colors) else limit  # If the limit is too high for sklearn's k-means,
                                                                # lower it to the right number
         batch_size = int(limit / 32) if limit > Compressor.__MIN_BATCH_SIZE else limit
-        return MiniBatchKMeans(n_clusters=limit, batch_size=batch_size, init_size=3 * limit).fit(colors)
+        return MiniBatchKMeans(n_clusters=limit, batch_size=batch_size, tol=0.01, max_iter=150).fit(colors)
 
     @classmethod
     def compress_pixels(cls, im: Image.Image, cluster_size: int) -> Image.Image:
@@ -93,7 +74,7 @@ class Compressor:
         cols, rows = im.size
         for col in range(0, cols, cluster_size):
             for row in range(0, rows, cluster_size):
-                pixel_value = Compressor.recolor(im, col, row, cluster_size)
+                pixel_value = Compressor.sample_image(im, col, row, cluster_size)
                 c_bound = min(col + cluster_size, cols)
                 r_bound = min(row + cluster_size, rows)
                 for r in range(row, r_bound):
@@ -103,7 +84,7 @@ class Compressor:
         return Image.fromarray(new_data, mode="RGB")
 
     @classmethod
-    def recolor(cls, im: Image.Image, col: int, row: int, cluster_size: int) -> Tuple[int, int, int]:
+    def sample_image(cls, im: Image.Image, col: int, row: int, cluster_size: int) -> Tuple[int, int, int]:
         """
         Get the center color value inside a square with side length cluster_size and top left corner at (row, col)
         :param im: Image to sample from
@@ -114,7 +95,7 @@ class Compressor:
         """
         row_delta = cluster_size if row + cluster_size < im.size[1] else im.size[1] - row
         col_delta = cluster_size if col + cluster_size < im.size[0] else im.size[0] - col
-        sample = (int((col + col_delta) / 2), int((row + row_delta) / 2))
+        sample = (col + int(col_delta / 2), row + int(row_delta / 2))
         x = im.getpixel(sample)
         return x
 

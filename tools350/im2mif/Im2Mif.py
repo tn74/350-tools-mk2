@@ -9,18 +9,14 @@ from .MifEntry import MifEntry
 class Im2Mif:
 
     @classmethod
-    def convert(cls, files: List[str], names: List[str], cluster_size: int, max_colors: int,
-                bulk_color_compression: bool) -> BytesIO:
+    def convert(cls, files: List[str], names: List[str], cluster_size: int, max_colors: int) -> BytesIO:
         images: List[Image.Image] = [Image.open(f) for f in files]
         compressed = [Compressor.compress_pixels(im, cluster_size) for im in images] if cluster_size > 1 else images
 
         for im in compressed:
             im.show()
+        color_mif, color_compressed = Compressor.compress_colors_collective(compressed, max_colors)
 
-        if bulk_color_compression:
-            color_mif, color_compressed = Compressor.compress_colors_collective(compressed, max_colors)
-        else:
-            color_mif, color_compressed = Compressor.compress_colors_individual(compressed, max_colors)
 
         for im in color_compressed:
             im.show()
