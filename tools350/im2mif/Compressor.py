@@ -1,13 +1,10 @@
-import itertools
+import numpy as np
 
 from PIL import Image
-from typing import List, Tuple, Collection, Set
+from typing import List, Tuple
 from .mif import Mif
 from sklearn.cluster import MiniBatchKMeans
-import numpy as np
-from functools import reduce
 from .rgb import RGB
-from ..util.util import LARGE
 
 
 
@@ -86,20 +83,42 @@ class Compressor:
 
     @classmethod
     def compress_pixels(cls, im: Image.Image, cluster_size: int) -> Image.Image:
+        """
+        Compress the image by clustering adjacent pixels to center color value.
+        :param im: Image to compress
+        :param cluster_size: Size of the square used to define adjacent pixels
+        :return: Compressed version of the original image. This is a new image object
+        """
         ret = Image.new("RGB", im.size)
-        relevant_pixels = list(im.getdata())[0::(cluster_size * cluster_size)]
-        new_data = []
-        for p in relevant_pixels:
-            new_data.extend([p] * (cluster_size * cluster_size))
+        new_data = [None] * (im.size[0] * im.size[1])
+        cols, rows = im.size
+        for col in range(0, cols, cluster_size):
+            for row in range(0, rows, cluster_size):
+                pixel_value = Compressor.recolor(im, col, row, cluster_size)
+                c_bound = min(col + cluster_size, cols)
+                r_bound = min(row + cluster_size, rows)
+                for r in range(row, r_bound):
+                    for c in range(col, c_bound):
+                        absolute_index = (cols * r) + c
+                        new_data[absolute_index] = pixel_value
+
         ret.putdata(new_data)
         return ret
 
-    @classmethod
-    def recolor(cls, im: Image.Image, col: int, row: int, cluster_size: int) -> List[Tuple[int, int, int]]:
-        row_delta = cluster_size if row + cluster_size < im.size[0] else im.size[0] - row
-        col_delta = cluster_size if col + cluster_size < im.size[1] else im.size[1] - col
-        sample = (int((row + row_delta) / 2), int((col + col_delta) / 2))
-        x = [im.getpixel(sample)] * (row_delta * col_delta)
-        return x
 
-    __MIN_BATCH_SIZE = 200  # If there's less than colors, just do the whole thing at once
+    @classmethod
+    def recolor(cls, im: Image.Image, col: int, row: int, cluster_size: int) -> Tuple[int, int, int]:
+        """
+        Get the center color value inside a square with side length cluster_size and top left corner at (row, col)
+        :param im: Image to sample from
+        :param col: Col to sample near
+        :param row: Row to sample near
+        :param cluster_size: Size of the square to define adjacent pixels
+        :return: RGB value of the pixel at the center of the square
+        """
+        row_delta = cluster_size if row + cluster_size < im.size[1] else im.size[1] - row
+        col_delta = cluster_size if col + cluster_size < im.size[0] else im.size[0] - col
+        sample = (int((col + col_delta) / 2), int((row + row_delta) / 2))
+        return im.getpixel(sample)
+
+    __MIN_BATCH_SIZE = 200  # If there's fewer than this many colors, just do the whole thing at once, no mini batches

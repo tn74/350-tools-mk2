@@ -28,7 +28,7 @@ class Im2Mif:
         mifs = [color_mif] + [Im2Mif.mifify(im, color_mif) for im in color_compressed]
         names = ["colors.foo"] + names
         ret = zip_(names, [StringIO(str(x)) for x in mifs])
-        [x.close() for x in images + compressed + color_compressed]
+        [x.close() for x in images + compressed + color_compressed if x]
         return ret
 
     @classmethod
