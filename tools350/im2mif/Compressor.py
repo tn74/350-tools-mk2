@@ -78,7 +78,7 @@ class Compressor:
         colors = np.squeeze(np.array(list(colors)))
         limit = len(colors) if limit > len(colors) else limit  # If the limit is too high for sklearn's k-means,
                                                                # lower it to the right number
-        batch_size = int(limit / 32) if limit > (Compressor.__MIN_BATCH_SIZE) else limit
+        batch_size = int(limit / 32) if limit > Compressor.__MIN_BATCH_SIZE else limit
         return MiniBatchKMeans(n_clusters=limit, batch_size=batch_size, init_size=3 * limit).fit(colors)
 
     @classmethod
@@ -89,8 +89,7 @@ class Compressor:
         :param cluster_size: Size of the square used to define adjacent pixels
         :return: Compressed version of the original image. This is a new image object
         """
-        ret = Image.new("RGB", im.size)
-        new_data = [None] * (im.size[0] * im.size[1])
+        new_data = np.zeros(im.size, dtype=(np.uint8, 3))
         cols, rows = im.size
         for col in range(0, cols, cluster_size):
             for row in range(0, rows, cluster_size):
@@ -99,12 +98,9 @@ class Compressor:
                 r_bound = min(row + cluster_size, rows)
                 for r in range(row, r_bound):
                     for c in range(col, c_bound):
-                        absolute_index = (cols * r) + c
-                        new_data[absolute_index] = pixel_value
+                        new_data[c][r] = pixel_value
 
-        ret.putdata(new_data)
-        return ret
-
+        return Image.fromarray(new_data, mode="RGB")
 
     @classmethod
     def recolor(cls, im: Image.Image, col: int, row: int, cluster_size: int) -> Tuple[int, int, int]:
@@ -119,6 +115,7 @@ class Compressor:
         row_delta = cluster_size if row + cluster_size < im.size[1] else im.size[1] - row
         col_delta = cluster_size if col + cluster_size < im.size[0] else im.size[0] - col
         sample = (int((col + col_delta) / 2), int((row + row_delta) / 2))
-        return im.getpixel(sample)
+        x = im.getpixel(sample)
+        return x
 
     __MIN_BATCH_SIZE = 200  # If there's fewer than this many colors, just do the whole thing at once, no mini batches
