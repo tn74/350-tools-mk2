@@ -13,13 +13,15 @@ class Im2Mif:
                 bulk_color_compression: bool) -> BytesIO:
         images: List[Image.Image] = [Image.open(f) for f in files]
         compressed = [Compressor.compress_pixels(im, compression_ratio) for im in images]
-        max_colors = LARGE if max_colors < 1 else max_colors
-
-        if bulk_color_compression:
-            color_mif, color_compressed = Compressor.compress_colors_collective(compressed, max_colors)
+        if max_colors > 0:
+            if bulk_color_compression:
+                color_mif, color_compressed = Compressor.compress_colors_collective(compressed, max_colors)
+            else:
+                color_mif, color_compressed = Compressor.compress_colors_individual(compressed, max_colors)
         else:
-            color_mif, color_compressed = Compressor.compress_colors_individual(compressed, max_colors)
+            pass  # TODO
 
+        color_compressed[0].show()
         mifs = [color_mif] + [Im2Mif.mifify(im, color_mif) for im in color_compressed]
         names = ["colors.foo"] + names
         ret = zip_(names, [StringIO(str(x)) for x in mifs])

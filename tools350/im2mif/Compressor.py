@@ -1,5 +1,5 @@
 from PIL import Image
-from typing import List, Tuple
+from typing import List, Tuple, Collection, Set
 from .mif import Mif
 from sklearn.cluster import MiniBatchKMeans
 import numpy as np
@@ -21,8 +21,8 @@ class Compressor:
         :return: The resultant color MIF file for the images and the new, color compressed images
         """
         colors = []
-        reduce(lambda res, head: res.append(list(map(lambda x: x[1], head.getcolors(head.size[0]*head.size[1])))), images, colors)
-        colors = colors[0]
+        reduce(lambda res, head: res.append(tuple(map(lambda x: x[1], head.getcolors(head.size[0]*head.size[1])))),
+               images, colors)
         model = Compressor.get_model(colors, limit)
         colorMif = Mif(width=24)
         for color in model.cluster_centers_:
@@ -60,7 +60,7 @@ class Compressor:
         :return: New image representation of the image in the reduced color space
         """
         ret = Image.new(im.mode, im.size)
-        data = model.labels_[model.predict(im.getdata())]
+        data = model.predict(im.getdata())
         f = lambda x: int(x)
         g = lambda x: tuple(map(f, x))
         d = list(map(g, model.cluster_centers_[data]))
@@ -75,10 +75,15 @@ class Compressor:
         :param limit: Maximum selected colors
         :return: A K-means predictor to will map all the colors to the desired limit
         """
-        limit = len(colors) if limit > len(colors) else limit  # If the limit is too high, lower it to the right number
-        return MiniBatchKMeans(n_clusters=limit, batch_size=int(limit/32), init_size=3*limit).fit(np.array(colors))
+        colors = np.squeeze(np.array(list(colors)))
+        limit = len(colors) if limit > len(colors) else limit  # If the limit is too high for sklearn's k-means,
+                                                               # lower it to the right number
+        batch_size = int(limit / 32) if limit > (Compressor.__MIN_BATCH_SIZE) else limit
+        return MiniBatchKMeans(n_clusters=limit, batch_size=batch_size, init_size=3 * limit).fit(colors)
 
     @classmethod
     def compress_pixels(cls, im: Image.Image, compression_ratio: float) -> Image.Image:
         new_dims = tuple(map(lambda x: int(compression_ratio*x), im.size))
         return im.resize(new_dims, Image.LANCZOS)
+
+    __MIN_BATCH_SIZE = 200  # If there's less than colors, just do the whole thing at once
