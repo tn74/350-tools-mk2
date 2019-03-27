@@ -7,8 +7,6 @@ from sklearn.cluster import MiniBatchKMeans
 from .rgb import RGB
 
 
-
-
 class Compressor:
 
     @classmethod
@@ -25,7 +23,7 @@ class Compressor:
         #        images, colors)
         model = Compressor.get_model(colors, limit)
         colorMif = Mif(width=24)
-        for color in model.cluster_centers_:
+        for color in {tuple(x) for x in model.cluster_centers_}:
             r, g, b = color
             colorMif.add(RGB(r=int(r), g=int(g), b=int(b)))
         recolored_images = [Compressor.recolor_image(image, model) for image in images]
