@@ -111,14 +111,14 @@ class Parser:
             length = instruction.get_field_lengths()[field]
             value = line_args.pop(0)
             if not re.match(Parser._NUMERIC_PATTERN, value):
-                value = self._replace_name(value, line_num, instruction.get_name())
+                value = self._replace_name(value, line_num, field, instruction.get_name())
             bin_value = Parser._to_binary(int(value), length, field == Parser._IMMED)
             instruction.add_component(field, bin_value)
         assert not line_args, "Not all fields specified in line were used"
 
-    def _replace_name(self, name: str, line_num: int, inst_name) -> str:
+    def _replace_name(self, name: str, line_num: int, field: str, inst_name: str) -> str:
         replacement = self._jump_targets[name]
-        if self._instruction_types.is_branch(inst_name):
+        if self._instruction_types.is_branch(inst_name) and field == Parser._IMMED:
             replacement -= (line_num + 1)  # Since target = PC + N + 1   =>   N = target - N - 1
         return replacement
 
