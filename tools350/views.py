@@ -11,8 +11,8 @@ from django.shortcuts import render
 from tools350 import settings
 from tools350.assembler.Assembler import Assembler
 
-HTML_ROOT = '/home/mdd36/tools350/static'
-HTML_ROOT_LOCAL = '/Users/matthew/Documents/SchoolWork/TA/ECE350/2019s/350_tools_mk2/static'
+HTML_ROOT = './static'
+HTML_ROOT_LOCAL = './static'
 
 
 
