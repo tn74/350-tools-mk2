@@ -79,8 +79,10 @@ def _store_local(filelike: InMemoryUploadedFile) -> Tuple[str, str]:
     m = md5()
     m.update(name.encode('utf-8'))
     ret_name: str = m.hexdigest()
-    path = 'tmp/' + ret_name
-
+    tmpdir = 'tmp/'
+    path = tmpdir + ret_name
+    if not os.path.exists(tmpdir):
+        os.makedirs(tmpdir)
     with default_storage.open(path, 'wb+') as destination:
         for chunk in filelike.chunks():
             destination.write(chunk)
