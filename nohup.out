@@ -1,0 +1,29 @@
+*** Starting uWSGI 2.0.18 (64bit) on [Tue Oct 22 12:59:22 2019] ***
+compiled with version: 7.4.0 on 22 October 2019 15:32:04
+os: Linux-4.15.0-66-generic #75-Ubuntu SMP Tue Oct 1 05:24:09 UTC 2019
+nodename: vcm-11504.vm.duke.edu
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 2
+current working directory: /home/vcm/350-tools-mk2
+detected binary path: /home/vcm/.local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 6753
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address tools350.sock fd 3
+Python version: 3.6.8 (default, Oct  7 2019, 12:59:55)  [GCC 8.3.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x5582d7bf1040
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72904 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+/home/vcm/350-tools-mk2/static_serve/
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x5582d7bf1040 pid: 15339 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 15339, cores: 1)
+[pid: 15339|app: 0|req: 1/1] 10.197.231.181 () {42 vars in 2329 bytes} [Tue Oct 22 16:59:31 2019] GET / => generated 921 bytes in 131 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)

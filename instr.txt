@@ -1,6 +1,7 @@
 Run
 
-uwsgi --socket tools350.sock --module tools350.wsgi --chmod-socket=666
+nohup uwsgi --socket tools350.sock --module tools350.wsgi --chmod-socket=666 &
+
 
 from inside ~/350-tools-mk2
 
