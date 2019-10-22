@@ -1,5 +1,5 @@
-BASE_JSON_PATH = '/home/mdd36/tools350/tools350/assembler/base_jsn'
-BASE_JSON_LOCAL = '/Users/matthew/Documents/SchoolWork/TA/ECE350/2019s/350_tools_mk2/tools350/assembler/base_jsn'
+BASE_JSON_PATH = 'tools350/assembler/base_jsn'
+BASE_JSON_LOCAL = 'tools350/assembler/base_jsn'
 
 
 class InstructionType:

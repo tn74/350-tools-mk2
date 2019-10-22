@@ -33,7 +33,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost',
                  '350tools.colab.duke.edu',
-                 'vcm-11361.vm.duke.edu',
+                 'vcm-11504.vm.duke.edu',
                  '127.0.0.1']
 
 # Application definition
