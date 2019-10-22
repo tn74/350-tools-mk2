@@ -1,0 +1,9 @@
+Run
+
+uwsgi --socket tools350.sock --module tools350.wsgi --chmod-socket=666
+
+from inside ~/350-tools-mk2
+
+Ensure nginx is configured correctly (see /etc/nginx/sites-available) and https://uwsgi-docs.readthedocs.io/en/latest/tutorials/Django_and_nginx.html
+
+
