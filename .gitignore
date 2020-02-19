@@ -3,6 +3,8 @@
 __pycache__
 *__pycache__*
 media/*
+!media/tmp/do_not_delete.txt
 secret-key/*
 db.sqlite3
 tools350-env/*
+*.swp
