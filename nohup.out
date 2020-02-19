@@ -27,3 +27,245 @@ WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x5582d7bf1040 pid:
 *** uWSGI is running in multiple interpreter mode ***
 spawned uWSGI worker 1 (and the only) (pid: 15339, cores: 1)
 [pid: 15339|app: 0|req: 1/1] 10.197.231.181 () {42 vars in 2329 bytes} [Tue Oct 22 16:59:31 2019] GET / => generated 921 bytes in 131 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.18 (64bit) on [Tue Feb 18 22:35:33 2020] ***
+compiled with version: 7.4.0 on 19 February 2020 02:51:55
+os: Linux-4.15.0-76-generic #86-Ubuntu SMP Fri Jan 17 17:24:28 UTC 2020
+nodename: vcm-13279.vm.duke.edu
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 2
+current working directory: /home/vcm/350-tools-mk2
+detected binary path: /home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 6752
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address tools350.sock fd 3
+Python version: 3.8.1 (default, Feb 18 2020, 21:30:40)  [GCC 7.4.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x5645ebe26ce0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72920 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+Traceback (most recent call last):
+  File "./tools350/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/lib/python3.8/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/lib/python3.8/site-packages/django/__init__.py", line 19, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/lib/python3.8/site-packages/django/conf/__init__.py", line 76, in __getattr__
+    self._setup(name)
+  File "/home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/lib/python3.8/site-packages/django/conf/__init__.py", line 63, in _setup
+    self._wrapped = Settings(settings_module)
+  File "/home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/lib/python3.8/site-packages/django/conf/__init__.py", line 142, in __init__
+    mod = importlib.import_module(self.SETTINGS_MODULE)
+  File "/home/vcm/.pyenv/versions/3.8.1/lib/python3.8/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "./tools350/settings.py", line 135
+    upstream django {
+             ^
+SyntaxError: invalid syntax
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 106225, cores: 1)
+*** Starting uWSGI 2.0.18 (64bit) on [Tue Feb 18 22:56:42 2020] ***
+compiled with version: 7.4.0 on 19 February 2020 02:51:55
+os: Linux-4.15.0-76-generic #86-Ubuntu SMP Fri Jan 17 17:24:28 UTC 2020
+nodename: vcm-13279.vm.duke.edu
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 2
+current working directory: /home/vcm/350-tools-mk2
+detected binary path: /home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 6752
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address tools350.sock fd 3
+Python version: 3.8.1 (default, Feb 18 2020, 21:30:40)  [GCC 7.4.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x5595ec447cd0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72920 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+Traceback (most recent call last):
+  File "./tools350/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/lib/python3.8/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/lib/python3.8/site-packages/django/__init__.py", line 19, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/lib/python3.8/site-packages/django/conf/__init__.py", line 76, in __getattr__
+    self._setup(name)
+  File "/home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/lib/python3.8/site-packages/django/conf/__init__.py", line 63, in _setup
+    self._wrapped = Settings(settings_module)
+  File "/home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/lib/python3.8/site-packages/django/conf/__init__.py", line 142, in __init__
+    mod = importlib.import_module(self.SETTINGS_MODULE)
+  File "/home/vcm/.pyenv/versions/3.8.1/lib/python3.8/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "./tools350/settings.py", line 135
+    upstream django {
+             ^
+SyntaxError: invalid syntax
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 107969, cores: 1)
+--- no python application found, check your startup logs for errors ---
+[pid: 107969|app: -1|req: -1/1] 10.194.153.17 () {42 vars in 1538 bytes} [Tue Feb 18 22:59:00 2020] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 107969|app: -1|req: -1/2] 10.194.153.17 () {42 vars in 1538 bytes} [Tue Feb 18 22:59:01 2020] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+Gracefully killing worker 1 (pid: 106225)...
+Gracefully killing worker 1 (pid: 107969)...
+*** Starting uWSGI 2.0.18 (64bit) on [Wed Feb 19 10:59:17 2020] ***
+compiled with version: 7.4.0 on 19 February 2020 02:51:55
+os: Linux-4.15.0-88-generic #88-Ubuntu SMP Tue Feb 11 20:11:34 UTC 2020
+nodename: vcm-13279.vm.duke.edu
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 2
+current working directory: /home/vcm/350-tools-mk2
+detected binary path: /home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 6752
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address tools350.sock fd 3
+Python version: 3.8.1 (default, Feb 18 2020, 21:30:40)  [GCC 7.4.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x557630f03120
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72920 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+/home/vcm/350-tools-mk2/static_serve/
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x557630f03120 pid: 3096 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 3096, cores: 1)
+[pid: 3096|app: 0|req: 1/1] 198.86.29.22 () {42 vars in 1537 bytes} [Wed Feb 19 15:59:20 2020] GET / => generated 921 bytes in 994 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 3096|app: 0|req: 2/2] 198.86.29.22 () {46 vars in 1650 bytes} [Wed Feb 19 15:59:21 2020] GET /static/index/css/index.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 3096|app: 0|req: 3/3] 198.86.29.22 () {46 vars in 1625 bytes} [Wed Feb 19 15:59:21 2020] GET /static/js/load_menu.js => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 3096|app: 0|req: 4/4] 198.86.29.22 () {46 vars in 1702 bytes} [Wed Feb 19 15:59:21 2020] GET /static/index/img/assembler.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 87 bytes (0 switches on core 0)
+[pid: 3096|app: 0|req: 5/5] 198.86.29.22 () {46 vars in 1705 bytes} [Wed Feb 19 15:59:21 2020] GET /static/index/img/img-to-mif.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 88 bytes (0 switches on core 0)
+[pid: 3096|app: 0|req: 6/6] 198.86.29.22 () {48 vars in 1683 bytes} [Wed Feb 19 15:59:21 2020] GET /static/menu/menu.html => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 3096|app: 0|req: 7/7] 198.86.29.22 () {46 vars in 1646 bytes} [Wed Feb 19 15:59:21 2020] GET /static/menu/css/menu.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 3096|app: 0|req: 8/8] 198.86.29.22 () {46 vars in 1676 bytes} [Wed Feb 19 15:59:23 2020] GET /static/assembler/css/assembler.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 3096|app: 0|req: 9/9] 198.86.29.22 () {44 vars in 1606 bytes} [Wed Feb 19 15:59:23 2020] GET /assembler/ => generated 1160 bytes in 234 msecs (HTTP/1.1 200) 5 headers in 286 bytes (1 switches on core 0)
+[pid: 3096|app: 0|req: 10/10] 198.86.29.22 () {42 vars in 1557 bytes} [Wed Feb 19 16:00:03 2020] GET /assembler/ => generated 1160 bytes in 3 msecs (HTTP/1.1 200) 5 headers in 286 bytes (1 switches on core 0)
+[pid: 3096|app: 0|req: 11/11] 198.86.29.22 () {42 vars in 1557 bytes} [Wed Feb 19 16:00:08 2020] GET /assembler/ => generated 1160 bytes in 1 msecs (HTTP/1.1 200) 5 headers in 286 bytes (1 switches on core 0)
+[pid: 3096|app: 0|req: 12/12] 198.86.29.22 () {50 vars in 1852 bytes} [Wed Feb 19 16:00:25 2020] POST /assemble/ => generated 145 bytes in 155 msecs (HTTP/1.1 500) 4 headers in 121 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.18 (64bit) on [Wed Feb 19 11:03:31 2020] ***
+compiled with version: 7.4.0 on 19 February 2020 02:51:55
+os: Linux-4.15.0-88-generic #88-Ubuntu SMP Tue Feb 11 20:11:34 UTC 2020
+nodename: vcm-13279.vm.duke.edu
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 2
+current working directory: /home/vcm/350-tools-mk2
+detected binary path: /home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 6752
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address tools350.sock fd 3
+Python version: 3.8.1 (default, Feb 18 2020, 21:30:40)  [GCC 7.4.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x561bf306e120
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72920 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+/home/vcm/350-tools-mk2/static_serve/
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x561bf306e120 pid: 3483 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 3483, cores: 1)
+Not Found: /assemble/
+[pid: 3483|app: 0|req: 1/1] 198.86.29.22 () {42 vars in 1555 bytes} [Wed Feb 19 16:03:39 2020] GET /assemble/ => generated 1738 bytes in 127 msecs (HTTP/1.1 404) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 3483|app: 0|req: 2/2] 198.86.29.22 () {42 vars in 1557 bytes} [Wed Feb 19 16:03:51 2020] GET /assembler/ => generated 1160 bytes in 14 msecs (HTTP/1.1 200) 5 headers in 286 bytes (1 switches on core 0)
+[pid: 3483|app: 0|req: 3/3] 198.86.29.22 () {46 vars in 1676 bytes} [Wed Feb 19 16:03:51 2020] GET /static/assembler/css/assembler.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 4/4] 198.86.29.22 () {46 vars in 1676 bytes} [Wed Feb 19 16:03:51 2020] GET /static/assembler/css/assembler.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 5/5] 198.86.29.22 () {46 vars in 1636 bytes} [Wed Feb 19 16:03:51 2020] GET /static/js/load_menu.js => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 84 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 6/6] 198.86.29.22 () {48 vars in 1693 bytes} [Wed Feb 19 16:03:51 2020] GET /static/menu/menu.html => generated 0 bytes in 1 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 7/7] 198.86.29.22 () {46 vars in 1656 bytes} [Wed Feb 19 16:03:51 2020] GET /static/menu/css/menu.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+Internal Server Error: /assemble/
+Traceback (most recent call last):
+  File "/home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/lib/python3.8/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/lib/python3.8/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/lib/python3.8/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./tools350/views.py", line 50, in assemble
+    assembly_files = [_store_local(f) for f in request.FILES.getlist('assembly', None) if f]
+  File "./tools350/views.py", line 50, in <listcomp>
+    assembly_files = [_store_local(f) for f in request.FILES.getlist('assembly', None) if f]
+  File "./tools350/views.py", line 86, in _store_local
+    with default_storage.open(path, 'wb+') as destination:
+  File "/home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/lib/python3.8/site-packages/django/core/files/storage.py", line 36, in open
+    return self._open(name, mode)
+  File "/home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/lib/python3.8/site-packages/django/core/files/storage.py", line 231, in _open
+    return File(open(self.path(name), mode))
+FileNotFoundError: [Errno 2] No such file or directory: '/home/vcm/350-tools-mk2/media/tmp/fdd98da15edb57294ea1705642c594f9'
+[pid: 3483|app: 0|req: 8/8] 198.86.29.22 () {50 vars in 1852 bytes} [Wed Feb 19 16:03:58 2020] POST /assemble/ => generated 80901 bytes in 54 msecs (HTTP/1.1 500) 4 headers in 123 bytes (1 switches on core 0)
+[pid: 3483|app: 0|req: 9/9] 198.86.29.22 () {42 vars in 1537 bytes} [Wed Feb 19 16:18:58 2020] GET / => generated 921 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 3483|app: 0|req: 10/10] 198.86.29.22 () {46 vars in 1702 bytes} [Wed Feb 19 16:18:58 2020] GET /static/index/img/assembler.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 11/11] 198.86.29.22 () {46 vars in 1646 bytes} [Wed Feb 19 16:18:58 2020] GET /static/menu/css/menu.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 12/12] 198.86.29.22 () {46 vars in 1626 bytes} [Wed Feb 19 16:18:58 2020] GET /static/js/load_menu.js => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 84 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 13/13] 198.86.29.22 () {46 vars in 1650 bytes} [Wed Feb 19 16:18:58 2020] GET /static/index/css/index.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 14/14] 198.86.29.22 () {46 vars in 1705 bytes} [Wed Feb 19 16:18:58 2020] GET /static/index/img/img-to-mif.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 87 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 15/15] 198.86.29.22 () {48 vars in 1683 bytes} [Wed Feb 19 16:18:58 2020] GET /static/menu/menu.html => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 16/16] 198.86.29.22 () {42 vars in 1537 bytes} [Wed Feb 19 16:18:58 2020] GET / => generated 921 bytes in 0 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 3483|app: 0|req: 17/17] 198.86.29.22 () {46 vars in 1650 bytes} [Wed Feb 19 16:18:58 2020] GET /static/index/css/index.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 18/18] 198.86.29.22 () {46 vars in 1702 bytes} [Wed Feb 19 16:18:58 2020] GET /static/index/img/assembler.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 19/19] 198.86.29.22 () {46 vars in 1626 bytes} [Wed Feb 19 16:18:58 2020] GET /static/js/load_menu.js => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 84 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 20/20] 198.86.29.22 () {46 vars in 1705 bytes} [Wed Feb 19 16:18:58 2020] GET /static/index/img/img-to-mif.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 87 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 21/21] 198.86.29.22 () {46 vars in 1645 bytes} [Wed Feb 19 16:18:58 2020] GET /static/menu/css/menu.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 22/22] 198.86.29.22 () {46 vars in 1650 bytes} [Wed Feb 19 16:18:58 2020] GET /static/index/css/index.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 23/23] 198.86.29.22 () {46 vars in 1626 bytes} [Wed Feb 19 16:18:58 2020] GET /static/js/load_menu.js => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 84 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 24/24] 198.86.29.22 () {46 vars in 1702 bytes} [Wed Feb 19 16:18:58 2020] GET /static/index/img/assembler.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 25/25] 198.86.29.22 () {46 vars in 1705 bytes} [Wed Feb 19 16:18:58 2020] GET /static/index/img/img-to-mif.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 87 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 26/26] 198.86.29.22 () {48 vars in 1683 bytes} [Wed Feb 19 16:18:58 2020] GET /static/menu/menu.html => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 27/27] 198.86.29.22 () {46 vars in 1646 bytes} [Wed Feb 19 16:18:58 2020] GET /static/menu/css/menu.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 28/28] 198.86.29.22 () {46 vars in 1676 bytes} [Wed Feb 19 16:18:59 2020] GET /static/assembler/css/assembler.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 29/29] 198.86.29.22 () {44 vars in 1607 bytes} [Wed Feb 19 16:18:59 2020] GET /assembler/ => generated 1160 bytes in 3 msecs (HTTP/1.1 200) 5 headers in 286 bytes (1 switches on core 0)
+[pid: 3483|app: 0|req: 30/30] 198.86.29.22 () {46 vars in 1636 bytes} [Wed Feb 19 16:18:59 2020] GET /static/js/load_menu.js => generated 0 bytes in 1 msecs (HTTP/1.1 304) 2 headers in 84 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 31/31] 198.86.29.22 () {46 vars in 1676 bytes} [Wed Feb 19 16:18:59 2020] GET /static/assembler/css/assembler.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 32/32] 198.86.29.22 () {48 vars in 1693 bytes} [Wed Feb 19 16:18:59 2020] GET /static/menu/menu.html => generated 0 bytes in 1 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 3483|app: 0|req: 33/33] 198.86.29.22 () {46 vars in 1656 bytes} [Wed Feb 19 16:18:59 2020] GET /static/menu/css/menu.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+Internal Server Error: /assemble/
+Traceback (most recent call last):
+  File "/home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/lib/python3.8/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/lib/python3.8/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/lib/python3.8/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./tools350/views.py", line 50, in assemble
+    assembly_files = [_store_local(f) for f in request.FILES.getlist('assembly', None) if f]
+  File "./tools350/views.py", line 50, in <listcomp>
+    assembly_files = [_store_local(f) for f in request.FILES.getlist('assembly', None) if f]
+  File "./tools350/views.py", line 86, in _store_local
+    with default_storage.open(path, 'wb+') as destination:
+  File "/home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/lib/python3.8/site-packages/django/core/files/storage.py", line 36, in open
+    return self._open(name, mode)
+  File "/home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/lib/python3.8/site-packages/django/core/files/storage.py", line 231, in _open
+    return File(open(self.path(name), mode))
+NotADirectoryError: [Errno 20] Not a directory: '/home/vcm/350-tools-mk2/media/tmp/408e44bcb858b9130aebbd505cb80c7f'
+[pid: 3483|app: 0|req: 34/34] 198.86.29.22 () {50 vars in 1852 bytes} [Wed Feb 19 16:19:05 2020] POST /assemble/ => generated 80871 bytes in 30 msecs (HTTP/1.1 500) 4 headers in 123 bytes (1 switches on core 0)
+[pid: 3483|app: 0|req: 35/35] 198.86.29.22 () {50 vars in 1852 bytes} [Wed Feb 19 16:20:01 2020] POST /assemble/ => generated 4027 bytes in 43 msecs (HTTP/1.1 200) 4 headers in 147 bytes (2 switches on core 0)

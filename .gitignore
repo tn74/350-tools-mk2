@@ -4,6 +4,5 @@ __pycache__
 *__pycache__*
 media/*
 secret-key/*
-manage.py
 db.sqlite3
 tools350-env/*
