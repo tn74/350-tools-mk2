@@ -27,3 +27,4 @@ WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x5582d7bf1040 pid:
 *** uWSGI is running in multiple interpreter mode ***
 spawned uWSGI worker 1 (and the only) (pid: 15339, cores: 1)
 [pid: 15339|app: 0|req: 1/1] 10.197.231.181 () {42 vars in 2329 bytes} [Tue Oct 22 16:59:31 2019] GET / => generated 921 bytes in 131 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+nohup: uwsgi: No such file or directory
