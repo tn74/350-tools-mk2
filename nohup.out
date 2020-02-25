@@ -1,30 +1,38 @@
-*** Starting uWSGI 2.0.18 (64bit) on [Tue Oct 22 12:59:22 2019] ***
-compiled with version: 7.4.0 on 22 October 2019 15:32:04
-os: Linux-4.15.0-66-generic #75-Ubuntu SMP Tue Oct 1 05:24:09 UTC 2019
-nodename: vcm-11504.vm.duke.edu
+*** Starting uWSGI 2.0.18 (64bit) on [Wed Feb 19 18:27:41 2020] ***
+compiled with version: 7.4.0 on 19 February 2020 02:51:55
+os: Linux-4.15.0-88-generic #88-Ubuntu SMP Tue Feb 11 20:11:34 UTC 2020
+nodename: vcm-13279.vm.duke.edu
 machine: x86_64
 clock source: unix
 detected number of CPU cores: 2
 current working directory: /home/vcm/350-tools-mk2
-detected binary path: /home/vcm/.local/bin/uwsgi
+detected binary path: /home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/bin/uwsgi
 !!! no internal routing support, rebuild with pcre support !!!
-*** WARNING: you are running uWSGI without its master process manager ***
-your processes number limit is 6753
+your processes number limit is 6752
 your memory page size is 4096 bytes
 detected max file descriptor number: 1024
 lock engine: pthread robust mutexes
 thunder lock: disabled (you can enable it with --thunder-lock)
 uwsgi socket 0 bound to UNIX address tools350.sock fd 3
-Python version: 3.6.8 (default, Oct  7 2019, 12:59:55)  [GCC 8.3.0]
-*** Python threads support is disabled. You can enable it with --enable-threads ***
-Python main interpreter initialized at 0x5582d7bf1040
+Python version: 3.8.1 (default, Feb 18 2020, 21:30:40)  [GCC 7.4.0]
+Python main interpreter initialized at 0x561b0505b270
+python threads support enabled
 your server socket listen backlog is limited to 100 connections
 your mercy for graceful operations on workers is 60 seconds
-mapped 72904 bytes (71 KB) for 1 cores
-*** Operational MODE: single process ***
+mapped 416880 bytes (407 KB) for 8 cores
+*** Operational MODE: preforking+threaded ***
 /home/vcm/350-tools-mk2/static_serve/
-WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x5582d7bf1040 pid: 15339 (default app)
+WSGI app 0 (mountpoint='') ready in 3 seconds on interpreter 0x561b0505b270 pid: 1731 (default app)
 *** uWSGI is running in multiple interpreter mode ***
-spawned uWSGI worker 1 (and the only) (pid: 15339, cores: 1)
-[pid: 15339|app: 0|req: 1/1] 10.197.231.181 () {42 vars in 2329 bytes} [Tue Oct 22 16:59:31 2019] GET / => generated 921 bytes in 131 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
-nohup: uwsgi: No such file or directory
+spawned uWSGI master process (pid: 1731)
+spawned uWSGI worker 1 (pid: 1744, cores: 2)
+spawned uWSGI worker 2 (pid: 1745, cores: 2)
+spawned uWSGI worker 3 (pid: 1746, cores: 2)
+spawned uWSGI worker 4 (pid: 1748, cores: 2)
+[pid: 1745|app: 0|req: 2/1] 10.194.153.17 () {42 vars in 1611 bytes} [Wed Feb 19 23:28:28 2020] GET /static/index/img/assembler.png => generated 26480 bytes in 76 msecs via sendfile() (HTTP/1.1 200) 6 headers in 203 bytes (0 switches on core 1)
+[pid: 1744|app: 0|req: 2/2] 10.194.153.17 () {42 vars in 1613 bytes} [Wed Feb 19 23:28:28 2020] GET /static/index/img/img-to-mif.png => generated 151199 bytes in 88 msecs via sendfile() (HTTP/1.1 200) 6 headers in 205 bytes (0 switches on core 1)
+[pid: 1745|app: 0|req: 2/3] 10.194.153.17 () {42 vars in 1537 bytes} [Wed Feb 19 23:28:28 2020] GET /static/js/load_menu.js => generated 73 bytes in 117 msecs via sendfile() (HTTP/1.1 200) 6 headers in 228 bytes (0 switches on core 0)
+[pid: 1748|app: 0|req: 1/4] 10.194.153.17 () {42 vars in 1556 bytes} [Wed Feb 19 23:28:28 2020] GET /static/menu/css/menu.css => generated 457 bytes in 144 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 0)
+[pid: 1744|app: 0|req: 2/5] 10.194.153.17 () {42 vars in 1560 bytes} [Wed Feb 19 23:28:28 2020] GET /static/index/css/index.css => generated 307 bytes in 202 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 0)
+[pid: 1746|app: 0|req: 1/6] 10.194.153.17 () {42 vars in 1538 bytes} [Wed Feb 19 23:28:28 2020] GET / => generated 921 bytes in 1510 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1744|app: 0|req: 3/7] 10.194.153.17 () {48 vars in 1684 bytes} [Wed Feb 19 23:28:30 2020] GET /static/menu/menu.html => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 1)

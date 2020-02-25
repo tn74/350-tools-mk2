@@ -33,7 +33,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['localhost',
                  '350tools.colab.duke.edu',
-                 'vcm-11504.vm.duke.edu',
+                 'vcm-13279.vm.duke.edu',
                  '127.0.0.1']
 
 # Application definition
@@ -127,4 +127,4 @@ STATICFILES_DIRS = [
         os.path.join(BASE_DIR, "tools350/static")
     ]
 STATIC_ROOT = os.path.join(BASE_DIR, "static_serve/")
-print(STATIC_ROOT)
+print(STATIC_ROOT) 
