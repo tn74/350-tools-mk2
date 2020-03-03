@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+  <html>
+	  {% load static %}
+    <head>
+	    <link rel="stylesheet" href="{% static 'assembler/css/assembler.css' %}">
+	    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <title>Im2MIF Converter: 350 Tools U2</title>
+    </head>
+    <body>
+        <div id="nav-placeholder">
+	
+	</div>
+	<script src="/static/js/load_menu.js"></script>
+        <hr>
+	<div class="form">
+		<form enctype="multipart/form-data" action='/im2mif_convert/' method="POST">{% csrf_token %}
+			<label for="'image">Image (One or more, JPG/JPEG/PNG):</label>
+		    <input type="file" name="assembly" accept=".jpg, .jpeg, .png" multiple/>
+		    <label for="num-colors">Number of Colors (b/w 1 and 1024 inclusive; default=32):</label>
+		    <input type="number" name="num-colors"/>
+		    <label for="pixel-compression">Pixel Window Size (must be less than the size of the image; default=1):</label>
+		    <input type="number" name="pixel-compression"/>
+		    <input type="submit"/>
+		</form>
+	</div>
+    </body>
+</html>

@@ -32,6 +32,8 @@ def index(request):
 def assembler(request):
     return render(request, 'assembler/assembler.html', {})
 
+def im2mif(request):
+    return render(request, 'Im2MIF/im2mif.html', {})
 
 def wip(request):
     return find(('wip', 'wip.html'))
@@ -73,6 +75,13 @@ def assemble(request):
     else:
         raise Http404("Endpoint not allowed for GET")
 
+def im2mif_convert(request):
+    if request.method == 'POST':
+        response = render(request, 'error/error.html', {'error': s})
+        return response
+    else:
+        response = render(request, 'error/error.html', {'error': s})
+        return response
 
 def _store_local(filelike: InMemoryUploadedFile) -> Tuple[str, str]:
     name = filelike.name + str(time())
