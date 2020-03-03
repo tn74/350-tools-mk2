@@ -1,4 +1,7 @@
-*** Starting uWSGI 2.0.18 (64bit) on [Wed Feb 19 18:27:41 2020] ***
+[uWSGI] getting INI configuration from uwsgi.ini
+open("~/350-tools-mk2/project.log"): No such file or directory [core/logging.c line 288]
+[uWSGI] getting INI configuration from uwsgi.ini
+*** Starting uWSGI 2.0.18 (64bit) on [Tue Mar  3 18:51:09 2020] ***
 compiled with version: 7.4.0 on 19 February 2020 02:51:55
 os: Linux-4.15.0-88-generic #88-Ubuntu SMP Tue Feb 11 20:11:34 UTC 2020
 nodename: vcm-13279.vm.duke.edu
@@ -15,24 +18,165 @@ lock engine: pthread robust mutexes
 thunder lock: disabled (you can enable it with --thunder-lock)
 uwsgi socket 0 bound to UNIX address tools350.sock fd 3
 Python version: 3.8.1 (default, Feb 18 2020, 21:30:40)  [GCC 7.4.0]
-Python main interpreter initialized at 0x561b0505b270
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55c87dea8310
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 437520 bytes (427 KB) for 5 cores
+*** Operational MODE: preforking ***
+/home/vcm/350-tools-mk2/static_serve/
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x55c87dea8310 pid: 40324 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 40324)
+spawned uWSGI worker 1 (pid: 40326, cores: 1)
+spawned uWSGI worker 2 (pid: 40327, cores: 1)
+spawned uWSGI worker 3 (pid: 40328, cores: 1)
+spawned uWSGI worker 4 (pid: 40329, cores: 1)
+spawned uWSGI worker 5 (pid: 40330, cores: 1)
+SIGINT/SIGQUIT received...killing workers...
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+worker 5 buried after 1 seconds
+goodbye to uWSGI.
+[uWSGI] getting INI configuration from uwsgi.ini
+*** Starting uWSGI 2.0.18 (64bit) on [Tue Mar  3 18:51:22 2020] ***
+compiled with version: 7.4.0 on 19 February 2020 02:51:55
+os: Linux-4.15.0-88-generic #88-Ubuntu SMP Tue Feb 11 20:11:34 UTC 2020
+nodename: vcm-13279.vm.duke.edu
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 2
+current working directory: /home/vcm/350-tools-mk2
+detected binary path: /home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+your processes number limit is 6752
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address tools350.sock fd 3
+Python version: 3.8.1 (default, Feb 18 2020, 21:30:40)  [GCC 7.4.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x5651f72c2310
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 437520 bytes (427 KB) for 5 cores
+*** Operational MODE: preforking ***
+/home/vcm/350-tools-mk2/static_serve/
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x5651f72c2310 pid: 40391 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 40391)
+spawned uWSGI worker 1 (pid: 40393, cores: 1)
+spawned uWSGI worker 2 (pid: 40394, cores: 1)
+spawned uWSGI worker 3 (pid: 40395, cores: 1)
+spawned uWSGI worker 4 (pid: 40396, cores: 1)
+spawned uWSGI worker 5 (pid: 40397, cores: 1)
+[pid: 40397|app: 0|req: 1/1] 198.86.29.21 () {42 vars in 1605 bytes} [Tue Mar  3 23:51:26 2020] GET / => generated 921 bytes in 119 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 40396|app: 0|req: 1/2] 198.86.29.21 () {42 vars in 1627 bytes} [Tue Mar  3 23:51:26 2020] GET /static/index/css/index.css => generated 307 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 0)
+[pid: 40396|app: 0|req: 2/3] 198.86.29.21 () {42 vars in 1604 bytes} [Tue Mar  3 23:51:26 2020] GET /static/js/load_menu.js => generated 73 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 228 bytes (1 switches on core 0)
+[pid: 40397|app: 0|req: 2/4] 198.86.29.21 () {42 vars in 1679 bytes} [Tue Mar  3 23:51:26 2020] GET /static/index/img/img-to-mif.png => generated 151199 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 205 bytes (0 switches on core 0)
+[pid: 40395|app: 0|req: 1/5] 198.86.29.21 () {42 vars in 1678 bytes} [Tue Mar  3 23:51:26 2020] GET /static/index/img/assembler.png => generated 26480 bytes in 6 msecs via sendfile() (HTTP/1.1 200) 6 headers in 203 bytes (0 switches on core 0)
+[pid: 40397|app: 0|req: 3/6] 198.86.29.21 () {44 vars in 1660 bytes} [Tue Mar  3 23:51:26 2020] GET /static/menu/menu.html => generated 425 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 0)
+[pid: 40397|app: 0|req: 4/7] 198.86.29.21 () {42 vars in 1623 bytes} [Tue Mar  3 23:51:26 2020] GET /static/menu/css/menu.css => generated 457 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 0)
+SIGINT/SIGQUIT received...killing workers...
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+worker 5 buried after 1 seconds
+goodbye to uWSGI.
+[uWSGI] getting INI configuration from uwsgi.ini
+*** Starting uWSGI 2.0.18 (64bit) on [Tue Mar  3 18:52:51 2020] ***
+compiled with version: 7.4.0 on 19 February 2020 02:51:55
+os: Linux-4.15.0-88-generic #88-Ubuntu SMP Tue Feb 11 20:11:34 UTC 2020
+nodename: vcm-13279.vm.duke.edu
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 2
+current working directory: /home/vcm/350-tools-mk2
+detected binary path: /home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+your processes number limit is 6752
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address tools350.sock fd 3
+Python version: 3.8.1 (default, Feb 18 2020, 21:30:40)  [GCC 7.4.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x5649aeff9310
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 437520 bytes (427 KB) for 5 cores
+*** Operational MODE: preforking ***
+/home/vcm/350-tools-mk2/static_serve/
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x5649aeff9310 pid: 40420 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 40420)
+spawned uWSGI worker 1 (pid: 40433, cores: 1)
+spawned uWSGI worker 2 (pid: 40434, cores: 1)
+spawned uWSGI worker 3 (pid: 40435, cores: 1)
+spawned uWSGI worker 4 (pid: 40436, cores: 1)
+spawned uWSGI worker 5 (pid: 40437, cores: 1)
+[pid: 40433|app: 0|req: 1/1] 198.86.29.21 () {46 vars in 1714 bytes} [Tue Mar  3 23:52:53 2020] GET /static/menu/css/menu.css => generated 0 bytes in 2 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 40433|app: 0|req: 2/2] 198.86.29.21 () {46 vars in 1770 bytes} [Tue Mar  3 23:52:53 2020] GET /static/index/img/assembler.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 87 bytes (0 switches on core 0)
+[pid: 40433|app: 0|req: 3/3] 198.86.29.21 () {46 vars in 1773 bytes} [Tue Mar  3 23:52:53 2020] GET /static/index/img/img-to-mif.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 88 bytes (0 switches on core 0)
+[pid: 40434|app: 0|req: 1/4] 198.86.29.21 () {46 vars in 1718 bytes} [Tue Mar  3 23:52:53 2020] GET /static/index/css/index.css => generated 0 bytes in 7 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 40435|app: 0|req: 1/5] 198.86.29.21 () {46 vars in 1694 bytes} [Tue Mar  3 23:52:53 2020] GET /static/js/load_menu.js => generated 0 bytes in 12 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 40437|app: 0|req: 1/6] 198.86.29.21 () {42 vars in 1605 bytes} [Tue Mar  3 23:52:53 2020] GET / => generated 921 bytes in 125 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 40436|app: 0|req: 1/7] 198.86.29.21 () {46 vars in 1718 bytes} [Tue Mar  3 23:52:53 2020] GET /static/index/css/index.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 40436|app: 0|req: 2/8] 198.86.29.21 () {46 vars in 1773 bytes} [Tue Mar  3 23:52:53 2020] GET /static/index/img/img-to-mif.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 88 bytes (0 switches on core 0)
+[pid: 40434|app: 0|req: 2/9] 198.86.29.21 () {46 vars in 1770 bytes} [Tue Mar  3 23:52:53 2020] GET /static/index/img/assembler.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 87 bytes (0 switches on core 0)
+[pid: 40435|app: 0|req: 2/10] 198.86.29.21 () {46 vars in 1694 bytes} [Tue Mar  3 23:52:53 2020] GET /static/js/load_menu.js => generated 0 bytes in 1 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 40433|app: 0|req: 4/11] 198.86.29.21 () {48 vars in 1753 bytes} [Tue Mar  3 23:52:53 2020] GET /static/menu/menu.html => generated 425 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 0)
+[pid: 40433|app: 0|req: 5/12] 198.86.29.21 () {46 vars in 1714 bytes} [Tue Mar  3 23:52:53 2020] GET /static/menu/css/menu.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[uWSGI] getting INI configuration from uwsgi.ini
+*** Starting uWSGI 2.0.18 (64bit) on [Tue Mar  3 18:55:16 2020] ***
+compiled with version: 7.4.0 on 19 February 2020 02:51:55
+os: Linux-4.15.0-88-generic #88-Ubuntu SMP Tue Feb 11 20:11:34 UTC 2020
+nodename: vcm-13279.vm.duke.edu
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 2
+current working directory: /home/vcm/350-tools-mk2
+detected binary path: /home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+your processes number limit is 6752
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address tools350.sock fd 3
+Python version: 3.8.1 (default, Feb 18 2020, 21:30:40)  [GCC 7.4.0]
+Python main interpreter initialized at 0x5641cc90b3e0
 python threads support enabled
 your server socket listen backlog is limited to 100 connections
 your mercy for graceful operations on workers is 60 seconds
-mapped 416880 bytes (407 KB) for 8 cores
+mapped 835120 bytes (815 KB) for 40 cores
 *** Operational MODE: preforking+threaded ***
 /home/vcm/350-tools-mk2/static_serve/
-WSGI app 0 (mountpoint='') ready in 3 seconds on interpreter 0x561b0505b270 pid: 1731 (default app)
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x5641cc90b3e0 pid: 40460 (default app)
 *** uWSGI is running in multiple interpreter mode ***
-spawned uWSGI master process (pid: 1731)
-spawned uWSGI worker 1 (pid: 1744, cores: 2)
-spawned uWSGI worker 2 (pid: 1745, cores: 2)
-spawned uWSGI worker 3 (pid: 1746, cores: 2)
-spawned uWSGI worker 4 (pid: 1748, cores: 2)
-[pid: 1745|app: 0|req: 2/1] 10.194.153.17 () {42 vars in 1611 bytes} [Wed Feb 19 23:28:28 2020] GET /static/index/img/assembler.png => generated 26480 bytes in 76 msecs via sendfile() (HTTP/1.1 200) 6 headers in 203 bytes (0 switches on core 1)
-[pid: 1744|app: 0|req: 2/2] 10.194.153.17 () {42 vars in 1613 bytes} [Wed Feb 19 23:28:28 2020] GET /static/index/img/img-to-mif.png => generated 151199 bytes in 88 msecs via sendfile() (HTTP/1.1 200) 6 headers in 205 bytes (0 switches on core 1)
-[pid: 1745|app: 0|req: 2/3] 10.194.153.17 () {42 vars in 1537 bytes} [Wed Feb 19 23:28:28 2020] GET /static/js/load_menu.js => generated 73 bytes in 117 msecs via sendfile() (HTTP/1.1 200) 6 headers in 228 bytes (0 switches on core 0)
-[pid: 1748|app: 0|req: 1/4] 10.194.153.17 () {42 vars in 1556 bytes} [Wed Feb 19 23:28:28 2020] GET /static/menu/css/menu.css => generated 457 bytes in 144 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 0)
-[pid: 1744|app: 0|req: 2/5] 10.194.153.17 () {42 vars in 1560 bytes} [Wed Feb 19 23:28:28 2020] GET /static/index/css/index.css => generated 307 bytes in 202 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 0)
-[pid: 1746|app: 0|req: 1/6] 10.194.153.17 () {42 vars in 1538 bytes} [Wed Feb 19 23:28:28 2020] GET / => generated 921 bytes in 1510 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
-[pid: 1744|app: 0|req: 3/7] 10.194.153.17 () {48 vars in 1684 bytes} [Wed Feb 19 23:28:30 2020] GET /static/menu/menu.html => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 1)
+spawned uWSGI master process (pid: 40460)
+spawned uWSGI worker 1 (pid: 40473, cores: 10)
+spawned uWSGI worker 2 (pid: 40474, cores: 10)
+spawned uWSGI worker 3 (pid: 40475, cores: 10)
+spawned uWSGI worker 4 (pid: 40476, cores: 10)
+[pid: 40474|app: 0|req: 3/1] 198.86.29.21 () {46 vars in 1770 bytes} [Tue Mar  3 23:55:43 2020] GET /static/index/img/assembler.png => generated 0 bytes in 8 msecs (HTTP/1.1 304) 2 headers in 87 bytes (0 switches on core 8)
+[pid: 40474|app: 0|req: 3/2] 198.86.29.21 () {46 vars in 1773 bytes} [Tue Mar  3 23:55:43 2020] GET /static/index/img/img-to-mif.png => generated 0 bytes in 14 msecs (HTTP/1.1 304) 2 headers in 88 bytes (0 switches on core 0)
+[pid: 40474|app: 0|req: 3/3] 198.86.29.21 () {46 vars in 1694 bytes} [Tue Mar  3 23:55:43 2020] GET /static/js/load_menu.js => generated 0 bytes in 8 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 7)
+[pid: 40476|app: 0|req: 1/4] 198.86.29.21 () {46 vars in 1718 bytes} [Tue Mar  3 23:55:43 2020] GET /static/index/css/index.css => generated 0 bytes in 15 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 40475|app: 0|req: 1/5] 198.86.29.21 () {46 vars in 1714 bytes} [Tue Mar  3 23:55:43 2020] GET /static/menu/css/menu.css => generated 0 bytes in 15 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 40473|app: 0|req: 1/6] 198.86.29.21 () {42 vars in 1605 bytes} [Tue Mar  3 23:55:43 2020] GET / => generated 921 bytes in 118 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 40475|app: 0|req: 2/7] 198.86.29.21 () {48 vars in 1753 bytes} [Tue Mar  3 23:55:43 2020] GET /static/menu/menu.html => generated 425 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 1)
+[pid: 40476|app: 0|req: 2/8] 198.86.29.21 () {44 vars in 1667 bytes} [Tue Mar  3 23:55:45 2020] GET /im2mif => generated 0 bytes in 121 msecs (HTTP/1.1 301) 3 headers in 113 bytes (1 switches on core 5)
+[pid: 40474|app: 0|req: 4/9] 198.86.29.21 () {44 vars in 1669 bytes} [Tue Mar  3 23:55:45 2020] GET /im2mif/ => generated 385 bytes in 148 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 9)
+[pid: 40474|app: 0|req: 5/10] 198.86.29.21 () {42 vars in 1626 bytes} [Tue Mar  3 23:55:45 2020] GET /static/wip/css/wip.css => generated 0 bytes in 1 msecs (HTTP/1.1 200) 6 headers in 212 bytes (0 switches on core 6)
+[pid: 40473|app: 0|req: 2/11] 198.86.29.21 () {42 vars in 1589 bytes} [Tue Mar  3 23:55:45 2020] GET /favicon.ico => generated 179 bytes in 18 msecs (HTTP/1.1 404) 3 headers in 95 bytes (1 switches on core 6)
+[pid: 40473|app: 0|req: 3/12] 198.86.29.21 () {44 vars in 1662 bytes} [Tue Mar  3 23:55:46 2020] GET / => generated 921 bytes in 0 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 8)
+[pid: 40476|app: 0|req: 3/13] 198.86.29.21 () {44 vars in 1673 bytes} [Tue Mar  3 23:55:47 2020] GET /assembler => generated 0 bytes in 1 msecs (HTTP/1.1 301) 3 headers in 116 bytes (1 switches on core 8)
+[pid: 40476|app: 0|req: 4/14] 198.86.29.21 () {44 vars in 1675 bytes} [Tue Mar  3 23:55:47 2020] GET /assembler/ => generated 1160 bytes in 16 msecs (HTTP/1.1 200) 5 headers in 286 bytes (1 switches on core 9)
+[pid: 40473|app: 0|req: 4/15] 198.86.29.21 () {42 vars in 1653 bytes} [Tue Mar  3 23:55:47 2020] GET /static/assembler/css/assembler.css => generated 1153 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 9)
+[pid: 40473|app: 0|req: 5/16] 198.86.29.21 () {42 vars in 1592 bytes} [Tue Mar  3 23:55:47 2020] GET /favicon.ico => generated 179 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 95 bytes (1 switches on core 7)

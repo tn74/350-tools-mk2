@@ -1,0 +1,410 @@
+*** Starting uWSGI 2.0.18 (64bit) on [Wed Feb 19 18:27:41 2020] ***
+compiled with version: 7.4.0 on 19 February 2020 02:51:55
+os: Linux-4.15.0-88-generic #88-Ubuntu SMP Tue Feb 11 20:11:34 UTC 2020
+nodename: vcm-13279.vm.duke.edu
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 2
+current working directory: /home/vcm/350-tools-mk2
+detected binary path: /home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+your processes number limit is 6752
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address tools350.sock fd 3
+Python version: 3.8.1 (default, Feb 18 2020, 21:30:40)  [GCC 7.4.0]
+Python main interpreter initialized at 0x561b0505b270
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 416880 bytes (407 KB) for 8 cores
+*** Operational MODE: preforking+threaded ***
+/home/vcm/350-tools-mk2/static_serve/
+WSGI app 0 (mountpoint='') ready in 3 seconds on interpreter 0x561b0505b270 pid: 1731 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1731)
+spawned uWSGI worker 1 (pid: 1744, cores: 2)
+spawned uWSGI worker 2 (pid: 1745, cores: 2)
+spawned uWSGI worker 3 (pid: 1746, cores: 2)
+spawned uWSGI worker 4 (pid: 1748, cores: 2)
+[pid: 1745|app: 0|req: 2/1] 10.194.153.17 () {42 vars in 1611 bytes} [Wed Feb 19 23:28:28 2020] GET /static/index/img/assembler.png => generated 26480 bytes in 76 msecs via sendfile() (HTTP/1.1 200) 6 headers in 203 bytes (0 switches on core 1)
+[pid: 1744|app: 0|req: 2/2] 10.194.153.17 () {42 vars in 1613 bytes} [Wed Feb 19 23:28:28 2020] GET /static/index/img/img-to-mif.png => generated 151199 bytes in 88 msecs via sendfile() (HTTP/1.1 200) 6 headers in 205 bytes (0 switches on core 1)
+[pid: 1745|app: 0|req: 2/3] 10.194.153.17 () {42 vars in 1537 bytes} [Wed Feb 19 23:28:28 2020] GET /static/js/load_menu.js => generated 73 bytes in 117 msecs via sendfile() (HTTP/1.1 200) 6 headers in 228 bytes (0 switches on core 0)
+[pid: 1748|app: 0|req: 1/4] 10.194.153.17 () {42 vars in 1556 bytes} [Wed Feb 19 23:28:28 2020] GET /static/menu/css/menu.css => generated 457 bytes in 144 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 0)
+[pid: 1744|app: 0|req: 2/5] 10.194.153.17 () {42 vars in 1560 bytes} [Wed Feb 19 23:28:28 2020] GET /static/index/css/index.css => generated 307 bytes in 202 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 0)
+[pid: 1746|app: 0|req: 1/6] 10.194.153.17 () {42 vars in 1538 bytes} [Wed Feb 19 23:28:28 2020] GET / => generated 921 bytes in 1510 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1744|app: 0|req: 3/7] 10.194.153.17 () {48 vars in 1684 bytes} [Wed Feb 19 23:28:30 2020] GET /static/menu/menu.html => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 1)
+[pid: 1748|app: 0|req: 2/8] 10.194.153.17 () {42 vars in 1538 bytes} [Wed Feb 19 23:28:56 2020] GET / => generated 921 bytes in 136 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+Gracefully killing worker 4 (pid: 1748)...
+Gracefully killing worker 2 (pid: 1745)...
+Gracefully killing worker 3 (pid: 1746)...
+Gracefully killing worker 1 (pid: 1744)...
+...gracefully killing workers...
+Gracefully killing worker 3 (pid: 1746)...
+pthread_cancel()
+: Success [core/uwsgi.c line 1206]
+!!! uWSGI process 1746 got Segmentation Fault !!!
+*** backtrace of 1746 ***
+uwsgi(uwsgi_backtrace+0x2a) [0x561b049b2a5a]
+uwsgi(uwsgi_segfault+0x23) [0x561b049b2e43]
+/lib/x86_64-linux-gnu/libc.so.6(+0x3ef20) [0x7f2d4e1c2f20]
+uwsgi(gracefully_kill+0x5a) [0x561b049b18ba]
+/lib/x86_64-linux-gnu/libpthread.so.0(+0x12890) [0x7f2d4f8d3890]
+/lib/x86_64-linux-gnu/libpthread.so.0(pthread_cond_wait+0x243) [0x7f2d4f8ce9f3]
+/home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/lib/python3.8/site-packages/numpy/core/../.libs/libopenblasp-r0-34a18dc3.3.7.so(+0x31360b) [0x7f2d453c860b]
+/lib/x86_64-linux-gnu/libpthread.so.0(+0x76db) [0x7f2d4f8c86db]
+/lib/x86_64-linux-gnu/libc.so.6(clone+0x3f) [0x7f2d4e2a588f]
+*** end of backtrace ***
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /home/vcm/350-tools-mk2
+closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+found fd 3 mapped to socket 0 (tools350.sock)
+running /home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/bin/uwsgi
+*** Starting uWSGI 2.0.18 (64bit) on [Wed Feb 19 23:29:05 2020] ***
+compiled with version: 7.4.0 on 19 February 2020 02:51:55
+os: Linux-4.15.0-88-generic #88-Ubuntu SMP Tue Feb 11 20:11:34 UTC 2020
+nodename: vcm-13279.vm.duke.edu
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 2
+current working directory: /home/vcm/350-tools-mk2
+detected binary path: /home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+your processes number limit is 6752
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited UNIX address tools350.sock fd 3
+Python version: 3.8.1 (default, Feb 18 2020, 21:30:40)  [GCC 7.4.0]
+Python main interpreter initialized at 0x556396178890
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 416880 bytes (407 KB) for 8 cores
+*** Operational MODE: preforking+threaded ***
+/home/vcm/350-tools-mk2/static_serve/
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x556396178890 pid: 1731 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 1731)
+spawned uWSGI worker 1 (pid: 1906, cores: 2)
+spawned uWSGI worker 2 (pid: 1907, cores: 2)
+spawned uWSGI worker 3 (pid: 1909, cores: 2)
+spawned uWSGI worker 4 (pid: 1910, cores: 2)
+[pid: 1909|app: 0|req: 1/1] 10.194.153.17 () {42 vars in 1538 bytes} [Wed Feb 19 23:29:07 2020] GET / => generated 921 bytes in 126 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1907|app: 0|req: 1/2] 172.104.92.166 () {32 vars in 421 bytes} [Thu Feb 20 22:41:44 2020] GET / => generated 143 bytes in 571 msecs (HTTP/1.1 400) 1 headers in 53 bytes (1 switches on core 0)
+[pid: 1907|app: 0|req: 2/3] 10.194.153.17 () {42 vars in 1538 bytes} [Fri Feb 21 20:46:49 2020] GET / => generated 921 bytes in 10 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1906|app: 0|req: 1/4] 10.194.153.17 () {42 vars in 1560 bytes} [Fri Feb 21 20:46:49 2020] GET /static/index/css/index.css => generated 307 bytes in 4 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 0)
+[pid: 1909|app: 0|req: 3/5] 10.194.153.17 () {42 vars in 1613 bytes} [Fri Feb 21 20:46:49 2020] GET /static/index/img/img-to-mif.png => generated 151199 bytes in 8 msecs via sendfile() (HTTP/1.1 200) 6 headers in 205 bytes (0 switches on core 0)
+[pid: 1909|app: 0|req: 3/6] 10.194.153.17 () {42 vars in 1611 bytes} [Fri Feb 21 20:46:49 2020] GET /static/index/img/assembler.png => generated 26480 bytes in 9 msecs via sendfile() (HTTP/1.1 200) 6 headers in 203 bytes (0 switches on core 1)
+[pid: 1910|app: 0|req: 1/7] 10.194.153.17 () {42 vars in 1537 bytes} [Fri Feb 21 20:46:49 2020] GET /static/js/load_menu.js => generated 73 bytes in 10 msecs via sendfile() (HTTP/1.1 200) 6 headers in 228 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 2/8] 10.194.153.17 () {44 vars in 1593 bytes} [Fri Feb 21 20:46:49 2020] GET /static/menu/menu.html => generated 425 bytes in 5 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 1)
+[pid: 1906|app: 0|req: 2/9] 10.194.153.17 () {42 vars in 1556 bytes} [Fri Feb 21 20:46:49 2020] GET /static/menu/css/menu.css => generated 457 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 1)
+[pid: 1907|app: 0|req: 3/10] 10.194.153.17 () {42 vars in 1538 bytes} [Fri Feb 21 20:47:21 2020] GET / => generated 921 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1909|app: 0|req: 4/11] 198.86.29.22 () {46 vars in 1741 bytes} [Fri Feb 21 22:47:02 2020] GET /static/menu/css/menu.css => generated 0 bytes in 2 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 1)
+[pid: 1909|app: 0|req: 5/12] 198.86.29.22 () {46 vars in 1800 bytes} [Fri Feb 21 22:47:02 2020] GET /static/index/img/img-to-mif.png => generated 0 bytes in 2 msecs (HTTP/1.1 304) 2 headers in 88 bytes (0 switches on core 0)
+[pid: 1907|app: 0|req: 4/13] 198.86.29.22 () {46 vars in 1745 bytes} [Fri Feb 21 22:47:02 2020] GET /static/index/css/index.css => generated 0 bytes in 3 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 3/14] 198.86.29.22 () {42 vars in 1632 bytes} [Fri Feb 21 22:47:02 2020] GET / => generated 921 bytes in 153 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1909|app: 0|req: 6/15] 198.86.29.22 () {42 vars in 1631 bytes} [Fri Feb 21 22:47:02 2020] GET /static/js/load_menu.js => generated 73 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 228 bytes (0 switches on core 1)
+[pid: 1907|app: 0|req: 5/16] 198.86.29.22 () {42 vars in 1704 bytes} [Fri Feb 21 22:47:02 2020] GET /static/index/img/assembler.png => generated 26480 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 203 bytes (0 switches on core 1)
+[pid: 1909|app: 0|req: 7/17] 198.86.29.22 () {48 vars in 1780 bytes} [Fri Feb 21 22:47:02 2020] GET /static/menu/menu.html => generated 425 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 0)
+[pid: 1907|app: 0|req: 6/18] 198.86.29.22 () {42 vars in 1632 bytes} [Fri Feb 21 22:47:04 2020] GET / => generated 921 bytes in 3 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1906|app: 0|req: 3/19] 198.86.29.21 () {46 vars in 1626 bytes} [Mon Feb 24 22:54:32 2020] GET /static/js/load_menu.js => generated 0 bytes in 4 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 1907|app: 0|req: 8/20] 198.86.29.21 () {46 vars in 1646 bytes} [Mon Feb 24 22:54:32 2020] GET /static/menu/css/menu.css => generated 0 bytes in 2 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 1907|app: 0|req: 8/21] 198.86.29.21 () {42 vars in 1537 bytes} [Mon Feb 24 22:54:32 2020] GET / => generated 921 bytes in 16 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1910|app: 0|req: 4/22] 198.86.29.21 () {42 vars in 1559 bytes} [Mon Feb 24 22:54:32 2020] GET /static/index/css/index.css => generated 307 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 1)
+[pid: 1907|app: 0|req: 9/23] 198.86.29.21 () {42 vars in 1610 bytes} [Mon Feb 24 22:54:32 2020] GET /static/index/img/assembler.png => generated 26480 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 203 bytes (0 switches on core 0)
+[pid: 1909|app: 0|req: 8/24] 198.86.29.21 () {42 vars in 1612 bytes} [Mon Feb 24 22:54:32 2020] GET /static/index/img/img-to-mif.png => generated 151199 bytes in 6 msecs via sendfile() (HTTP/1.1 200) 6 headers in 205 bytes (0 switches on core 1)
+[pid: 1909|app: 0|req: 9/25] 198.86.29.21 () {44 vars in 1592 bytes} [Mon Feb 24 22:54:32 2020] GET /static/menu/menu.html => generated 425 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 4/26] 3.86.53.48 () {40 vars in 557 bytes} [Mon Feb 24 22:54:41 2020] GET / => generated 921 bytes in 284 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1906|app: 0|req: 5/27] 198.86.29.21 () {44 vars in 1605 bytes} [Mon Feb 24 22:54:43 2020] GET /assembler => generated 0 bytes in 3 msecs (HTTP/1.1 301) 3 headers in 116 bytes (1 switches on core 0)
+[pid: 1906|app: 0|req: 6/28] 198.86.29.21 () {44 vars in 1607 bytes} [Mon Feb 24 22:54:43 2020] GET /assembler/ => generated 1160 bytes in 26 msecs (HTTP/1.1 200) 5 headers in 286 bytes (1 switches on core 1)
+[pid: 1909|app: 0|req: 10/29] 198.86.29.21 () {42 vars in 1585 bytes} [Mon Feb 24 22:54:43 2020] GET /static/assembler/css/assembler.css => generated 1153 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 1)
+[pid: 1907|app: 0|req: 10/30] 10.197.91.19 () {40 vars in 702 bytes} [Mon Feb 24 22:55:06 2020] GET / => generated 921 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1909|app: 0|req: 11/31] 10.197.91.19 () {40 vars in 724 bytes} [Mon Feb 24 22:55:06 2020] GET /static/index/css/index.css => generated 307 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 0)
+[pid: 1907|app: 0|req: 11/32] 10.197.91.19 () {40 vars in 777 bytes} [Mon Feb 24 22:55:06 2020] GET /static/index/img/img-to-mif.png => generated 151199 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 205 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 5/33] 10.197.91.19 () {40 vars in 701 bytes} [Mon Feb 24 22:55:06 2020] GET /static/js/load_menu.js => generated 73 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 228 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 6/34] 10.197.91.19 () {40 vars in 775 bytes} [Mon Feb 24 22:55:06 2020] GET /static/index/img/assembler.png => generated 26480 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 203 bytes (0 switches on core 1)
+[pid: 1910|app: 0|req: 7/35] 10.197.91.19 () {42 vars in 757 bytes} [Mon Feb 24 22:55:06 2020] GET /static/menu/menu.html => generated 425 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 1)
+[pid: 1909|app: 0|req: 12/36] 10.197.91.19 () {40 vars in 720 bytes} [Mon Feb 24 22:55:06 2020] GET /static/menu/css/menu.css => generated 457 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 0)
+[pid: 1909|app: 0|req: 14/37] 198.86.29.21 () {46 vars in 1650 bytes} [Mon Feb 24 22:56:57 2020] GET /static/index/css/index.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 1909|app: 0|req: 14/38] 198.86.29.21 () {42 vars in 1537 bytes} [Mon Feb 24 22:56:57 2020] GET / => generated 921 bytes in 3 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1907|app: 0|req: 12/39] 198.86.29.21 () {46 vars in 1626 bytes} [Mon Feb 24 22:56:57 2020] GET /static/js/load_menu.js => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 1)
+[pid: 1910|app: 0|req: 8/40] 198.86.29.21 () {46 vars in 1702 bytes} [Mon Feb 24 22:56:57 2020] GET /static/index/img/assembler.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 87 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 7/41] 198.86.29.21 () {46 vars in 1645 bytes} [Mon Feb 24 22:56:57 2020] GET /static/menu/css/menu.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 9/42] 198.86.29.21 () {46 vars in 1705 bytes} [Mon Feb 24 22:56:57 2020] GET /static/index/img/img-to-mif.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 88 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 8/43] 198.86.29.21 () {48 vars in 1685 bytes} [Mon Feb 24 22:56:57 2020] GET /static/menu/menu.html => generated 425 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 0)
+[pid: 1907|app: 0|req: 13/44] 198.86.29.21 () {46 vars in 1676 bytes} [Mon Feb 24 22:56:58 2020] GET /static/assembler/css/assembler.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 10/45] 198.86.29.21 () {44 vars in 1607 bytes} [Mon Feb 24 22:56:58 2020] GET /assembler/ => generated 1160 bytes in 18 msecs (HTTP/1.1 200) 5 headers in 286 bytes (1 switches on core 1)
+[pid: 1906|app: 0|req: 9/46] 198.86.29.21 () {44 vars in 1597 bytes} [Mon Feb 24 22:57:02 2020] GET / => generated 921 bytes in 2 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1909|app: 0|req: 15/47] 198.86.29.21 () {44 vars in 1607 bytes} [Mon Feb 24 22:57:02 2020] GET /assembler/ => generated 1160 bytes in 16 msecs (HTTP/1.1 200) 5 headers in 286 bytes (2 switches on core 0)
+[pid: 1909|app: 0|req: 16/48] 198.86.29.21 () {44 vars in 1607 bytes} [Mon Feb 24 22:57:41 2020] GET /assembler/ => generated 1160 bytes in 1 msecs (HTTP/1.1 200) 5 headers in 286 bytes (1 switches on core 1)
+[pid: 1907|app: 0|req: 14/49] 198.86.29.21 () {50 vars in 1852 bytes} [Mon Feb 24 22:57:59 2020] POST /assemble/ => generated 4027 bytes in 18 msecs (HTTP/1.1 200) 4 headers in 147 bytes (2 switches on core 0)
+[pid: 1907|app: 0|req: 15/50] 198.86.29.21 () {50 vars in 1852 bytes} [Mon Feb 24 22:58:14 2020] POST /assemble/ => generated 4027 bytes in 5 msecs (HTTP/1.1 200) 4 headers in 147 bytes (2 switches on core 1)
+[pid: 1910|app: 0|req: 11/51] 198.86.29.21 () {42 vars in 1537 bytes} [Mon Feb 24 23:01:53 2020] GET / => generated 921 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1910|app: 0|req: 12/52] 198.86.29.21 () {46 vars in 1650 bytes} [Mon Feb 24 23:01:53 2020] GET /static/index/css/index.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 13/53] 198.86.29.21 () {46 vars in 1626 bytes} [Mon Feb 24 23:01:53 2020] GET /static/js/load_menu.js => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 10/54] 198.86.29.21 () {46 vars in 1646 bytes} [Mon Feb 24 23:01:53 2020] GET /static/menu/css/menu.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 11/55] 198.86.29.21 () {46 vars in 1705 bytes} [Mon Feb 24 23:01:53 2020] GET /static/index/img/img-to-mif.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 88 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 12/56] 198.86.29.21 () {46 vars in 1702 bytes} [Mon Feb 24 23:01:53 2020] GET /static/index/img/assembler.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 87 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 14/57] 198.86.29.21 () {46 vars in 1626 bytes} [Mon Feb 24 23:01:53 2020] GET /static/js/load_menu.js => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 14/58] 198.86.29.21 () {46 vars in 1650 bytes} [Mon Feb 24 23:01:53 2020] GET /static/index/css/index.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 1)
+[pid: 1906|app: 0|req: 16/59] 198.86.29.21 () {46 vars in 1705 bytes} [Mon Feb 24 23:01:53 2020] GET /static/index/img/img-to-mif.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 88 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 16/60] 198.86.29.21 () {46 vars in 1702 bytes} [Mon Feb 24 23:01:53 2020] GET /static/index/img/assembler.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 87 bytes (0 switches on core 1)
+[pid: 1906|app: 0|req: 17/61] 198.86.29.21 () {48 vars in 1685 bytes} [Mon Feb 24 23:01:53 2020] GET /static/menu/menu.html => generated 425 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 18/62] 198.86.29.21 () {46 vars in 1646 bytes} [Mon Feb 24 23:01:53 2020] GET /static/menu/css/menu.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 1)
+[pid: 1909|app: 0|req: 18/63] 198.86.29.21 () {46 vars in 1676 bytes} [Mon Feb 24 23:01:56 2020] GET /static/assembler/css/assembler.css => generated 0 bytes in 2 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 1)
+[pid: 1909|app: 0|req: 18/64] 198.86.29.21 () {44 vars in 1607 bytes} [Mon Feb 24 23:01:56 2020] GET /assembler/ => generated 1160 bytes in 2 msecs (HTTP/1.1 200) 5 headers in 286 bytes (1 switches on core 0)
+[pid: 1907|app: 0|req: 16/65] 198.86.29.21 () {46 vars in 1676 bytes} [Mon Feb 24 23:01:56 2020] GET /static/assembler/css/assembler.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 1907|app: 0|req: 17/66] 10.197.139.207 () {42 vars in 1913 bytes} [Mon Feb 24 23:02:09 2020] GET / => generated 921 bytes in 2 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1910|app: 0|req: 14/67] 10.197.139.207 () {42 vars in 1874 bytes} [Mon Feb 24 23:02:09 2020] GET /static/index/css/index.css => generated 307 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 19/68] 10.197.139.207 () {42 vars in 1851 bytes} [Mon Feb 24 23:02:09 2020] GET /static/js/load_menu.js => generated 73 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 228 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 15/69] 10.197.139.207 () {42 vars in 1903 bytes} [Mon Feb 24 23:02:09 2020] GET /static/index/img/assembler.png => generated 26480 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 203 bytes (0 switches on core 1)
+[pid: 1909|app: 0|req: 19/70] 10.197.139.207 () {42 vars in 1905 bytes} [Mon Feb 24 23:02:09 2020] GET /static/index/img/img-to-mif.png => generated 151199 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 205 bytes (0 switches on core 1)
+[pid: 1910|app: 0|req: 16/71] 10.197.139.207 () {44 vars in 1907 bytes} [Mon Feb 24 23:02:09 2020] GET /static/menu/menu.html => generated 425 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 17/72] 10.197.139.207 () {42 vars in 1865 bytes} [Mon Feb 24 23:02:09 2020] GET /favicon.ico => generated 179 bytes in 7 msecs (HTTP/1.1 404) 3 headers in 95 bytes (1 switches on core 1)
+[pid: 1906|app: 0|req: 20/73] 10.197.139.207 () {42 vars in 1870 bytes} [Mon Feb 24 23:02:09 2020] GET /static/menu/css/menu.css => generated 457 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 18/74] 10.197.58.94 () {40 vars in 748 bytes} [Tue Feb 25 00:19:48 2020] GET / => generated 921 bytes in 3 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1907|app: 0|req: 18/75] 10.197.58.94 () {40 vars in 709 bytes} [Tue Feb 25 00:19:48 2020] GET /static/index/css/index.css => generated 307 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 19/76] 10.197.58.94 () {40 vars in 738 bytes} [Tue Feb 25 00:19:48 2020] GET /static/index/img/assembler.png => generated 26480 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 203 bytes (0 switches on core 1)
+[pid: 1909|app: 0|req: 20/77] 10.197.58.94 () {40 vars in 686 bytes} [Tue Feb 25 00:19:48 2020] GET /static/js/load_menu.js => generated 73 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 228 bytes (0 switches on core 0)
+[pid: 1907|app: 0|req: 19/78] 10.197.58.94 () {40 vars in 740 bytes} [Tue Feb 25 00:19:48 2020] GET /static/index/img/img-to-mif.png => generated 151199 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 205 bytes (0 switches on core 1)
+[pid: 1906|app: 0|req: 21/79] 10.197.58.94 () {42 vars in 742 bytes} [Tue Feb 25 00:19:48 2020] GET /static/menu/menu.html => generated 425 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 1)
+[pid: 1909|app: 0|req: 21/80] 10.197.58.94 () {40 vars in 705 bytes} [Tue Feb 25 00:19:48 2020] GET /static/menu/css/menu.css => generated 457 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 1)
+[pid: 1910|app: 0|req: 20/81] 10.197.58.94 () {40 vars in 700 bytes} [Tue Feb 25 00:19:48 2020] GET /favicon.ico => generated 179 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 95 bytes (1 switches on core 1)
+[pid: 1907|app: 0|req: 20/82] 10.197.58.94 () {42 vars in 816 bytes} [Tue Feb 25 00:19:53 2020] GET /assembler => generated 0 bytes in 1 msecs (HTTP/1.1 301) 3 headers in 116 bytes (1 switches on core 0)
+[pid: 1907|app: 0|req: 21/83] 10.197.58.94 () {42 vars in 818 bytes} [Tue Feb 25 00:19:53 2020] GET /assembler/ => generated 1160 bytes in 5 msecs (HTTP/1.1 200) 5 headers in 286 bytes (1 switches on core 1)
+[pid: 1906|app: 0|req: 22/84] 10.197.58.94 () {42 vars in 824 bytes} [Tue Feb 25 00:19:53 2020] GET /static/assembler/css/assembler.css => generated 1153 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 23/85] 10.197.58.94 () {44 vars in 917 bytes} [Tue Feb 25 00:20:01 2020] GET /assembler/ => generated 1160 bytes in 3 msecs (HTTP/1.1 200) 5 headers in 286 bytes (1 switches on core 1)
+[pid: 1906|app: 0|req: 24/86] 10.197.58.94 () {44 vars in 897 bytes} [Tue Feb 25 00:20:04 2020] GET / => generated 921 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1906|app: 0|req: 25/87] 10.197.58.94 () {44 vars in 907 bytes} [Tue Feb 25 00:20:07 2020] GET /assembler/ => generated 1160 bytes in 4 msecs (HTTP/1.1 200) 5 headers in 286 bytes (1 switches on core 0)
+[pid: 1910|app: 0|req: 21/88] 10.197.58.94 () {44 vars in 913 bytes} [Tue Feb 25 00:20:17 2020] GET /feedback => generated 0 bytes in 1 msecs (HTTP/1.1 301) 3 headers in 115 bytes (1 switches on core 0)
+[pid: 1910|app: 0|req: 22/89] 10.197.58.94 () {44 vars in 915 bytes} [Tue Feb 25 00:20:17 2020] GET /feedback/ => generated 892 bytes in 3 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1907|app: 0|req: 22/90] 10.197.58.94 () {42 vars in 803 bytes} [Tue Feb 25 00:20:17 2020] GET /static/bugs/css/bugs.css => generated 248 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 215 bytes (0 switches on core 0)
+[pid: 1907|app: 0|req: 23/91] 174.109.110.114 () {42 vars in 2619 bytes} [Tue Feb 25 01:22:28 2020] GET / => generated 921 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1909|app: 0|req: 22/92] 174.109.110.114 () {42 vars in 2580 bytes} [Tue Feb 25 01:22:28 2020] GET /static/index/css/index.css => generated 307 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 23/93] 174.109.110.114 () {42 vars in 2557 bytes} [Tue Feb 25 01:22:28 2020] GET /static/js/load_menu.js => generated 73 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 228 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 24/94] 174.109.110.114 () {42 vars in 2609 bytes} [Tue Feb 25 01:22:28 2020] GET /static/index/img/assembler.png => generated 26480 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 203 bytes (0 switches on core 1)
+[pid: 1906|app: 0|req: 26/95] 174.109.110.114 () {42 vars in 2611 bytes} [Tue Feb 25 01:22:28 2020] GET /static/index/img/img-to-mif.png => generated 151199 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 205 bytes (0 switches on core 1)
+[pid: 1909|app: 0|req: 23/96] 174.109.110.114 () {44 vars in 2613 bytes} [Tue Feb 25 01:22:29 2020] GET /static/menu/menu.html => generated 425 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 1)
+[pid: 1910|app: 0|req: 25/97] 174.109.110.114 () {42 vars in 2571 bytes} [Tue Feb 25 01:22:29 2020] GET /favicon.ico => generated 179 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 95 bytes (1 switches on core 1)
+[pid: 1910|app: 0|req: 26/98] 174.109.110.114 () {42 vars in 2576 bytes} [Tue Feb 25 01:22:29 2020] GET /static/menu/css/menu.css => generated 457 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 0)
+[pid: 1909|app: 0|req: 24/99] 10.197.91.12 () {42 vars in 1035 bytes} [Tue Feb 25 02:58:12 2020] GET / => generated 921 bytes in 3 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1906|app: 0|req: 27/100] 10.197.91.12 () {42 vars in 996 bytes} [Tue Feb 25 02:58:13 2020] GET /static/index/css/index.css => generated 307 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 28/101] 10.197.91.12 () {42 vars in 973 bytes} [Tue Feb 25 02:58:13 2020] GET /static/js/load_menu.js => generated 73 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 228 bytes (0 switches on core 1)
+[pid: 1909|app: 0|req: 25/102] 10.197.91.12 () {42 vars in 1025 bytes} [Tue Feb 25 02:58:13 2020] GET /static/index/img/assembler.png => generated 26480 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 203 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 27/103] 10.197.91.12 () {42 vars in 1027 bytes} [Tue Feb 25 02:58:13 2020] GET /static/index/img/img-to-mif.png => generated 151199 bytes in 3 msecs via sendfile() (HTTP/1.1 200) 6 headers in 205 bytes (0 switches on core 1)
+[pid: 1910|app: 0|req: 28/104] 10.197.91.12 () {44 vars in 1029 bytes} [Tue Feb 25 02:58:13 2020] GET /static/menu/menu.html => generated 425 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 0)
+[pid: 1907|app: 0|req: 24/105] 10.197.91.12 () {42 vars in 992 bytes} [Tue Feb 25 02:58:13 2020] GET /static/menu/css/menu.css => generated 457 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 0)
+[pid: 1907|app: 0|req: 25/106] 10.197.91.12 () {42 vars in 987 bytes} [Tue Feb 25 02:58:13 2020] GET /favicon.ico => generated 179 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 95 bytes (1 switches on core 1)
+[pid: 1910|app: 0|req: 29/107] 10.197.91.12 () {44 vars in 1097 bytes} [Tue Feb 25 02:58:18 2020] GET /im2mif => generated 0 bytes in 1 msecs (HTTP/1.1 301) 3 headers in 113 bytes (1 switches on core 1)
+[pid: 1909|app: 0|req: 26/108] 10.197.91.12 () {44 vars in 1099 bytes} [Tue Feb 25 02:58:18 2020] GET /im2mif/ => generated 385 bytes in 46 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1907|app: 0|req: 26/109] 10.197.91.12 () {42 vars in 995 bytes} [Tue Feb 25 02:58:18 2020] GET /static/wip/css/wip.css => generated 0 bytes in 0 msecs (HTTP/1.1 200) 6 headers in 212 bytes (0 switches on core 0)
+[pid: 1907|app: 0|req: 27/110] 10.197.91.12 () {44 vars in 1108 bytes} [Tue Feb 25 02:58:21 2020] GET /feedback => generated 0 bytes in 0 msecs (HTTP/1.1 301) 3 headers in 115 bytes (1 switches on core 1)
+[pid: 1910|app: 0|req: 30/111] 10.197.91.12 () {44 vars in 1110 bytes} [Tue Feb 25 02:58:21 2020] GET /feedback/ => generated 892 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1909|app: 0|req: 27/112] 10.197.91.12 () {42 vars in 1001 bytes} [Tue Feb 25 02:58:21 2020] GET /static/bugs/css/bugs.css => generated 248 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 215 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 29/113] 67.171.248.131 () {42 vars in 2200 bytes} [Tue Feb 25 06:57:46 2020] GET / => generated 921 bytes in 6 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1906|app: 0|req: 30/114] 67.171.248.131 () {42 vars in 2161 bytes} [Tue Feb 25 06:57:47 2020] GET /static/index/css/index.css => generated 307 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 1)
+[pid: 1907|app: 0|req: 28/115] 67.171.248.131 () {42 vars in 2190 bytes} [Tue Feb 25 06:57:47 2020] GET /static/index/img/assembler.png => generated 26480 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 203 bytes (0 switches on core 0)
+[pid: 1909|app: 0|req: 28/116] 67.171.248.131 () {42 vars in 2138 bytes} [Tue Feb 25 06:57:47 2020] GET /static/js/load_menu.js => generated 73 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 6 headers in 228 bytes (0 switches on core 0)
+[pid: 1909|app: 0|req: 29/117] 67.171.248.131 () {42 vars in 2192 bytes} [Tue Feb 25 06:57:47 2020] GET /static/index/img/img-to-mif.png => generated 151199 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 205 bytes (0 switches on core 0)
+[pid: 1909|app: 0|req: 30/118] 67.171.248.131 () {44 vars in 2194 bytes} [Tue Feb 25 06:57:47 2020] GET /static/menu/menu.html => generated 425 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 1)
+[pid: 1910|app: 0|req: 31/119] 67.171.248.131 () {42 vars in 2157 bytes} [Tue Feb 25 06:57:47 2020] GET /static/menu/css/menu.css => generated 457 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 1)
+[pid: 1910|app: 0|req: 32/120] 67.171.248.131 () {42 vars in 2152 bytes} [Tue Feb 25 06:57:47 2020] GET /favicon.ico => generated 179 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 95 bytes (1 switches on core 0)
+[pid: 1906|app: 0|req: 31/121] 67.171.248.131 () {44 vars in 2268 bytes} [Tue Feb 25 06:57:53 2020] GET /assembler => generated 0 bytes in 1 msecs (HTTP/1.1 301) 3 headers in 116 bytes (1 switches on core 0)
+[pid: 1909|app: 0|req: 31/122] 67.171.248.131 () {44 vars in 2270 bytes} [Tue Feb 25 06:57:53 2020] GET /assembler/ => generated 1160 bytes in 3 msecs (HTTP/1.1 200) 5 headers in 286 bytes (1 switches on core 0)
+[pid: 1909|app: 0|req: 32/123] 67.171.248.131 () {42 vars in 2263 bytes} [Tue Feb 25 06:57:54 2020] GET /static/assembler/css/assembler.css => generated 1153 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (1 switches on core 1)
+[pid: 1909|app: 0|req: 33/124] 67.171.248.131 () {44 vars in 2352 bytes} [Tue Feb 25 06:58:02 2020] GET /feedback => generated 0 bytes in 1 msecs (HTTP/1.1 301) 3 headers in 115 bytes (1 switches on core 0)
+[pid: 1907|app: 0|req: 29/125] 67.171.248.131 () {44 vars in 2354 bytes} [Tue Feb 25 06:58:02 2020] GET /feedback/ => generated 892 bytes in 2 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1909|app: 0|req: 34/126] 67.171.248.131 () {42 vars in 2242 bytes} [Tue Feb 25 06:58:02 2020] GET /static/bugs/css/bugs.css => generated 248 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 215 bytes (0 switches on core 1)
+[pid: 1906|app: 0|req: 32/127] 10.197.91.12 () {42 vars in 1035 bytes} [Tue Feb 25 18:15:46 2020] GET / => generated 921 bytes in 9 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1906|app: 0|req: 33/128] 10.197.91.12 () {46 vars in 1087 bytes} [Tue Feb 25 18:15:46 2020] GET /static/index/css/index.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 1)
+[pid: 1910|app: 0|req: 33/129] 10.197.91.12 () {46 vars in 1063 bytes} [Tue Feb 25 18:15:46 2020] GET /static/js/load_menu.js => generated 0 bytes in 2 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 1)
+[pid: 1910|app: 0|req: 34/130] 10.197.91.12 () {46 vars in 1117 bytes} [Tue Feb 25 18:15:47 2020] GET /static/index/img/assembler.png => generated 0 bytes in 1 msecs (HTTP/1.1 304) 2 headers in 87 bytes (0 switches on core 0)
+[pid: 1909|app: 0|req: 35/131] 10.197.91.12 () {46 vars in 1120 bytes} [Tue Feb 25 18:15:47 2020] GET /static/index/img/img-to-mif.png => generated 0 bytes in 3 msecs (HTTP/1.1 304) 2 headers in 88 bytes (0 switches on core 0)
+[pid: 1909|app: 0|req: 36/132] 10.197.91.12 () {48 vars in 1122 bytes} [Tue Feb 25 18:15:47 2020] GET /static/menu/menu.html => generated 425 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 1)
+[pid: 1906|app: 0|req: 34/133] 10.197.91.12 () {46 vars in 1083 bytes} [Tue Feb 25 18:15:47 2020] GET /static/menu/css/menu.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 35/134] 10.197.91.12 () {44 vars in 1093 bytes} [Tue Feb 25 18:15:50 2020] GET /help => generated 0 bytes in 1 msecs (HTTP/1.1 301) 3 headers in 111 bytes (1 switches on core 1)
+[pid: 1910|app: 0|req: 35/135] 10.197.91.12 () {44 vars in 1095 bytes} [Tue Feb 25 18:15:50 2020] GET /help/ => generated 1761 bytes in 5 msecs (HTTP/1.1 200) 3 headers in 104 bytes (1 switches on core 1)
+[pid: 1910|app: 0|req: 36/136] 10.197.91.12 () {42 vars in 997 bytes} [Tue Feb 25 18:15:50 2020] GET /static/help/css/help.css => generated 248 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 6 headers in 215 bytes (0 switches on core 0)
+[pid: 1907|app: 0|req: 30/137] 10.197.91.12 () {44 vars in 1178 bytes} [Tue Feb 25 18:15:52 2020] GET /static/downloads/Assembler_Documentation.pdf => generated 176530 bytes in 5 msecs via sendfile() (HTTP/1.1 200) 6 headers in 211 bytes (0 switches on core 0)
+[pid: 1909|app: 0|req: 37/138] 10.197.91.12 () {44 vars in 1104 bytes} [Tue Feb 25 18:15:59 2020] GET /im2mif/ => generated 385 bytes in 2 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1906|app: 0|req: 36/139] 10.197.91.12 () {46 vars in 1084 bytes} [Tue Feb 25 18:16:00 2020] GET /static/wip/css/wip.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 84 bytes (0 switches on core 0)
+[pid: 1907|app: 0|req: 31/140] 10.197.91.12 () {44 vars in 1110 bytes} [Tue Feb 25 18:16:01 2020] GET /feedback/ => generated 892 bytes in 3 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1909|app: 0|req: 38/141] 10.197.91.12 () {46 vars in 1091 bytes} [Tue Feb 25 18:16:01 2020] GET /static/bugs/css/bugs.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 1)
+[pid: 1906|app: 0|req: 37/142] 10.197.91.12 () {44 vars in 1092 bytes} [Tue Feb 25 18:16:33 2020] GET / => generated 921 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1906|app: 0|req: 38/143] 10.197.91.12 () {44 vars in 1103 bytes} [Tue Feb 25 18:16:56 2020] GET /assembler => generated 0 bytes in 1 msecs (HTTP/1.1 301) 3 headers in 116 bytes (1 switches on core 1)
+[pid: 1909|app: 0|req: 39/144] 10.197.91.12 () {44 vars in 1105 bytes} [Tue Feb 25 18:16:56 2020] GET /assembler/ => generated 1160 bytes in 3 msecs (HTTP/1.1 200) 5 headers in 286 bytes (1 switches on core 1)
+[pid: 1910|app: 0|req: 37/145] 10.197.91.12 () {42 vars in 1098 bytes} [Tue Feb 25 18:16:56 2020] GET /static/assembler/css/assembler.css => generated 1153 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 1)
+[pid: 1910|app: 0|req: 38/146] 10.197.91.12 () {46 vars in 1149 bytes} [Tue Feb 25 18:16:56 2020] GET /static/js/load_menu.js => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 1907|app: 0|req: 32/147] 10.197.91.12 () {48 vars in 1208 bytes} [Tue Feb 25 18:16:56 2020] GET /static/menu/menu.html => generated 425 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 0)
+[pid: 1909|app: 0|req: 40/148] 10.197.91.12 () {46 vars in 1169 bytes} [Tue Feb 25 18:16:56 2020] GET /static/menu/css/menu.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 39/149] 10.197.91.12 () {44 vars in 1171 bytes} [Tue Feb 25 18:16:58 2020] GET / => generated 921 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1906|app: 0|req: 39/150] 10.197.91.12 () {46 vars in 1163 bytes} [Tue Feb 25 18:16:58 2020] GET /static/index/css/index.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 1909|app: 0|req: 41/151] 10.197.91.12 () {46 vars in 1193 bytes} [Tue Feb 25 18:16:58 2020] GET /static/index/img/assembler.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 87 bytes (1 switches on core 1)
+[pid: 1906|app: 0|req: 40/152] 10.197.91.12 () {46 vars in 1196 bytes} [Tue Feb 25 18:16:58 2020] GET /static/index/img/img-to-mif.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 88 bytes (0 switches on core 1)
+[pid: 1907|app: 0|req: 33/153] 10.197.91.12 () {44 vars in 1175 bytes} [Tue Feb 25 18:18:04 2020] GET /im2mif/ => generated 385 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1906|app: 0|req: 41/154] 10.197.91.12 () {46 vars in 1160 bytes} [Tue Feb 25 18:18:04 2020] GET /static/wip/css/wip.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 84 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 40/155] 10.197.91.12 () {46 vars in 1146 bytes} [Tue Feb 25 18:18:04 2020] GET /static/js/load_menu.js => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 1)
+[pid: 1907|app: 0|req: 34/156] 10.197.91.12 () {48 vars in 1205 bytes} [Tue Feb 25 18:18:04 2020] GET /static/menu/menu.html => generated 425 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 1)
+[pid: 1909|app: 0|req: 42/157] 10.197.91.12 () {46 vars in 1166 bytes} [Tue Feb 25 18:18:04 2020] GET /static/menu/css/menu.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 1909|app: 0|req: 43/158] 10.197.91.12 () {44 vars in 1168 bytes} [Tue Feb 25 18:18:14 2020] GET / => generated 921 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1910|app: 0|req: 41/159] 10.197.91.12 () {46 vars in 1163 bytes} [Tue Feb 25 18:18:14 2020] GET /static/index/css/index.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 1)
+[pid: 1910|app: 0|req: 42/160] 10.197.91.12 () {46 vars in 1193 bytes} [Tue Feb 25 18:18:14 2020] GET /static/index/img/assembler.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 87 bytes (0 switches on core 0)
+[pid: 1909|app: 0|req: 44/161] 10.197.91.12 () {46 vars in 1196 bytes} [Tue Feb 25 18:18:14 2020] GET /static/index/img/img-to-mif.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 88 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 42/162] 10.197.91.12 () {44 vars in 1171 bytes} [Tue Feb 25 18:18:15 2020] GET /help/ => generated 1761 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 104 bytes (1 switches on core 0)
+[pid: 1910|app: 0|req: 43/163] 10.197.91.12 () {46 vars in 1163 bytes} [Tue Feb 25 18:18:15 2020] GET /static/help/css/help.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 1)
+[pid: 1910|app: 0|req: 44/164] 10.197.91.12 () {48 vars in 1347 bytes} [Tue Feb 25 18:18:18 2020] GET /static/downloads/Assembler_Documentation.pdf => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 88 bytes (0 switches on core 0)
+[pid: 1907|app: 0|req: 35/165] 10.197.91.12 () {44 vars in 1166 bytes} [Tue Feb 25 18:18:24 2020] GET / => generated 921 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1907|app: 0|req: 36/166] 10.197.91.12 () {44 vars in 1181 bytes} [Tue Feb 25 18:18:25 2020] GET /assembler/ => generated 1160 bytes in 3 msecs (HTTP/1.1 200) 5 headers in 286 bytes (1 switches on core 1)
+[pid: 1910|app: 0|req: 45/167] 10.197.91.12 () {46 vars in 1189 bytes} [Tue Feb 25 18:18:26 2020] GET /static/assembler/css/assembler.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 46/168] 10.197.91.12 () {44 vars in 1185 bytes} [Tue Feb 25 18:20:48 2020] GET /im2mif/ => generated 385 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1906|app: 0|req: 43/169] 10.197.91.12 () {46 vars in 1160 bytes} [Tue Feb 25 18:20:48 2020] GET /static/wip/css/wip.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 84 bytes (0 switches on core 0)
+[pid: 1909|app: 0|req: 45/170] 10.197.91.12 () {46 vars in 1146 bytes} [Tue Feb 25 18:20:48 2020] GET /static/js/load_menu.js => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 1)
+[pid: 1907|app: 0|req: 37/171] 10.197.91.12 () {48 vars in 1205 bytes} [Tue Feb 25 18:20:48 2020] GET /static/menu/menu.html => generated 425 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 0)
+[pid: 1907|app: 0|req: 38/172] 10.197.91.12 () {46 vars in 1166 bytes} [Tue Feb 25 18:20:48 2020] GET /static/menu/css/menu.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 1)
+[pid: 1909|app: 0|req: 46/173] 10.197.91.12 () {44 vars in 1188 bytes} [Tue Feb 25 18:20:50 2020] GET /assembler/ => generated 1160 bytes in 1 msecs (HTTP/1.1 200) 5 headers in 286 bytes (1 switches on core 0)
+[pid: 1909|app: 0|req: 47/174] 10.197.91.12 () {46 vars in 1189 bytes} [Tue Feb 25 18:20:51 2020] GET /static/assembler/css/assembler.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 1)
+[pid: 1906|app: 0|req: 44/175] 10.197.91.12 () {44 vars in 1185 bytes} [Tue Feb 25 18:20:52 2020] GET /im2mif/ => generated 385 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1906|app: 0|req: 45/176] 10.197.91.12 () {44 vars in 1188 bytes} [Tue Feb 25 18:21:13 2020] GET /assembler/ => generated 1160 bytes in 5 msecs (HTTP/1.1 200) 5 headers in 286 bytes (1 switches on core 1)
+[pid: 1910|app: 0|req: 47/177] 10.197.91.12 () {44 vars in 1185 bytes} [Tue Feb 25 18:32:00 2020] GET /im2mif/ => generated 385 bytes in 2 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1907|app: 0|req: 39/178] 10.197.91.12 () {46 vars in 1160 bytes} [Tue Feb 25 18:32:01 2020] GET /static/wip/css/wip.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 2 headers in 84 bytes (0 switches on core 0)
+[pid: 1909|app: 0|req: 48/179] 10.197.91.12 () {46 vars in 1146 bytes} [Tue Feb 25 18:32:01 2020] GET /static/js/load_menu.js => generated 0 bytes in 1 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 1909|app: 0|req: 49/180] 10.197.91.12 () {48 vars in 1205 bytes} [Tue Feb 25 18:32:01 2020] GET /static/menu/menu.html => generated 425 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 1)
+[pid: 1907|app: 0|req: 40/181] 10.197.91.12 () {46 vars in 1166 bytes} [Tue Feb 25 18:32:01 2020] GET /static/menu/css/menu.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 1)
+[pid: 1906|app: 0|req: 46/182] 10.197.91.12 () {46 vars in 1216 bytes} [Tue Feb 25 18:32:02 2020] GET /im2mif/ => generated 385 bytes in 2 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1910|app: 0|req: 48/183] 10.197.91.12 () {46 vars in 1216 bytes} [Tue Feb 25 18:32:07 2020] GET /im2mif/ => generated 385 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1910|app: 0|req: 49/184] 10.197.91.12 () {44 vars in 1156 bytes} [Tue Feb 25 18:32:10 2020] GET /im2mif/ => generated 385 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1909|app: 0|req: 50/185] 10.197.91.12 () {44 vars in 1168 bytes} [Tue Feb 25 18:32:11 2020] GET / => generated 921 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1906|app: 0|req: 47/186] 10.197.91.12 () {46 vars in 1163 bytes} [Tue Feb 25 18:32:11 2020] GET /static/index/css/index.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 1)
+[pid: 1909|app: 0|req: 51/187] 10.197.91.12 () {46 vars in 1193 bytes} [Tue Feb 25 18:32:11 2020] GET /static/index/img/assembler.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 87 bytes (0 switches on core 1)
+[pid: 1910|app: 0|req: 50/188] 10.197.91.12 () {46 vars in 1196 bytes} [Tue Feb 25 18:32:11 2020] GET /static/index/img/img-to-mif.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 88 bytes (0 switches on core 0)
+[pid: 1907|app: 0|req: 41/189] 10.197.91.12 () {44 vars in 1142 bytes} [Tue Feb 25 18:32:13 2020] GET / => generated 921 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1907|app: 0|req: 42/190] 10.197.91.12 () {44 vars in 1175 bytes} [Tue Feb 25 18:32:13 2020] GET /im2mif/ => generated 385 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1910|app: 0|req: 51/191] 10.197.91.12 () {46 vars in 1206 bytes} [Tue Feb 25 18:32:45 2020] GET /im2mif/ => generated 385 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1907|app: 0|req: 43/192] 10.197.91.12 () {46 vars in 1206 bytes} [Tue Feb 25 18:33:45 2020] GET /im2mif/ => generated 385 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1906|app: 0|req: 48/193] 10.197.91.12 () {46 vars in 1160 bytes} [Tue Feb 25 18:33:45 2020] GET /static/wip/css/wip.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 84 bytes (0 switches on core 0)
+[pid: 1909|app: 0|req: 52/194] 10.197.91.12 () {46 vars in 1146 bytes} [Tue Feb 25 18:33:45 2020] GET /static/js/load_menu.js => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 52/195] 10.197.91.12 () {48 vars in 1205 bytes} [Tue Feb 25 18:33:46 2020] GET /static/menu/menu.html => generated 425 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 1)
+[pid: 1910|app: 0|req: 53/196] 10.197.91.12 () {46 vars in 1166 bytes} [Tue Feb 25 18:33:46 2020] GET /static/menu/css/menu.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 1909|app: 0|req: 53/197] 10.197.91.12 () {44 vars in 1188 bytes} [Tue Feb 25 18:38:42 2020] GET /assembler/ => generated 1160 bytes in 2 msecs (HTTP/1.1 200) 5 headers in 286 bytes (1 switches on core 1)
+[pid: 1909|app: 0|req: 54/198] 10.197.91.12 () {46 vars in 1189 bytes} [Tue Feb 25 18:38:42 2020] GET /static/assembler/css/assembler.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 49/199] 10.197.91.12 () {46 vars in 1149 bytes} [Tue Feb 25 18:38:42 2020] GET /static/js/load_menu.js => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 50/200] 10.197.91.12 () {48 vars in 1208 bytes} [Tue Feb 25 18:38:42 2020] GET /static/menu/menu.html => generated 425 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (1 switches on core 1)
+[pid: 1910|app: 0|req: 54/201] 10.197.91.12 () {46 vars in 1169 bytes} [Tue Feb 25 18:38:42 2020] GET /static/menu/css/menu.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (1 switches on core 1)
+[pid: 1910|app: 0|req: 55/202] 10.197.91.12 () {44 vars in 1185 bytes} [Tue Feb 25 18:38:43 2020] GET /im2mif/ => generated 385 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (2 switches on core 0)
+[pid: 1910|app: 0|req: 56/203] 10.197.91.12 () {46 vars in 1160 bytes} [Tue Feb 25 18:38:43 2020] GET /static/wip/css/wip.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 84 bytes (1 switches on core 1)
+[pid: 1910|app: 0|req: 57/204] 10.197.91.12 () {44 vars in 1188 bytes} [Tue Feb 25 18:38:44 2020] GET /assembler/ => generated 1160 bytes in 2 msecs (HTTP/1.1 200) 5 headers in 286 bytes (2 switches on core 0)
+[pid: 1910|app: 0|req: 58/205] 10.197.91.12 () {44 vars in 1185 bytes} [Tue Feb 25 18:43:59 2020] GET /im2mif/ => generated 385 bytes in 3 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1910|app: 0|req: 59/206] 10.197.91.12 () {46 vars in 1160 bytes} [Tue Feb 25 18:43:59 2020] GET /static/wip/css/wip.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 84 bytes (0 switches on core 0)
+[pid: 1907|app: 0|req: 44/207] 10.197.91.12 () {46 vars in 1146 bytes} [Tue Feb 25 18:43:59 2020] GET /static/js/load_menu.js => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 1)
+[pid: 1907|app: 0|req: 45/208] 10.197.91.12 () {48 vars in 1205 bytes} [Tue Feb 25 18:43:59 2020] GET /static/menu/menu.html => generated 425 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 51/209] 10.197.91.12 () {46 vars in 1166 bytes} [Tue Feb 25 18:43:59 2020] GET /static/menu/css/menu.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 60/210] 10.197.91.12 () {46 vars in 1216 bytes} [Tue Feb 25 18:44:00 2020] GET /im2mif/ => generated 385 bytes in 0 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1910|app: 0|req: 61/211] 10.197.91.12 () {46 vars in 1216 bytes} [Tue Feb 25 18:44:16 2020] GET /im2mif/ => generated 385 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1907|app: 0|req: 46/212] 10.197.91.12 () {46 vars in 1216 bytes} [Tue Feb 25 18:45:22 2020] GET /im2mif/ => generated 385 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1909|app: 0|req: 56/213] 10.197.91.12 () {46 vars in 1160 bytes} [Tue Feb 25 18:45:22 2020] GET /static/wip/css/wip.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 2 headers in 84 bytes (0 switches on core 1)
+[pid: 1909|app: 0|req: 56/214] 10.197.91.12 () {46 vars in 1146 bytes} [Tue Feb 25 18:45:22 2020] GET /static/js/load_menu.js => generated 0 bytes in 1 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 52/215] 10.197.91.12 () {48 vars in 1205 bytes} [Tue Feb 25 18:45:23 2020] GET /static/menu/menu.html => generated 425 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 53/216] 10.197.91.12 () {46 vars in 1166 bytes} [Tue Feb 25 18:45:23 2020] GET /static/menu/css/menu.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 1)
+[pid: 1910|app: 0|req: 62/217] 10.197.91.12 () {44 vars in 1168 bytes} [Tue Feb 25 18:45:24 2020] GET / => generated 921 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1906|app: 0|req: 54/218] 10.197.91.12 () {46 vars in 1163 bytes} [Tue Feb 25 18:45:24 2020] GET /static/index/css/index.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 55/219] 10.197.91.12 () {46 vars in 1193 bytes} [Tue Feb 25 18:45:24 2020] GET /static/index/img/assembler.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 87 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 56/220] 10.197.91.12 () {46 vars in 1196 bytes} [Tue Feb 25 18:45:24 2020] GET /static/index/img/img-to-mif.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 88 bytes (0 switches on core 1)
+[pid: 1910|app: 0|req: 63/221] 10.197.91.12 () {46 vars in 1199 bytes} [Tue Feb 25 19:16:07 2020] GET / => generated 921 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1907|app: 0|req: 47/222] 10.197.91.12 () {46 vars in 1163 bytes} [Tue Feb 25 19:16:07 2020] GET /static/index/css/index.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 57/223] 10.197.91.12 () {46 vars in 1139 bytes} [Tue Feb 25 19:16:07 2020] GET /static/js/load_menu.js => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (1 switches on core 0)
+[pid: 1909|app: 0|req: 57/224] 10.197.91.12 () {46 vars in 1196 bytes} [Tue Feb 25 19:16:07 2020] GET /static/index/img/img-to-mif.png => generated 0 bytes in 1 msecs (HTTP/1.1 304) 2 headers in 88 bytes (1 switches on core 1)
+[pid: 1909|app: 0|req: 58/225] 10.197.91.12 () {46 vars in 1193 bytes} [Tue Feb 25 19:16:07 2020] GET /static/index/img/assembler.png => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 1906|app: 0|req: 58/226] 10.197.91.12 () {48 vars in 1198 bytes} [Tue Feb 25 19:16:07 2020] GET /static/menu/menu.html => generated 425 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (1 switches on core 1)
+[pid: 1906|app: 0|req: 59/227] 10.197.91.12 () {46 vars in 1159 bytes} [Tue Feb 25 19:16:07 2020] GET /static/menu/css/menu.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (1 switches on core 0)
+[pid: 1909|app: 0|req: 59/228] 10.197.91.12 () {44 vars in 1175 bytes} [Tue Feb 25 19:16:08 2020] GET /im2mif/ => generated 385 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (2 switches on core 1)
+[pid: 1909|app: 0|req: 60/229] 10.197.91.12 () {46 vars in 1160 bytes} [Tue Feb 25 19:16:08 2020] GET /static/wip/css/wip.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 84 bytes (1 switches on core 0)
+[pid: 1907|app: 0|req: 48/230] 10.197.91.12 () {44 vars in 1168 bytes} [Tue Feb 25 19:16:10 2020] GET / => generated 921 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1910|app: 0|req: 64/231] 10.197.31.62 () {42 vars in 1339 bytes} [Tue Feb 25 21:01:28 2020] GET / => generated 921 bytes in 3 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1909|app: 0|req: 61/232] 10.197.31.62 () {42 vars in 1300 bytes} [Tue Feb 25 21:01:29 2020] GET /static/index/css/index.css => generated 307 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 1)
+[pid: 1906|app: 0|req: 60/233] 10.197.31.62 () {42 vars in 1277 bytes} [Tue Feb 25 21:01:29 2020] GET /static/js/load_menu.js => generated 73 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 6 headers in 228 bytes (0 switches on core 1)
+[pid: 1907|app: 0|req: 49/234] 10.197.31.62 () {42 vars in 1329 bytes} [Tue Feb 25 21:01:29 2020] GET /static/index/img/assembler.png => generated 26480 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 203 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 61/235] 10.197.31.62 () {42 vars in 1331 bytes} [Tue Feb 25 21:01:29 2020] GET /static/index/img/img-to-mif.png => generated 151199 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 205 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 65/236] 10.197.31.62 () {44 vars in 1333 bytes} [Tue Feb 25 21:01:29 2020] GET /static/menu/menu.html => generated 425 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 62/237] 10.197.31.62 () {42 vars in 1296 bytes} [Tue Feb 25 21:01:29 2020] GET /static/menu/css/menu.css => generated 457 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 66/238] 10.197.31.62 () {42 vars in 1291 bytes} [Tue Feb 25 21:01:31 2020] GET /favicon.ico => generated 179 bytes in 2 msecs (HTTP/1.1 404) 3 headers in 95 bytes (1 switches on core 0)
+[pid: 1907|app: 0|req: 50/239] 10.197.31.62 () {44 vars in 1405 bytes} [Tue Feb 25 21:01:35 2020] GET /feedback => generated 0 bytes in 1 msecs (HTTP/1.1 301) 3 headers in 115 bytes (1 switches on core 1)
+[pid: 1907|app: 0|req: 51/240] 10.197.31.62 () {44 vars in 1407 bytes} [Tue Feb 25 21:01:35 2020] GET /feedback/ => generated 892 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1910|app: 0|req: 67/241] 10.197.31.62 () {42 vars in 1305 bytes} [Tue Feb 25 21:01:35 2020] GET /static/bugs/css/bugs.css => generated 248 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 215 bytes (0 switches on core 1)
+[pid: 1910|app: 0|req: 68/242] 198.86.29.22 () {42 vars in 2657 bytes} [Tue Feb 25 22:47:17 2020] GET / => generated 921 bytes in 2 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1909|app: 0|req: 62/243] 198.86.29.22 () {42 vars in 2618 bytes} [Tue Feb 25 22:47:17 2020] GET /static/index/css/index.css => generated 307 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 1)
+[pid: 1910|app: 0|req: 69/244] 198.86.29.22 () {42 vars in 2595 bytes} [Tue Feb 25 22:47:17 2020] GET /static/js/load_menu.js => generated 73 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 228 bytes (0 switches on core 1)
+[pid: 1907|app: 0|req: 52/246] 198.86.29.22 () {42 vars in 2649 bytes} [Tue Feb 25 22:47:17 2020] GET /static/index/img/img-to-mif.png => generated 151199 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 205 bytes (0 switches on core 1)
+[pid: 1906|app: 0|req: 63/245] 198.86.29.22 () {42 vars in 2647 bytes} [Tue Feb 25 22:47:17 2020] GET /static/index/img/assembler.png => generated 26480 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 203 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 70/247] 198.86.29.22 () {44 vars in 2651 bytes} [Tue Feb 25 22:47:17 2020] GET /static/menu/menu.html => generated 425 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 71/248] 198.86.29.22 () {42 vars in 2614 bytes} [Tue Feb 25 22:47:18 2020] GET /static/menu/css/menu.css => generated 457 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 1)
+[pid: 1906|app: 0|req: 64/249] 198.86.29.22 () {42 vars in 2609 bytes} [Tue Feb 25 22:47:19 2020] GET /favicon.ico => generated 179 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 95 bytes (1 switches on core 1)
+[pid: 1909|app: 0|req: 63/250] 198.86.29.22 () {44 vars in 2725 bytes} [Tue Feb 25 22:47:21 2020] GET /assembler => generated 0 bytes in 1 msecs (HTTP/1.1 301) 3 headers in 116 bytes (1 switches on core 1)
+[pid: 1909|app: 0|req: 64/251] 198.86.29.22 () {44 vars in 2727 bytes} [Tue Feb 25 22:47:21 2020] GET /assembler/ => generated 1160 bytes in 3 msecs (HTTP/1.1 200) 5 headers in 286 bytes (1 switches on core 0)
+[pid: 1910|app: 0|req: 72/252] 198.86.29.22 () {42 vars in 2720 bytes} [Tue Feb 25 22:47:21 2020] GET /static/assembler/css/assembler.css => generated 1153 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 73/253] 198.86.29.22 () {44 vars in 2803 bytes} [Tue Feb 25 22:47:32 2020] GET /assembler/ => generated 1160 bytes in 2 msecs (HTTP/1.1 200) 5 headers in 286 bytes (1 switches on core 1)
+[pid: 1906|app: 0|req: 65/254] 10.194.23.85 () {40 vars in 674 bytes} [Tue Feb 25 23:33:53 2020] GET / => generated 921 bytes in 2 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+[pid: 1906|app: 0|req: 66/255] 10.194.23.85 () {40 vars in 696 bytes} [Tue Feb 25 23:33:53 2020] GET /static/index/css/index.css => generated 307 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 1)
+[pid: 1909|app: 0|req: 65/256] 10.194.23.85 () {40 vars in 749 bytes} [Tue Feb 25 23:33:53 2020] GET /static/index/img/img-to-mif.png => generated 151199 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 205 bytes (0 switches on core 1)
+[pid: 1909|app: 0|req: 66/257] 10.194.23.85 () {40 vars in 673 bytes} [Tue Feb 25 23:33:53 2020] GET /static/js/load_menu.js => generated 73 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 228 bytes (0 switches on core 0)
+[pid: 1907|app: 0|req: 53/258] 10.194.23.85 () {40 vars in 747 bytes} [Tue Feb 25 23:33:53 2020] GET /static/index/img/assembler.png => generated 26480 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 6 headers in 203 bytes (0 switches on core 1)
+[pid: 1907|app: 0|req: 54/259] 10.194.23.85 () {42 vars in 729 bytes} [Tue Feb 25 23:33:53 2020] GET /static/menu/menu.html => generated 425 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 0)
+[pid: 1906|app: 0|req: 67/260] 10.194.23.85 () {40 vars in 692 bytes} [Tue Feb 25 23:33:53 2020] GET /static/menu/css/menu.css => generated 457 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 216 bytes (0 switches on core 0)
+[pid: 1910|app: 0|req: 74/261] 198.86.29.21 () {42 vars in 1537 bytes} [Tue Feb 25 23:54:20 2020] GET / => generated 921 bytes in 3 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 1)
+[pid: 1909|app: 0|req: 67/263] 198.86.29.21 () {46 vars in 1646 bytes} [Tue Feb 25 23:54:20 2020] GET /static/menu/css/menu.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 1)
+[pid: 1907|app: 0|req: 56/263] 198.86.29.21 () {42 vars in 1612 bytes} [Tue Feb 25 23:54:20 2020] GET /static/index/img/img-to-mif.png => generated 151199 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 6 headers in 205 bytes (0 switches on core 0)
+[pid: 1909|app: 0|req: 68/264] 198.86.29.21 () {46 vars in 1649 bytes} [Tue Feb 25 23:54:20 2020] GET /static/index/css/index.css => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 86 bytes (0 switches on core 1)
+[pid: 1907|app: 0|req: 57/265] 198.86.29.21 () {46 vars in 1626 bytes} [Tue Feb 25 23:54:20 2020] GET /static/js/load_menu.js => generated 0 bytes in 0 msecs (HTTP/1.1 304) 2 headers in 85 bytes (0 switches on core 0)
+[pid: 1907|app: 0|req: 57/266] 198.86.29.21 () {42 vars in 1610 bytes} [Tue Feb 25 23:54:20 2020] GET /static/index/img/assembler.png => generated 26480 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 6 headers in 203 bytes (0 switches on core 1)
+[pid: 1906|app: 0|req: 68/267] 198.86.29.21 () {44 vars in 1592 bytes} [Tue Feb 25 23:54:20 2020] GET /static/menu/menu.html => generated 425 bytes in 0 msecs via sendfile() (HTTP/1.1 200) 6 headers in 217 bytes (0 switches on core 1)
+[pid: 1910|app: 0|req: 75/268] 198.86.29.21 () {42 vars in 1537 bytes} [Tue Feb 25 23:54:24 2020] GET / => generated 921 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 103 bytes (1 switches on core 0)
+...brutally killing workers...
+Gracefully killing worker 1 (pid: 1906)...
+Gracefully killing worker 4 (pid: 1910)...
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /home/vcm/350-tools-mk2
+closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+found fd 3 mapped to socket 0 (tools350.sock)
+running /home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/bin/uwsgi
+*** Starting uWSGI 2.0.18 (64bit) on [Tue Feb 25 23:54:55 2020] ***
+compiled with version: 7.4.0 on 19 February 2020 02:51:55
+os: Linux-4.15.0-88-generic #88-Ubuntu SMP Tue Feb 11 20:11:34 UTC 2020
+nodename: vcm-13279.vm.duke.edu
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 2
+current working directory: /home/vcm/350-tools-mk2
+detected binary path: /home/vcm/.local/share/virtualenvs/350-tools-mk2-t9NxbW9n/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+your processes number limit is 6752
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited UNIX address tools350.sock fd 3
+Python version: 3.8.1 (default, Feb 18 2020, 21:30:40)  [GCC 7.4.0]
+Python main interpreter initialized at 0x55eed263f890
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 416880 bytes (407 KB) for 8 cores
+*** Operational MODE: preforking+threaded ***
+/home/vcm/350-tools-mk2/static_serve/
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x55eed263f890 pid: 1731 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 1731)
+spawned uWSGI worker 1 (pid: 29047, cores: 2)
+spawned uWSGI worker 2 (pid: 29049, cores: 2)
+spawned uWSGI worker 3 (pid: 29050, cores: 2)
+spawned uWSGI worker 4 (pid: 29052, cores: 2)
