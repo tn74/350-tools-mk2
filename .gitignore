@@ -6,4 +6,5 @@ secret-key/*
 db.sqlite3
 tools350-env/*
 *.swp
-nohup.out
+tools350.sock
+tools350_nginx.conf
