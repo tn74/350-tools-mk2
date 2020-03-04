@@ -5,6 +5,7 @@ __pycache__
 secret-key/*
 db.sqlite3
 tools350-env/*
-*.swp
+**.swp
 tools350.sock
 tools350_nginx.conf
+nohup.out
